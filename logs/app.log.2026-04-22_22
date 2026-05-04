@@ -1,0 +1,320 @@
+2026-04-22 22:49:15,132 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 22:49:15,142 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 22:49:15,457 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=99d2058c-6467-4afd-9513-b7437f0627f4 entries=289
+2026-04-22 22:49:15,458 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=99d2058c-6467-4afd-9513-b7437f0627f4 entry_count=289
+2026-04-22 22:49:15,495 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:49:15,506 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:49:15,511 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:49:21,211 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:49:21,213 INFO [api.main] Fetched channels count=1
+2026-04-22 22:49:21,232 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:49:21,238 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:49:21,243 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:49:23,570 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:49:23,572 INFO [api.main] Fetched channels count=1
+2026-04-22 22:49:23,599 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:49:23,633 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:49:23,634 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:49:24,274 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:49:24,275 INFO [api.main] Fetched channels count=1
+2026-04-22 22:49:24,299 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:49:24,302 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:49:24,304 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:49:24,471 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:49:24,476 INFO [api.main] Fetched channels count=1
+2026-04-22 22:49:24,500 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:49:24,504 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:49:24,504 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:49:24,646 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:49:24,647 INFO [api.main] Fetched channels count=1
+2026-04-22 22:49:24,668 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:49:24,669 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:49:24,670 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:51:48,885 INFO [api.main] Register channel request channel_service_id=US4900002OH mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 22:51:48,987 INFO [api.service] Channel mapping upserted channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53
+2026-04-22 22:51:48,987 INFO [api.service] Starting immediate ingestion feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 22:51:48,988 INFO [api.service] Using local XML file for ingestion feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 path=/Users/avantika/.cursor/projects/Users-avantika-Desktop-Scheduler/uploads/US4900002OH-0.xml
+2026-04-22 22:51:49,034 INFO [api.service] Immediate ingestion succeeded feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=16
+2026-04-22 22:51:49,035 INFO [api.main] Register channel completed channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=16 ingestion_error=None
+2026-04-22 22:52:05,997 INFO [api.main] Fetched channels count=1
+2026-04-22 22:52:05,998 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:52:06,074 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:52:06,077 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:52:06,084 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:52:25,669 INFO [api.main] Register channel request channel_service_id=IN4900002OH0 mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 22:52:25,727 INFO [api.service] Channel mapping upserted channel_service_id=IN4900002OH0 feed_id=a9b2ce9c-da96-4af1-b607-041395135f53
+2026-04-22 22:52:25,728 INFO [api.service] Starting immediate ingestion feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 22:52:25,732 ERROR [api.service] Immediate ingestion failed feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/src/api/service.py", line 74, in register_channel
+    xml_text = fetch_feed_xml(normalized_url)
+  File "/Users/avantika/Desktop/Scheduler/src/ingestion/fetcher.py", line 11, in fetch_feed_xml
+    response = session.get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 22:52:25,761 INFO [api.main] Register channel completed channel_service_id=IN4900002OH0 feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 22:52:25,784 INFO [api.main] Fetched feeds count=1
+2026-04-22 22:52:25,785 INFO [api.main] Fetched channels count=2
+2026-04-22 22:52:25,815 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
+2026-04-22 22:52:25,821 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
+2026-04-22 22:52:25,823 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-04-22 22:52:32,462 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:52:32,464 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:52:32,466 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 22:52:34,465 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
+2026-04-22 22:52:34,466 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
+2026-04-22 22:52:34,469 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-04-22 22:56:54,970 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 22:56:54,990 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 22:56:54,993 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 23:08:09,472 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
+2026-04-22 23:08:09,510 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
+2026-04-22 23:08:09,527 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-04-22 23:08:10,781 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 23:08:10,783 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 23:08:10,792 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 23:08:14,033 INFO [api.main] Register channel request channel_service_id=US4900002OH mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml%60
+2026-04-22 23:08:14,104 INFO [api.service] Channel mapping upserted channel_service_id=US4900002OH feed_id=a4e86a5e-b119-4c52-84f2-2f314b45c091
+2026-04-22 23:08:14,104 INFO [api.service] Starting immediate ingestion feed_id=a4e86a5e-b119-4c52-84f2-2f314b45c091 url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml%60
+2026-04-22 23:08:14,112 ERROR [api.service] Immediate ingestion failed feed_id=a4e86a5e-b119-4c52-84f2-2f314b45c091 error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml%60 (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml%60 (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/src/api/service.py", line 74, in register_channel
+    xml_text = fetch_feed_xml(normalized_url)
+  File "/Users/avantika/Desktop/Scheduler/src/ingestion/fetcher.py", line 11, in fetch_feed_xml
+    response = session.get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml%60 (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 23:08:14,261 INFO [api.main] Register channel completed channel_service_id=US4900002OH feed_id=a4e86a5e-b119-4c52-84f2-2f314b45c091 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml%60 (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 23:08:14,414 INFO [api.main] Fetched channels count=2
+2026-04-22 23:08:14,415 INFO [api.main] Fetched feeds count=2
+2026-04-22 23:08:14,447 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
+2026-04-22 23:08:14,447 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
+2026-04-22 23:08:14,449 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-04-22 23:08:29,603 INFO [api.main] Register channel request channel_service_id=US4900002OH mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 23:08:29,723 INFO [api.service] Channel mapping upserted channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53
+2026-04-22 23:08:29,723 INFO [api.service] Starting immediate ingestion feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 23:08:29,725 ERROR [api.service] Immediate ingestion failed feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/src/api/service.py", line 74, in register_channel
+    xml_text = fetch_feed_xml(normalized_url)
+  File "/Users/avantika/Desktop/Scheduler/src/ingestion/fetcher.py", line 11, in fetch_feed_xml
+    response = session.get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 23:08:29,741 INFO [api.main] Register channel completed channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 23:08:29,767 INFO [api.main] Fetched channels count=2
+2026-04-22 23:08:29,768 INFO [api.main] Fetched feeds count=2
+2026-04-22 23:08:29,785 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
+2026-04-22 23:08:29,786 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
+2026-04-22 23:08:29,787 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-04-22 23:09:07,617 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=6
+2026-04-22 23:09:07,621 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 23:09:07,632 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 23:10:01,491 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 23:10:01,505 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 23:10:01,621 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=ca21e401-bced-4034-80f5-bc02e5708dfb entries=289
+2026-04-22 23:10:01,622 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=ca21e401-bced-4034-80f5-bc02e5708dfb entry_count=289
+2026-04-22 23:10:01,653 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=7
+2026-04-22 23:10:01,655 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 23:10:01,656 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200

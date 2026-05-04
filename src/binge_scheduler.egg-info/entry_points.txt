@@ -1,0 +1,4 @@
+[console_scripts]
+generate-schedule = src.scheduler.cli:main
+ingest-mrss = src.ingestion.cli:main
+scheduler-api = src.api.main:run

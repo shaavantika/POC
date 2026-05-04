@@ -1,0 +1,80 @@
+2026-04-22 00:00:44,080 INFO [api.main] Register channel request channel_service_id=US4900002OH mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 00:00:44,085 ERROR [api.main] Register channel failed: failed to resolve host '123@localhost': [Errno 8] nodename nor servname provided, or not known
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler/src/api/main.py", line 55, in register_channel_route
+    response = register_channel(db_url=db_url, payload=payload)
+  File "/Users/avantika/Desktop/Scheduler/src/api/service.py", line 43, in register_channel
+    with connect(db_url) as conn:
+         ~~~~~~~^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/psycopg/connection.py", line 100, in connect
+    attempts = conninfo_attempts(params)
+  File "/Users/avantika/Desktop/Scheduler/.venv/lib/python3.13/site-packages/psycopg/_conninfo_attempts.py", line 55, in conninfo_attempts
+    raise last_exc
+psycopg.OperationalError: failed to resolve host '123@localhost': [Errno 8] nodename nor servname provided, or not known
+2026-04-22 00:03:17,326 INFO [api.main] Fetched channels count=1
+2026-04-22 00:03:17,328 INFO [api.main] Fetched feeds count=1
+2026-04-22 00:03:17,367 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=0
+2026-04-22 00:03:17,368 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=0
+2026-04-22 00:03:26,438 INFO [api.main] Register channel request channel_service_id=US4900002OH mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 00:03:26,477 INFO [api.service] Channel mapping upserted channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53
+2026-04-22 00:03:26,478 INFO [api.service] Starting immediate ingestion feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 00:03:26,481 WARNING [api.service] Remote fetch failed; using local fallback feed file feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 path=/Users/avantika/.cursor/projects/Users-avantika-Desktop-Scheduler/uploads/US4900002OH-0.xml error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 00:03:26,533 INFO [api.service] Immediate ingestion succeeded feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=16
+2026-04-22 00:03:26,534 INFO [api.main] Register channel completed channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=16 ingestion_error=None
+2026-04-22 00:03:26,570 INFO [api.main] Fetched feeds count=1
+2026-04-22 00:03:26,571 INFO [api.main] Fetched channels count=1
+2026-04-22 00:03:26,587 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=0
+2026-04-22 00:03:26,588 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=0
+2026-04-22 00:06:11,750 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 00:06:22,739 INFO [api.main] Fetched feeds count=1
+2026-04-22 00:06:22,740 INFO [api.main] Fetched channels count=1
+2026-04-22 00:06:22,762 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=0
+2026-04-22 00:06:22,763 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=0
+2026-04-22 00:06:22,763 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 00:12:41,088 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:12:41,089 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:12:41,225 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=4891e250-bf47-408e-b564-ece6973221e8 entries=31
+2026-04-22 00:12:41,226 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=4891e250-bf47-408e-b564-ece6973221e8 entry_count=31
+2026-04-22 00:12:53,671 INFO [api.main] Fetched feeds count=1
+2026-04-22 00:12:53,673 INFO [api.main] Fetched channels count=1
+2026-04-22 00:12:53,694 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=1
+2026-04-22 00:12:53,701 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 00:12:53,702 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-04-22 00:12:55,985 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:12:55,987 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:12:56,024 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=e5d75b8a-1f3f-4037-965e-c0a0ec08e357 entries=31
+2026-04-22 00:12:56,025 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=e5d75b8a-1f3f-4037-965e-c0a0ec08e357 entry_count=31
+2026-04-22 00:12:56,072 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=2
+2026-04-22 00:12:56,074 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 00:12:56,075 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-04-22 00:21:32,106 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:21:32,107 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:21:32,202 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=b093d284-2397-4d43-a82f-0322b03c0272 entries=31
+2026-04-22 00:21:32,203 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=b093d284-2397-4d43-a82f-0322b03c0272 entry_count=31
+2026-04-22 00:22:01,707 INFO [api.main] Fetched channels count=1
+2026-04-22 00:22:01,710 INFO [api.main] Fetched feeds count=1
+2026-04-22 00:22:01,726 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=3
+2026-04-22 00:22:01,728 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-04-22 00:22:01,728 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 00:27:05,588 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:27:05,593 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:27:05,813 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=d87df046-4b80-4cde-a5b9-fda7df1abd50 entries=31
+2026-04-22 00:27:05,813 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=d87df046-4b80-4cde-a5b9-fda7df1abd50 entry_count=31
+2026-04-22 00:27:05,828 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=4
+2026-04-22 00:27:05,848 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-04-22 00:27:05,849 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-04-22 00:28:10,366 INFO [api.main] Register channel request channel_service_id=US4900002OH mrss_url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 00:28:10,383 INFO [api.service] Channel mapping upserted channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53
+2026-04-22 00:28:10,383 INFO [api.service] Starting immediate ingestion feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 url=https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml
+2026-04-22 00:28:10,387 WARNING [api.service] Remote fetch failed; using local fallback feed file feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 path=/Users/avantika/.cursor/projects/Users-avantika-Desktop-Scheduler/uploads/US4900002OH-0.xml error=HTTPSConnectionPool(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Max retries exceeded with url: /US4900002OH.xml (Caused by NameResolutionError("HTTPSConnection(host='d1qcz22vwvqn9h.cloudfront.net', port=443): Failed to resolve 'd1qcz22vwvqn9h.cloudfront.net' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-04-22 00:28:10,422 INFO [api.service] Immediate ingestion succeeded feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=16
+2026-04-22 00:28:10,423 INFO [api.main] Register channel completed channel_service_id=US4900002OH feed_id=a9b2ce9c-da96-4af1-b607-041395135f53 assets_upserted=16 ingestion_error=None
+2026-04-22 00:28:10,431 INFO [api.main] Generate schedule request channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:28:10,431 INFO [scheduler.service] Schedule generation started channel_service_id=US4900002OH window_hours=24 trigger_type=manual schedule_type=binge
+2026-04-22 00:28:10,506 INFO [scheduler.service] Schedule generation succeeded channel_service_id=US4900002OH run_id=874c44d8-081c-4cf0-be52-0fb007411acd entries=289
+2026-04-22 00:28:10,507 INFO [api.main] Generate schedule completed channel_service_id=US4900002OH run_id=874c44d8-081c-4cf0-be52-0fb007411acd entry_count=289
+2026-04-22 00:28:47,338 INFO [api.main] Fetched feeds count=1
+2026-04-22 00:28:47,349 INFO [api.main] Fetched channels count=1
+2026-04-22 00:28:47,365 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200
+2026-04-22 00:28:47,368 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=5
+2026-04-22 00:28:47,369 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
