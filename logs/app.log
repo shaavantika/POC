@@ -1,848 +1,950 @@
-2026-05-04 22:24:23,373 INFO [api.main] Fetched channels count=2
-2026-05-04 22:24:23,415 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:24:23,448 INFO [api.main] Fetched channels count=2
-2026-05-04 22:24:23,449 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:24:23,465 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:24:23,467 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:24:23,469 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:24:23,483 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:24:23,496 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:24:23,497 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:29:27,356 INFO [api.main] Fetched channels count=2
-2026-05-04 22:29:27,361 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:29:27,379 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:29:27,381 INFO [api.main] Fetched channels count=2
-2026-05-04 22:29:27,412 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:29:27,413 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:29:27,414 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:29:27,432 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:29:27,440 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:29:27,458 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,525 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:30:27,526 INFO [api.main] Fetched channels count=2
-2026-05-04 22:30:27,526 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:30:27,526 INFO [api.main] Fetched channels count=2
-2026-05-04 22:30:27,619 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:30:27,635 INFO [api.main] Fetched channels count=2
-2026-05-04 22:30:27,640 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:30:27,641 INFO [api.main] Fetched channels count=2
-2026-05-04 22:30:27,664 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,665 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,691 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,697 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:30:27,697 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,697 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,701 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,726 INFO [api.main] Fetched channels count=2
-2026-05-04 22:30:27,730 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,732 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:30:27,733 INFO [api.main] Fetched channels count=2
-2026-05-04 22:30:27,735 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,737 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,739 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,745 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,774 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,780 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,781 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,783 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:30:27,784 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,784 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:30:27,792 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:01,395 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:01,395 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:01,395 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:01,396 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:01,417 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:01,418 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:01,419 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:01,420 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:01,421 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:01,423 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:05,494 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:05,495 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:05,495 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:05,496 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:05,540 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:05,548 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:05,551 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:05,559 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:05,565 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,565 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:05,566 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,574 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,577 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,589 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:05,606 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,610 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,611 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:05,611 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,615 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:05,626 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:06,169 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:06,170 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:06,171 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:06,172 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:06,214 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:06,226 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:06,226 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:06,227 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:06,228 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:06,228 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:07,515 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:07,517 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:07,534 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:31:07,535 INFO [api.main] Fetched channels count=2
-2026-05-04 22:31:07,574 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:07,575 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:07,576 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:07,577 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:07,578 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:31:07,579 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:33,974 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:31:33,975 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:31:33,975 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:31:35,786 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:35,788 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:31:35,789 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:25,122 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:25,124 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:25,124 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:25,124 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:25,187 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:25,188 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:25,188 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:25,189 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:25,195 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,197 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,198 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:25,198 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,201 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,204 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:25,241 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,243 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,245 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:25,247 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,252 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:25,254 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:35,459 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:35,460 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:35,461 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:35,469 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:35,495 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:35,496 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:35,496 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:35,498 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:35,502 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:35,504 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:37,081 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:37,092 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:37,098 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:37,099 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:37,138 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,144 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,154 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:37,155 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,156 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:37,156 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,639 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:37,640 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:37,640 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:37,640 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:37,680 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,681 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:37,682 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,684 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:37,684 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,686 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,721 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:34:37,721 INFO [api.main] Fetched channels count=2
-2026-05-04 22:34:37,839 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:34:37,840 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:34:37,840 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:35:21,286 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:35:21,293 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:35:21,320 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:35:26,677 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:35:26,678 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:35:26,678 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=0
-2026-05-04 22:35:44,822 INFO [api.main] Generate schedule request channel_service_id=IN4900002OH0 window_hours=24 trigger_type=manual schedule_type=binge
-2026-05-04 22:35:44,823 INFO [scheduler.service] Schedule generation started channel_service_id=IN4900002OH0 window_hours=24 trigger_type=manual schedule_type=binge
-2026-05-04 22:35:45,254 INFO [scheduler.service] Schedule generation succeeded channel_service_id=IN4900002OH0 run_id=2a77423a-d6a7-4515-969f-d021e50dcbc3 entries=952
-2026-05-04 22:35:45,257 INFO [api.main] Generate schedule completed channel_service_id=IN4900002OH0 run_id=2a77423a-d6a7-4515-969f-d021e50dcbc3 entry_count=952
-2026-05-04 22:35:45,282 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:35:45,284 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:35:45,286 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:38:17,334 INFO [api.main] Fetched channels count=2
-2026-05-04 22:38:17,337 INFO [api.main] Fetched channels count=2
-2026-05-04 22:38:17,340 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:38:17,340 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:38:17,464 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:38:17,464 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:38:17,467 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:38:17,473 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:38:17,475 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:38:17,475 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:46,990 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:46,994 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:46,995 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:46,995 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:47,039 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:47,040 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:47,051 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:47,052 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:47,070 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:47,071 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:47,659 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:47,659 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:47,660 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:47,670 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:47,724 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:47,727 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:47,728 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:47,728 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:47,729 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:47,734 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:49,198 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:49,198 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:49,199 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:49,199 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:49,243 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:49,245 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:49,251 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:49,252 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:49,253 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:49,257 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:59,065 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:59,075 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:39:59,075 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:59,079 INFO [api.main] Fetched channels count=2
-2026-05-04 22:39:59,103 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:59,104 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:59,105 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:39:59,109 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:39:59,111 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:39:59,113 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:40:09,443 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:40:09,444 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:40:09,444 INFO [api.main] Fetched channels count=2
-2026-05-04 22:40:09,446 INFO [api.main] Fetched channels count=2
-2026-05-04 22:40:09,536 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:40:09,545 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:40:09,550 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:40:09,555 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:40:09,561 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:40:09,584 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:40:10,002 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:40:10,004 INFO [api.main] Fetched channels count=2
-2026-05-04 22:40:10,022 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:40:10,023 INFO [api.main] Fetched channels count=2
-2026-05-04 22:40:10,045 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:40:10,068 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:40:10,079 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:40:10,081 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:40:10,161 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:40:10,162 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:03,722 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:03,726 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:03,726 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:03,726 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:03,768 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:03,768 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:03,788 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:03,789 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:03,797 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:03,798 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:04,987 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:04,988 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:04,992 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:04,992 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:05,024 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:05,027 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:05,030 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:05,031 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:05,039 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:05,041 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:05,148 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:05,161 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:05,163 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:05,163 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:05,185 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:05,186 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:05,189 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:05,192 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:05,192 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:05,195 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:06,669 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:06,670 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:06,671 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:06,678 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:06,709 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:06,713 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:06,713 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:06,717 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:06,722 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:06,724 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:07,149 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:07,161 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:07,161 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:07,161 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:07,190 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:07,190 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:07,191 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:07,192 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:07,193 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:07,194 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:08,796 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:08,796 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:08,796 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:08,801 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:08,824 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:08,828 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:08,830 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:08,836 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:08,839 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:08,841 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:09,803 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:09,803 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:42:09,804 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:09,804 INFO [api.main] Fetched channels count=2
-2026-05-04 22:42:09,886 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:09,902 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:09,904 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:42:09,905 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:42:09,908 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:42:09,909 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:43:32,862 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:43:32,864 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:43:32,871 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:43:35,417 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:43:35,430 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:43:35,439 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:43:36,391 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:43:36,391 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:43:36,392 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:43:37,553 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:43:37,554 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:43:37,556 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:29,772 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:29,776 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:29,792 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:29,793 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:29,835 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:29,882 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:29,884 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:29,897 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:29,897 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:29,906 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:38,161 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:38,164 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:38,164 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:38,164 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:38,536 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:38,538 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:38,540 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:38,541 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:38,545 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:38,548 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:41,931 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:41,932 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:41,949 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:41,957 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:42,055 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:42,059 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:42,061 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:42,091 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:42,093 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:42,095 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:47,608 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:47,603 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:47,610 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:44:47,611 INFO [api.main] Fetched channels count=2
-2026-05-04 22:44:47,737 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:47,744 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:47,747 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:44:47,748 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:44:47,758 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:44:47,759 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:46:53,838 INFO [api.main] Fetched channels count=2
-2026-05-04 22:46:53,843 INFO [api.main] Fetched channels count=2
-2026-05-04 22:46:53,851 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:46:53,851 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:46:53,972 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:46:53,973 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:46:53,982 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:46:53,983 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:46:53,985 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:46:53,987 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:46:55,710 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:46:55,712 INFO [api.main] Fetched channels count=2
-2026-05-04 22:46:55,776 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:46:55,781 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:46:55,787 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:46:55,788 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:46:55,791 INFO [api.main] Fetched channels count=2
-2026-05-04 22:46:55,840 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:46:55,866 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:46:55,867 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:47:17,290 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:47:17,290 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:47:17,290 INFO [api.main] Fetched channels count=2
-2026-05-04 22:47:17,290 INFO [api.main] Fetched channels count=2
-2026-05-04 22:47:17,317 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:47:17,322 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:47:17,336 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:47:17,338 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:47:17,341 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:47:17,344 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:49:07,833 INFO [api.main] Fetched channels count=2
-2026-05-04 22:49:07,835 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:49:07,836 INFO [api.main] Fetched channels count=2
-2026-05-04 22:49:07,837 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:49:07,874 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:49:07,876 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:49:07,878 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:49:07,879 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:49:07,883 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:49:07,884 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:49:20,534 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:49:20,534 INFO [api.main] Fetched channels count=2
-2026-05-04 22:49:20,535 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:49:20,535 INFO [api.main] Fetched channels count=2
-2026-05-04 22:49:20,580 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:49:20,581 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:49:20,584 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:49:20,586 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:49:20,586 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:49:20,587 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:52:15,475 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:52:15,517 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:52:15,540 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:52:15,542 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:52:15,557 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:52:15,578 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:52:15,585 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:52:15,599 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:52:15,636 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:52:16,535 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:52:16,537 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:52:16,539 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:52:19,376 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:52:19,377 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:52:19,378 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:52:36,918 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:52:36,921 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:52:36,923 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:52:43,609 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:52:43,611 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:52:43,611 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:52:49,941 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:52:49,942 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:52:49,943 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:52:52,168 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:52:52,169 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:52:52,170 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:53:12,590 INFO [api.main] Fetched channels count=2
-2026-05-04 22:53:12,591 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:53:12,622 INFO [api.main] Fetched channels count=2
-2026-05-04 22:53:12,622 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:53:12,632 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:53:12,632 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:53:12,635 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:53:12,647 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:53:12,648 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:53:12,650 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:56:01,547 INFO [api.main] Fetched channels count=2
-2026-05-04 22:56:01,550 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:56:01,597 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:56:01,599 INFO [api.main] Fetched channels count=2
-2026-05-04 22:56:01,654 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:56:01,672 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:56:01,675 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:56:01,676 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:56:01,693 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:56:01,695 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:57:02,590 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:57:02,592 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:57:02,593 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:57:02,664 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:57:02,665 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:57:02,665 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:57:03,543 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:57:03,545 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:57:03,545 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:57:03,698 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:57:03,699 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:57:03,721 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:58:18,025 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,020 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,061 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,057 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,311 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,311 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,356 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 22:58:18,357 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,363 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 22:58:18,364 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:18,366 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 22:58:18,411 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,445 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,445 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,617 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,617 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,645 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:18,646 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,675 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,694 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:18,697 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,708 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,710 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,712 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,719 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,733 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,745 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:18,754 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,761 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,768 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:18,773 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:18,781 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,784 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,800 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,802 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:18,805 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:18,821 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,824 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:18,828 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:18,852 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:19,902 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:19,911 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:20,020 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:20,035 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:20,038 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:20,045 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:20,046 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:20,106 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:20,109 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:20,111 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:21,379 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:21,380 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:22,315 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:22,316 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:22,316 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:22,320 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:22,333 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:22,342 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:22,349 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:22,364 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:22,372 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:22,375 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:22,378 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:22,384 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:22,392 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:27,079 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:27,080 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:27,080 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:27,080 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:27,119 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:27,121 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:27,144 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:27,146 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:27,176 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:27,181 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:27,637 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:27,637 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:27,657 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:27,660 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 22:58:27,660 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:27,660 INFO [api.main] Fetched feeds count=2
-2026-05-04 22:58:27,661 INFO [api.main] Fetched channels count=2
-2026-05-04 22:58:27,678 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 22:58:27,679 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 22:58:27,681 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:04,553 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:04,565 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:04,569 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:04,549 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:04,573 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:04,583 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:04,618 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:04,682 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:04,688 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:04,688 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:04,691 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:04,692 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:04,717 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:04,725 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:04,726 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:04,734 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:04,739 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:04,739 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:04,740 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:04,741 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:04,758 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:04,759 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:04,760 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:04,765 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:07,546 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:07,549 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:07,550 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:07,551 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:07,696 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:07,730 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:07,741 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:07,773 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:07,775 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:07,785 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:07,786 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:07,853 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:07,864 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:07,867 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:07,876 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:07,879 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:07,883 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:07,895 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:07,897 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:07,923 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:07,925 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:07,928 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:07,939 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:07,963 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:07,966 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:14,553 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:14,561 INFO [api.main] Fetched channels count=2
-2026-05-04 23:02:14,562 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:14,563 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:02:14,620 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:14,623 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:14,624 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:02:14,625 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:02:14,626 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:02:14,626 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:03:11,675 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:03:11,675 INFO [api.main] Fetched channels count=2
-2026-05-04 23:03:11,676 INFO [api.main] Fetched channels count=2
-2026-05-04 23:03:11,676 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:03:11,750 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:03:11,765 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:03:11,770 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:03:11,773 INFO [api.main] Fetched channels count=2
-2026-05-04 23:03:11,774 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:03:11,776 INFO [api.main] Fetched channels count=2
-2026-05-04 23:03:11,801 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:03:11,803 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:03:11,805 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:03:11,805 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:03:11,871 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:03:11,875 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:03:11,901 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:03:11,902 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:03:11,940 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:03:11,943 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:03:48,043 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:03:48,080 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:03:48,085 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:04:28,860 INFO [api.main] Fetched channels count=2
-2026-05-04 23:04:28,860 INFO [api.main] Fetched channels count=2
-2026-05-04 23:04:28,861 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:04:28,861 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:04:28,901 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:04:28,902 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:04:28,905 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:04:28,905 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:04:28,906 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:04:28,908 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:05:00,507 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:05:00,508 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:05:00,509 INFO [api.main] Fetched channels count=2
-2026-05-04 23:05:00,509 INFO [api.main] Fetched channels count=2
-2026-05-04 23:05:00,542 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:05:00,544 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:05:00,546 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:05:00,548 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:05:00,548 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:05:00,550 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:06:04,358 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
-2026-05-04 23:06:04,364 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
-2026-05-04 23:06:04,365 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-05-04 23:06:06,371 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:06:06,375 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:06:06,375 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:13:07,912 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:13:07,913 INFO [api.main] Fetched channels count=2
-2026-05-04 23:13:07,914 INFO [api.main] Fetched channels count=2
-2026-05-04 23:13:07,915 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:13:07,949 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:13:07,950 INFO [api.main] Fetched channels count=2
-2026-05-04 23:13:07,969 INFO [api.main] Fetched channels count=2
-2026-05-04 23:13:07,982 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:13:07,992 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:13:08,000 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:13:08,009 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:13:08,014 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:13:08,015 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:13:08,055 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:13:08,096 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:13:08,111 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:13:08,118 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:13:08,119 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:13:08,189 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:13:08,190 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:15:39,025 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:15:39,027 INFO [api.main] Fetched channels count=2
-2026-05-04 23:15:39,027 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:15:39,027 INFO [api.main] Fetched channels count=2
-2026-05-04 23:15:39,107 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:15:39,133 INFO [api.main] Fetched channels count=2
-2026-05-04 23:15:39,136 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:15:39,144 INFO [api.main] Fetched channels count=2
-2026-05-04 23:15:39,176 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:15:39,176 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:15:39,188 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:15:39,189 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:15:39,191 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:15:39,194 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:15:39,230 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:15:39,237 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:15:39,238 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:15:39,240 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:15:39,243 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:15:39,244 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:08,598 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:08,600 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:08,600 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:08,600 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:08,677 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:08,678 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:08,683 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:08,686 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:08,687 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:08,687 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:10,117 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:10,118 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:10,119 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:10,119 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:10,187 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:10,194 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:10,195 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:10,197 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:10,197 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:10,198 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:10,205 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:10,238 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:10,245 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:10,248 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:10,266 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:10,285 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:10,288 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:10,307 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:10,315 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:10,317 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:16,495 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:16,496 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:16,497 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:16,497 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:16,567 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:16,571 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:16,572 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:16,573 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:16,575 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:16,577 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:17,831 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:17,832 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:17,832 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:17,863 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:17,899 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:17,904 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:17,905 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:17,940 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:17,944 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:17,970 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:30,077 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:30,078 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:30,078 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:30,078 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:30,123 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:30,124 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:30,128 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:30,136 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:30,139 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:30,139 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:30,140 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:30,145 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:30,148 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:30,150 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:30,168 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:30,178 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:30,179 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:30,181 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:30,182 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:30,183 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:38,966 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:38,967 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:38,967 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:38,967 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:39,009 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:39,026 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:39,027 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:39,033 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:39,037 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:16:39,040 INFO [api.main] Fetched channels count=2
-2026-05-04 23:16:39,055 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:39,055 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:39,057 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:39,061 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:39,070 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:16:39,091 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:39,132 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:39,133 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:16:39,137 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:16:39,143 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:27,488 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:27,492 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:27,492 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:27,492 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:27,544 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:27,545 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:27,554 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:27,555 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:27,558 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:27,559 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:28,038 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:28,039 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:28,052 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:28,055 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:28,067 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:28,072 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:28,077 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:28,083 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:28,087 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:28,094 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:28,948 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:28,948 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:28,953 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:28,954 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:29,016 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:29,019 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:29,022 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:29,023 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:29,023 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:29,025 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:32,060 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:32,062 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:32,102 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:32,128 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:32,153 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:32,175 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:32,176 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:32,177 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:32,179 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:32,187 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:33,748 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:33,749 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:33,765 INFO [api.main] Fetched feeds count=2
-2026-05-04 23:19:33,766 INFO [api.main] Fetched channels count=2
-2026-05-04 23:19:33,775 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:33,785 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:33,790 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
-2026-05-04 23:19:33,795 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
-2026-05-04 23:19:33,800 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
-2026-05-04 23:19:33,801 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:53:47,822 INFO [api.main] Starting API server
+2026-05-09 14:58:23,268 INFO [api.main] Starting API server
+2026-05-09 14:58:25,787 INFO [api.main] Fetched feeds count=2
+2026-05-09 14:59:32,569 INFO [api.main] Fetched feeds count=2
+2026-05-09 14:59:32,602 INFO [api.main] Fetched feeds count=2
+2026-05-09 14:59:32,620 INFO [api.main] Fetched channels count=2
+2026-05-09 14:59:32,660 INFO [api.main] Fetched channels count=2
+2026-05-09 14:59:32,773 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:32,779 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:32,789 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:32,792 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:32,797 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:32,829 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:48,047 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:48,051 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:48,052 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:48,704 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:48,706 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:48,709 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:48,850 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:48,853 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:48,856 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:52,173 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:52,180 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:52,183 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:52,315 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:52,320 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 14:59:52,321 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:53,217 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=1
+2026-05-09 14:59:53,218 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 14:59:53,220 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:00:58,746 INFO [api.main] Generate schedule request channel_service_id=IN4900002OH0 window_hours=24 trigger_type=manual schedule_type=binge
+2026-05-09 15:00:58,748 INFO [scheduler.service] Schedule generation started channel_service_id=IN4900002OH0 window_hours=24 trigger_type=manual schedule_type=binge
+2026-05-09 15:00:59,144 INFO [scheduler.service] Schedule generation succeeded channel_service_id=IN4900002OH0 run_id=858ee263-32e6-4a9c-a68e-4d4a35fb851c entries=952
+2026-05-09 15:00:59,146 INFO [api.main] Generate schedule completed channel_service_id=IN4900002OH0 run_id=858ee263-32e6-4a9c-a68e-4d4a35fb851c entry_count=952
+2026-05-09 15:00:59,165 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:00:59,165 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:00:59,168 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:38,291 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:01:38,292 INFO [api.main] Fetched channels count=2
+2026-05-09 15:01:38,309 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:01:38,310 INFO [api.main] Fetched channels count=2
+2026-05-09 15:01:38,313 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:38,315 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:38,316 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:38,329 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:38,340 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:38,349 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:46,470 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:46,473 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:46,476 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:47,197 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:47,202 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:47,204 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:48,239 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:48,242 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:48,244 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:48,551 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:48,563 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:48,565 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:48,695 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:48,696 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:48,699 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:57,113 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:01:57,114 INFO [api.main] Fetched channels count=2
+2026-05-09 15:01:57,128 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:01:57,130 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:57,132 INFO [api.main] Fetched channels count=2
+2026-05-09 15:01:57,144 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:57,146 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:01:57,165 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:01:57,166 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:01:57,168 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:04:14,123 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:04:14,126 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:04:14,134 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:06:04,744 INFO [api.main] Fetched channels count=2
+2026-05-09 15:06:04,747 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:06:04,769 INFO [api.main] Fetched channels count=2
+2026-05-09 15:06:04,769 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:06:04,810 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:06:04,811 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:06:04,833 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:06:04,838 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:06:04,840 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:06:04,848 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:06:14,323 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:06:14,327 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:06:14,330 INFO [api.main] Fetched channels count=2
+2026-05-09 15:06:14,332 INFO [api.main] Fetched channels count=2
+2026-05-09 15:06:14,358 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:06:14,358 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:06:14,361 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:06:14,372 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:06:14,376 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:06:14,379 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:06:51,118 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:06:51,122 INFO [api.main] Fetched channels count=2
+2026-05-09 15:06:51,151 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:06:51,151 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:06:51,152 INFO [api.main] Fetched channels count=2
+2026-05-09 15:06:51,154 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:06:51,156 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:06:51,183 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:06:51,184 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:06:51,186 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:06:53,643 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:06:53,656 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:06:53,657 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:06:53,741 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:06:53,743 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:06:53,744 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:06:54,236 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:06:54,238 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:06:54,239 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:06:54,402 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:06:54,405 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:06:54,406 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:07:06,913 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:07:06,914 INFO [api.main] Fetched channels count=2
+2026-05-09 15:07:06,930 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:07:06,944 INFO [api.main] Fetched channels count=2
+2026-05-09 15:07:06,946 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:07:06,949 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:07:06,950 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:07:06,991 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:07:06,992 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:07:06,993 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:07:07,567 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:07:07,569 INFO [api.main] Fetched channels count=2
+2026-05-09 15:07:07,596 INFO [api.main] Fetched channels count=2
+2026-05-09 15:07:07,602 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:07:07,603 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:07:07,604 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:07:07,605 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:07:07,620 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:07:07,622 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:07:07,623 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:07:10,918 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:07:10,931 INFO [api.main] Fetched channels count=2
+2026-05-09 15:07:10,932 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:07:10,932 INFO [api.main] Fetched channels count=2
+2026-05-09 15:07:10,957 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:07:10,959 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:07:10,961 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:07:10,990 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:07:10,991 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:07:10,992 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:08:48,627 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:08:48,628 INFO [api.main] Fetched channels count=2
+2026-05-09 15:08:48,658 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:08:48,661 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:08:48,663 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:08:48,670 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:08:48,672 INFO [api.main] Fetched channels count=2
+2026-05-09 15:08:48,779 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:08:48,781 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:08:48,783 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:01,582 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:09:01,584 INFO [api.main] Fetched channels count=2
+2026-05-09 15:09:01,612 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:09:01,614 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:01,616 INFO [api.main] Fetched channels count=2
+2026-05-09 15:09:01,616 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:01,617 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:01,639 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:01,640 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:01,642 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:02,196 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:09:02,198 INFO [api.main] Fetched channels count=2
+2026-05-09 15:09:02,219 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:09:02,219 INFO [api.main] Fetched channels count=2
+2026-05-09 15:09:02,220 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:02,221 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:02,222 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:02,248 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:02,250 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:02,250 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:09,555 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:09,558 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:09,562 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:13,093 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:09:13,097 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:09:13,103 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:09:15,539 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:15,541 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:15,542 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:16,443 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:16,445 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:16,447 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:53,858 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:09:53,859 INFO [api.main] Fetched channels count=2
+2026-05-09 15:09:53,888 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:09:53,889 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:53,892 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:53,895 INFO [api.main] Fetched channels count=2
+2026-05-09 15:09:53,896 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:09:53,937 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:09:53,940 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:09:53,941 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:10:29,328 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:10:29,329 INFO [api.main] Fetched channels count=2
+2026-05-09 15:10:29,355 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:10:29,358 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:10:29,360 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:10:29,361 INFO [api.main] Fetched channels count=2
+2026-05-09 15:10:29,367 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:10:29,382 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:10:29,384 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:10:29,385 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:10:45,571 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:10:45,575 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:10:45,576 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:10:47,141 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:10:47,143 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:10:47,145 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:10:47,793 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:10:47,794 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:10:47,796 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:12:38,232 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:12:38,233 INFO [api.main] Fetched channels count=2
+2026-05-09 15:12:38,260 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:12:38,263 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:12:38,264 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:12:38,264 INFO [api.main] Fetched channels count=2
+2026-05-09 15:12:38,265 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:12:38,317 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:12:38,319 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:12:38,320 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:12:40,398 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:12:40,400 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:12:40,403 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:10,170 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:13:10,171 INFO [api.main] Fetched channels count=2
+2026-05-09 15:13:10,203 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:13:10,214 INFO [api.main] Fetched channels count=2
+2026-05-09 15:13:10,217 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:10,219 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:10,223 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:10,276 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:10,277 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:10,278 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:19,550 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:13:19,552 INFO [api.main] Fetched channels count=2
+2026-05-09 15:13:19,585 INFO [api.main] Fetched channels count=2
+2026-05-09 15:13:19,595 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:13:19,599 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:19,601 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:19,602 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:19,627 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:19,630 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:19,631 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:21,694 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:21,698 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:21,704 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:22,315 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:22,317 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:22,320 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:24,525 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:13:24,526 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:13:24,527 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:13:25,574 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:25,575 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:25,577 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:13:28,173 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:13:28,175 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:13:28,177 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:13:29,074 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:13:29,075 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:13:29,078 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:15:51,436 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:15:51,458 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:15:51,460 INFO [api.main] Fetched channels count=2
+2026-05-09 15:15:51,493 INFO [api.main] Fetched channels count=2
+2026-05-09 15:15:51,524 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:15:51,541 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:15:51,573 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:15:51,582 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:15:51,589 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:15:51,617 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:16:32,788 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:16:32,791 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:16:32,792 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:16:34,274 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:16:34,276 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:16:34,295 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:18:53,776 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:18:53,778 INFO [api.main] Fetched channels count=2
+2026-05-09 15:18:53,806 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:18:53,834 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:18:53,844 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:19:36,439 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:19:36,444 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:19:36,455 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:20:36,264 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:20:36,267 INFO [api.main] Fetched channels count=2
+2026-05-09 15:20:36,288 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:20:36,290 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:20:36,291 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:21:32,316 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:21:32,317 INFO [api.main] Fetched channels count=2
+2026-05-09 15:21:32,488 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:21:32,494 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:21:32,494 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:22:52,036 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:22:52,037 INFO [api.main] Fetched channels count=2
+2026-05-09 15:22:52,071 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:22:52,072 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:22:52,078 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:23:20,679 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:23:20,681 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:23:20,689 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:24:25,274 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:24:25,275 INFO [api.main] Fetched channels count=2
+2026-05-09 15:24:25,298 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:24:25,323 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:24:25,327 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:24:49,245 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:24:49,258 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:24:49,259 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:24:51,108 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:24:51,109 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:24:51,115 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:24:52,258 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:24:52,259 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:24:52,260 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:25:07,279 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:25:07,287 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:25:07,289 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:25:23,649 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:25:23,653 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:25:23,654 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:26:55,399 INFO [api.main] Fetched channels count=2
+2026-05-09 15:26:55,401 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:26:55,421 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:26:55,425 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:26:55,434 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:28:53,698 INFO [api.main] Fetched channels count=2
+2026-05-09 15:28:53,701 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:28:53,741 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:28:53,747 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:28:53,747 INFO [api.main] Fetched channels count=2
+2026-05-09 15:28:53,749 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:28:53,785 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:28:53,812 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:28:53,833 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:28:53,858 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:41:51,431 INFO [api.main] Starting API server
+2026-05-09 15:48:37,416 INFO [api.main] Fetched channels count=2
+2026-05-09 15:48:37,419 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:48:37,456 INFO [api.main] Fetched feeds count=2
+2026-05-09 15:48:37,459 INFO [api.main] Fetched channels count=2
+2026-05-09 15:48:37,535 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:48:37,566 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:48:37,571 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:48:37,578 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:48:37,593 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:48:37,608 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:49:09,436 INFO [api.main] Starting API server
+2026-05-09 15:49:15,417 INFO [api.main] Register channel request channel_service_id=test_no_interval mrss_url=https://example.com/feed.xml
+2026-05-09 15:49:15,524 INFO [api.service] Channel mapping upserted channel_service_id=test_no_interval feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6
+2026-05-09 15:49:15,525 INFO [api.service] Starting immediate ingestion feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+2026-05-09 15:49:15,527 ERROR [ingestion.ingest_runner] Ingestion failed mrss_feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/ingest_runner.py", line 38, in try_ingest_feed_from_http
+    xml_text, status = fetch_feed_xml_with_status(feed_url)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/fetcher.py", line 22, in fetch_feed_xml_with_status
+    response = _session().get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:49:15,566 WARNING [api.service] Immediate ingestion failed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:49:15,567 INFO [api.main] Register channel completed channel_service_id=test_no_interval feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:49:28,386 INFO [api.main] Fetched channels count=3
+2026-05-09 15:49:28,386 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:49:28,403 INFO [api.main] Fetched channels count=3
+2026-05-09 15:49:28,430 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:49:28,472 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:49:28,477 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:49:28,508 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:49:28,533 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:49:28,535 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:49:28,558 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:50:30,064 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:50:30,068 INFO [api.main] Fetched channels count=3
+2026-05-09 15:50:30,102 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:50:30,103 INFO [api.main] Fetched channels count=3
+2026-05-09 15:50:30,129 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:50:30,130 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:50:30,131 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:50:30,173 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:50:30,175 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:50:30,177 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:50:55,066 INFO [api.main] Starting API server
+2026-05-09 15:50:58,952 INFO [api.main] Register channel request channel_service_id=test_no_xml mrss_url=https://example.com/feed.xml
+2026-05-09 15:50:59,000 INFO [api.service] Channel mapping upserted channel_service_id=test_no_xml feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6
+2026-05-09 15:50:59,001 INFO [api.service] Starting immediate ingestion feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+2026-05-09 15:50:59,002 ERROR [ingestion.ingest_runner] Ingestion failed mrss_feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/ingest_runner.py", line 38, in try_ingest_feed_from_http
+    xml_text, status = fetch_feed_xml_with_status(feed_url)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/fetcher.py", line 22, in fetch_feed_xml_with_status
+    response = _session().get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:50:59,036 WARNING [api.service] Immediate ingestion failed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:50:59,036 INFO [api.main] Register channel completed channel_service_id=test_no_xml feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:51:07,978 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:51:07,988 INFO [api.main] Fetched channels count=4
+2026-05-09 15:51:08,057 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:51:08,071 INFO [api.main] Fetched channels count=4
+2026-05-09 15:51:08,086 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:51:08,141 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:51:08,142 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:51:08,174 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:51:08,175 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:51:08,176 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:52:23,836 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:52:23,839 INFO [api.main] Fetched channels count=4
+2026-05-09 15:52:23,851 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:52:23,852 INFO [api.main] Fetched channels count=4
+2026-05-09 15:52:23,877 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:52:23,880 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:52:23,883 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:52:23,901 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:52:23,927 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:52:23,929 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:53:01,338 INFO [api.main] Starting API server
+2026-05-09 15:53:05,535 INFO [api.main] Register channel request channel_service_id=demo_meta_001 mrss_url=https://example.com/feed.xml
+2026-05-09 15:53:05,588 INFO [api.main] Fetched channels count=4
+2026-05-09 15:53:05,604 INFO [api.service] Channel mapping upserted channel_service_id=demo_meta_001 feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6
+2026-05-09 15:53:05,605 INFO [api.service] Starting immediate ingestion feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+2026-05-09 15:53:05,607 ERROR [ingestion.ingest_runner] Ingestion failed mrss_feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/ingest_runner.py", line 38, in try_ingest_feed_from_http
+    xml_text, status = fetch_feed_xml_with_status(feed_url)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/fetcher.py", line 22, in fetch_feed_xml_with_status
+    response = _session().get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:53:05,646 WARNING [api.service] Immediate ingestion failed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:53:05,647 INFO [api.main] Register channel completed channel_service_id=demo_meta_001 feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:54:02,406 INFO [api.main] Fetched channels count=5
+2026-05-09 15:54:02,413 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:54:02,486 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:54:02,519 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:54:02,530 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:54:53,518 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:54:53,524 INFO [api.main] Fetched channels count=5
+2026-05-09 15:54:53,549 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:54:53,557 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:54:53,566 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:55:12,988 INFO [api.main] Register channel request channel_service_id=IN_demo_bad mrss_url=https://example.com/feed.xml
+2026-05-09 15:55:13,047 INFO [api.service] Channel mapping upserted channel_service_id=IN_demo_bad feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6
+2026-05-09 15:55:13,047 INFO [api.service] Starting immediate ingestion feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+2026-05-09 15:55:13,056 ERROR [ingestion.ingest_runner] Ingestion failed mrss_feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/ingest_runner.py", line 38, in try_ingest_feed_from_http
+    xml_text, status = fetch_feed_xml_with_status(feed_url)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/fetcher.py", line 22, in fetch_feed_xml_with_status
+    response = _session().get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:13,080 WARNING [api.service] Immediate ingestion failed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:13,082 INFO [api.main] Register channel completed channel_service_id=IN_demo_bad feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:13,434 INFO [api.main] Register channel request channel_service_id=US_demo_good mrss_url=https://example.com/feed.xml
+2026-05-09 15:55:13,457 INFO [api.service] Channel mapping upserted channel_service_id=US_demo_good feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6
+2026-05-09 15:55:13,457 INFO [api.service] Starting immediate ingestion feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+2026-05-09 15:55:13,458 ERROR [ingestion.ingest_runner] Ingestion failed mrss_feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/ingest_runner.py", line 38, in try_ingest_feed_from_http
+    xml_text, status = fetch_feed_xml_with_status(feed_url)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/fetcher.py", line 22, in fetch_feed_xml_with_status
+    response = _session().get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:13,472 WARNING [api.service] Immediate ingestion failed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:13,473 INFO [api.main] Register channel completed channel_service_id=US_demo_good feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:22,629 INFO [api.main] Starting API server
+2026-05-09 15:55:26,762 INFO [api.main] Register channel request channel_service_id=US_demo_good2 mrss_url=https://example.com/feed.xml
+2026-05-09 15:55:26,791 INFO [api.service] Channel mapping upserted channel_service_id=US_demo_good2 feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6
+2026-05-09 15:55:26,791 INFO [api.service] Starting immediate ingestion feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+2026-05-09 15:55:26,793 ERROR [ingestion.ingest_runner] Ingestion failed mrss_feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 url=https://example.com/feed.xml
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 645, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/ingest_runner.py", line 38, in try_ingest_feed_from_http
+    xml_text, status = fetch_feed_xml_with_status(feed_url)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/src/ingestion/fetcher.py", line 22, in fetch_feed_xml_with_status
+    response = _session().get(feed_url, timeout=timeout_seconds)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 605, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 592, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/sessions.py", line 706, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/avantika/Desktop/Scheduler_git/POC/.venv/lib/python3.13/site-packages/requests/adapters.py", line 678, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:26,820 WARNING [api.service] Immediate ingestion failed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:26,821 INFO [api.main] Register channel completed channel_service_id=US_demo_good2 feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=0 ingestion_error=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /feed.xml (Caused by NameResolutionError("HTTPSConnection(host='example.com', port=443): Failed to resolve 'example.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-05-09 15:55:45,625 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:55:45,627 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:55:45,644 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:55:45,659 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:55:45,660 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:55:45,672 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:55:45,674 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:55:45,676 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:55:45,722 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:56:24,532 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:56:24,533 INFO [api.main] Fetched channels count=8
+2026-05-09 15:56:24,561 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:56:24,565 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:56:24,568 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:56:52,077 INFO [api.main] Fetched channels count=8
+2026-05-09 15:56:52,081 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:56:52,117 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:56:52,118 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:56:52,120 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:57:23,361 INFO [api.main] Fetched feeds count=3
+2026-05-09 15:57:23,363 INFO [api.main] Fetched channels count=8
+2026-05-09 15:57:23,379 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:57:23,381 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:57:23,383 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 15:58:00,681 INFO [api.main] Fetched channel runs channel_service_id=IN_demo_bad count=0
+2026-05-09 15:58:00,688 INFO [api.main] Fetched channel assets channel_service_id=IN_demo_bad count=0
+2026-05-09 15:58:00,691 INFO [api.main] Fetched active schedule channel_service_id=IN_demo_bad count=0
+2026-05-09 15:58:01,651 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=13
+2026-05-09 15:58:01,653 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
+2026-05-09 15:58:01,655 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=31
+2026-05-09 15:58:04,236 INFO [api.main] Fetched channel runs channel_service_id=US_demo_good count=0
+2026-05-09 15:58:04,240 INFO [api.main] Fetched active schedule channel_service_id=US_demo_good count=0
+2026-05-09 15:58:04,240 INFO [api.main] Fetched channel assets channel_service_id=US_demo_good count=0
+2026-05-09 15:58:06,310 INFO [api.main] Fetched channel runs channel_service_id=US_demo_good2 count=0
+2026-05-09 15:58:06,311 INFO [api.main] Fetched active schedule channel_service_id=US_demo_good2 count=0
+2026-05-09 15:58:06,312 INFO [api.main] Fetched channel assets channel_service_id=US_demo_good2 count=0
+2026-05-09 15:58:07,636 INFO [api.main] Fetched active schedule channel_service_id=demo_meta_001 count=0
+2026-05-09 15:58:07,638 INFO [api.main] Fetched channel runs channel_service_id=demo_meta_001 count=0
+2026-05-09 15:58:07,638 INFO [api.main] Fetched channel assets channel_service_id=demo_meta_001 count=0
+2026-05-09 15:58:09,066 INFO [api.main] Fetched active schedule channel_service_id=test_no_interval count=0
+2026-05-09 15:58:09,069 INFO [api.main] Fetched channel runs channel_service_id=test_no_interval count=0
+2026-05-09 15:58:09,070 INFO [api.main] Fetched channel assets channel_service_id=test_no_interval count=0
+2026-05-09 15:58:09,951 INFO [api.main] Fetched channel runs channel_service_id=test_no_xml count=0
+2026-05-09 15:58:09,953 INFO [api.main] Fetched active schedule channel_service_id=test_no_xml count=0
+2026-05-09 15:58:09,955 INFO [api.main] Fetched channel assets channel_service_id=test_no_xml count=0
+2026-05-09 15:58:31,949 INFO [api.main] Fetched channel runs channel_service_id=IN4900002OH0 count=2
+2026-05-09 15:58:31,953 INFO [api.main] Fetched channel assets channel_service_id=IN4900002OH0 count=16
+2026-05-09 15:58:31,955 INFO [api.main] Fetched active schedule channel_service_id=IN4900002OH0 count=200
+2026-05-09 16:02:58,910 INFO [api.main] Starting API server
+2026-05-09 16:03:08,085 INFO [api.main] Ingest feed payload received feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 source_url=https://example.com/feed.xml
+2026-05-09 16:03:08,331 INFO [api.main] Ingest feed completed feed_id=c3ffe19e-20b5-44e4-90dc-fb882b7a6de6 assets_upserted=16 ingestion_error=None

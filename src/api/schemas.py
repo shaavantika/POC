@@ -1,21 +1,31 @@
 from __future__ import annotations
 
 from pydantic import BaseModel, Field, HttpUrl
+from pydantic import model_validator
 
 
 class ChannelRegisterRequest(BaseModel):
     channel_service_id: str = Field(min_length=1, max_length=255)
+    channel_name: str = Field(min_length=1, max_length=255)
+    country: str = Field(min_length=1, max_length=64)
     mrss_url: HttpUrl
-    xml_file_path: str | None = None
-    fetch_interval_seconds: int = Field(default=900, gt=0, le=86400)
     enabled: bool = True
+
+    @model_validator(mode="after")
+    def validate_service_id_country_prefix(self) -> "ChannelRegisterRequest":
+        service_id = self.channel_service_id.strip()
+        country = self.country.strip()
+        if not service_id.upper().startswith(country.upper()):
+            raise ValueError("channel_service_id must start with country code")
+        return self
 
 
 class ChannelRegisterResponse(BaseModel):
     channel_service_id: str
+    channel_name: str
+    country: str
     mrss_feed_id: str
     mrss_url: str
-    fetch_interval_seconds: int
     enabled: bool
     ingestion_triggered: bool
     assets_upserted: int
@@ -34,6 +44,8 @@ class FeedResponse(BaseModel):
 
 class ChannelResponse(BaseModel):
     channel_service_id: str
+    channel_name: str | None
+    country: str | None
     mrss_feed_id: str
     mrss_url: str
 
@@ -78,4 +90,17 @@ class GenerateScheduleResponse(BaseModel):
     channel_service_id: str
     run_id: str
     entry_count: int
+
+
+class FeedIngestRequest(BaseModel):
+    xml_text: str = Field(min_length=1)
+    source_url: HttpUrl
+    http_status: int = Field(default=200, ge=100, le=599)
+
+
+class FeedIngestResponse(BaseModel):
+    mrss_feed_id: str
+    source_url: str
+    assets_upserted: int
+    ingestion_error: str | None = None
 

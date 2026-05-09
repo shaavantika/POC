@@ -49,19 +49,46 @@ export DATABASE_URL="postgresql://postgres:<password>@localhost:5432/channel_sch
 scheduler-api
 ```
 
+Swagger/OpenAPI docs:
+
+- Swagger UI: `http://localhost:8000/docs` (or `http://localhost:8000/swagger`)
+- OpenAPI JSON: `http://localhost:8000/openapi.json`
+
 ### Register channel request
 
 ```bash
 curl -X POST "http://localhost:8000/channels/register" \
   -H "Content-Type: application/json" \
   -d '{
-    "channel_service_id": "binge_channel_001",
+    "channel_service_id": "US_binge_channel_001",
+    "channel_name": "Binge Channel 001",
+    "country": "US",
     "mrss_url": "https://d1qcz22vwvqn9h.cloudfront.net/US4900002OH.xml",
-    "xml_file_path": null,
-    "fetch_interval_seconds": 900,
     "enabled": true
   }'
 ```
 
-If MRSS URL is unreachable from your environment, set `xml_file_path` to a local XML file and ingestion will read from file.
+`channel_service_id` must start with the country code (case-insensitive), e.g. `US_...` for country `US`.
+
+## Lambda MRSS Polling (API-driven)
+
+This repo includes Lambda code under `lambda/` (`lambda/mrss_poller.py`). It:
+
+1. Calls `GET /feeds`
+2. Fetches each enabled MRSS URL
+3. Posts XML to `POST /feeds/{mrss_feed_id}/ingest` to upsert assets in DB
+
+Required Lambda env var:
+
+- `API_BASE_URL` (example: `https://your-api.example.com`)
+
+Optional env vars:
+
+- `API_TIMEOUT_SECONDS` (default `30`)
+- `MAX_FEEDS_PER_RUN` (default `200`)
+- `API_KEY` (sent as `x-api-key`, if your API gateway requires it)
+
+Lambda handler:
+
+- `mrss_poller.handler` (when packaging/deploying from the `lambda/` directory)
 

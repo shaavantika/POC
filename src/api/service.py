@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from pathlib import Path
-
 from psycopg import connect
 
 from src.api.repository import (
@@ -9,8 +7,6 @@ from src.api.repository import (
     list_channels,
     list_feeds,
     list_runs_for_channel,
-    mark_feed_fetch_failure,
-    mark_feed_fetch_success,
     list_assets_for_channel,
     get_schedule_json_for_run,
     get_active_schedule_json_for_channel,
@@ -21,22 +17,22 @@ from src.api.schemas import (
     ChannelRegisterRequest,
     ChannelRegisterResponse,
     ChannelResponse,
+    FeedIngestRequest,
+    FeedIngestResponse,
     FeedResponse,
     RunResponse,
     ScheduleEntryResponse,
     AssetResponse,
 )
-from src.ingestion.fetcher import fetch_feed_xml
+from src.api.repository import mark_feed_fetch_failure, mark_feed_fetch_success
+from src.ingestion.ingest_runner import try_ingest_feed_from_http
+from src.ingestion.ingest_runner import normalize_mrss_xml_text
 from src.ingestion.parser import parse_mrss
 from src.ingestion.repository import upsert_assets
 from src.common.logging_config import get_logger
 
 logger = get_logger("api.service")
-
-
-def _normalize_xml_text(raw_text: str) -> str:
-    start = raw_text.find("<rss")
-    return raw_text[start:] if start >= 0 else raw_text
+DEFAULT_FEED_INTERVAL_SECONDS = 900
 
 
 def register_channel(db_url: str, payload: ChannelRegisterRequest) -> ChannelRegisterResponse:
@@ -44,15 +40,17 @@ def register_channel(db_url: str, payload: ChannelRegisterRequest) -> ChannelReg
     ingestion_error: str | None = None
 
     with connect(db_url) as conn:
-        feed_id, normalized_url, interval, enabled = upsert_feed(
+        feed_id, normalized_url, _interval, enabled = upsert_feed(
             conn=conn,
             mrss_url=str(payload.mrss_url),
-            fetch_interval_seconds=payload.fetch_interval_seconds,
+            fetch_interval_seconds=DEFAULT_FEED_INTERVAL_SECONDS,
             enabled=payload.enabled,
         )
         channel_id = upsert_channel_mapping(
             conn=conn,
             channel_service_id=payload.channel_service_id.strip(),
+            channel_name=payload.channel_name.strip(),
+            country=payload.country.strip(),
             mrss_feed_id=feed_id,
         )
         conn.commit()
@@ -64,37 +62,27 @@ def register_channel(db_url: str, payload: ChannelRegisterRequest) -> ChannelReg
 
     # Best-effort immediate ingestion when channel/feed is registered.
     # Registration remains successful even if ingest fails.
-    try:
-        logger.info("Starting immediate ingestion feed_id=%s url=%s", feed_id, normalized_url)
-        if payload.xml_file_path and payload.xml_file_path.strip():
-            xml_path = payload.xml_file_path.strip()
-            logger.info("Using local XML file for ingestion feed_id=%s path=%s", feed_id, xml_path)
-            xml_text = Path(xml_path).read_text(encoding="utf-8")
-        else:
-            xml_text = fetch_feed_xml(normalized_url)
-        assets = parse_mrss(_normalize_xml_text(xml_text))
-        with connect(db_url) as conn:
-            assets_upserted = upsert_assets(conn, feed_id, assets)
-        with connect(db_url) as conn:
-            mark_feed_fetch_success(conn, feed_id, http_status=200)
-            conn.commit()
+    logger.info("Starting immediate ingestion feed_id=%s url=%s", feed_id, normalized_url)
+    assets_upserted, ingestion_error = try_ingest_feed_from_http(db_url, feed_id, normalized_url)
+    if ingestion_error:
+        logger.warning(
+            "Immediate ingestion failed feed_id=%s error=%s",
+            feed_id,
+            ingestion_error,
+        )
+    else:
         logger.info(
             "Immediate ingestion succeeded feed_id=%s assets_upserted=%s",
             feed_id,
             assets_upserted,
         )
-    except Exception as exc:
-        ingestion_error = str(exc)
-        logger.exception("Immediate ingestion failed feed_id=%s error=%s", feed_id, ingestion_error)
-        with connect(db_url) as conn:
-            mark_feed_fetch_failure(conn, feed_id, error_message=ingestion_error)
-            conn.commit()
 
     return ChannelRegisterResponse(
         channel_service_id=channel_id,
+        channel_name=payload.channel_name.strip(),
+        country=payload.country.strip(),
         mrss_feed_id=feed_id,
         mrss_url=normalized_url,
-        fetch_interval_seconds=interval,
         enabled=enabled,
         ingestion_triggered=True,
         assets_upserted=assets_upserted,
@@ -125,8 +113,10 @@ def get_channels(db_url: str) -> list[ChannelResponse]:
     return [
         ChannelResponse(
             channel_service_id=row[0],
-            mrss_feed_id=str(row[1]),
-            mrss_url=row[2],
+            channel_name=row[1],
+            country=row[2],
+            mrss_feed_id=str(row[3]),
+            mrss_url=row[4],
         )
         for row in rows
     ]
@@ -191,4 +181,47 @@ def get_run_schedule_json(db_url: str, channel_service_id: str, run_id: str) -> 
 def get_active_schedule_json(db_url: str, channel_service_id: str) -> dict | None:
     with connect(db_url) as conn:
         return get_active_schedule_json_for_channel(conn, channel_service_id)
+
+
+def ingest_feed_xml(
+    db_url: str,
+    mrss_feed_id: str,
+    payload: FeedIngestRequest,
+) -> FeedIngestResponse:
+    try:
+        xml_text = normalize_mrss_xml_text(payload.xml_text)
+        assets = parse_mrss(xml_text)
+        with connect(db_url) as conn:
+            assets_upserted = upsert_assets(conn, mrss_feed_id, assets)
+            mark_feed_fetch_success(
+                conn,
+                mrss_feed_id=mrss_feed_id,
+                http_status=payload.http_status,
+            )
+            conn.commit()
+        return FeedIngestResponse(
+            mrss_feed_id=mrss_feed_id,
+            source_url=str(payload.source_url),
+            assets_upserted=assets_upserted,
+            ingestion_error=None,
+        )
+    except Exception as exc:
+        err = str(exc)
+        try:
+            with connect(db_url) as conn:
+                mark_feed_fetch_failure(
+                    conn,
+                    mrss_feed_id=mrss_feed_id,
+                    error_message=err,
+                    http_status=payload.http_status,
+                )
+                conn.commit()
+        except Exception:
+            logger.exception("Could not persist feed failure for mrss_feed_id=%s", mrss_feed_id)
+        return FeedIngestResponse(
+            mrss_feed_id=mrss_feed_id,
+            source_url=str(payload.source_url),
+            assets_upserted=0,
+            ingestion_error=err,
+        )
 

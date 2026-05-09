@@ -12,12 +12,14 @@ if str(_root) not in sys.path:
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 
 from src.api.schemas import (
     ChannelRegisterRequest,
     ChannelRegisterResponse,
     ChannelResponse,
+    FeedIngestRequest,
+    FeedIngestResponse,
     FeedResponse,
     RunResponse,
     ScheduleEntryResponse,
@@ -30,6 +32,7 @@ from src.api.service import (
     get_channel_runs,
     get_channels,
     get_feeds,
+    ingest_feed_xml,
     get_channel_assets,
     get_run_schedule_json,
     get_active_schedule_json,
@@ -59,6 +62,12 @@ app.add_middleware(
 def health() -> dict[str, str]:
     logger.debug("Health check requested")
     return {"status": "ok"}
+
+
+@app.get("/swagger", include_in_schema=False)
+def swagger_redirect() -> RedirectResponse:
+    """Convenience alias for FastAPI Swagger UI."""
+    return RedirectResponse(url="/docs")
 
 
 @app.post("/channels/register", response_model=ChannelRegisterResponse)
@@ -94,6 +103,26 @@ def feeds_route() -> list[FeedResponse]:
     feeds = get_feeds(db_url)
     logger.info("Fetched feeds count=%s", len(feeds))
     return feeds
+
+
+@app.post("/feeds/{mrss_feed_id}/ingest", response_model=FeedIngestResponse)
+def ingest_feed_route(mrss_feed_id: str, payload: FeedIngestRequest) -> FeedIngestResponse:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        logger.info("Ingest feed payload received feed_id=%s source_url=%s", mrss_feed_id, payload.source_url)
+        response = ingest_feed_xml(db_url=db_url, mrss_feed_id=mrss_feed_id, payload=payload)
+        logger.info(
+            "Ingest feed completed feed_id=%s assets_upserted=%s ingestion_error=%s",
+            response.mrss_feed_id,
+            response.assets_upserted,
+            response.ingestion_error,
+        )
+        return response
+    except Exception as exc:
+        logger.exception("Ingest feed failed feed_id=%s error=%s", mrss_feed_id, exc)
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/channels", response_model=list[ChannelResponse])

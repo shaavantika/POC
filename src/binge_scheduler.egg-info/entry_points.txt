@@ -1,4 +1,5 @@
 [console_scripts]
 generate-schedule = src.scheduler.cli:main
 ingest-mrss = src.ingestion.cli:main
+poll-mrss-feeds = src.ingestion.poll_feeds:main
 scheduler-api = src.api.main:run

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { API_BASE_URL } from "./config.js";
 
 const FeedStatusCharts = lazy(() => import("./FeedStatusCharts.jsx"));
@@ -30,6 +30,7 @@ const DISPLAY_TIMEZONES = [
   { value: "Asia/Shanghai", label: "Shanghai" },
   { value: "Australia/Sydney", label: "Sydney" },
 ];
+const LICENSE_EXPIRY_ALERT_DAYS = 7;
 
 function formatTime(iso, timeZone) {
   if (!iso) return "-";
@@ -42,6 +43,25 @@ function formatTime(iso, timeZone) {
     return d.toLocaleString(undefined, opts);
   } catch {
     return iso;
+  }
+}
+
+function formatDurationDaysHours(totalMs) {
+  if (!Number.isFinite(totalMs) || totalMs <= 0) {
+    return "0d 0h";
+  }
+  const totalHours = Math.floor(totalMs / (60 * 60 * 1000));
+  const days = Math.floor(totalHours / 24);
+  const hours = totalHours % 24;
+  return `${days}d ${hours}h`;
+}
+
+function isValidHttpUrl(value) {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
   }
 }
 
@@ -62,9 +82,9 @@ export default function App() {
   const [assets, setAssets] = useState([]);
 
   const [channelServiceId, setChannelServiceId] = useState("");
+  const [channelName, setChannelName] = useState("");
+  const [country, setCountry] = useState("");
   const [mrssUrl, setMrssUrl] = useState("");
-  const [xmlFilePath, setXmlFilePath] = useState("");
-  const [fetchInterval, setFetchInterval] = useState(900);
   const [enabled, setEnabled] = useState(true);
 
   const [registerMessage, setRegisterMessage] = useState({ text: "", type: "" });
@@ -124,6 +144,56 @@ export default function App() {
 
   const activeRunsCount = runs.filter((r) => r.is_active).length;
   const failedRunsCount = runs.filter((r) => String(r.status).toLowerCase() === "failed").length;
+  const totalRunsCount = runs.length;
+  const totalAssetsCount = assets.length;
+  const assetTypeCounts = assets.reduce((acc, a) => {
+    const type = String(a.asset_type || "").trim().toLowerCase();
+    if (!type) return acc;
+    acc[type] = (acc[type] ?? 0) + 1;
+    return acc;
+  }, {});
+  const availableAssetTypeEntries = Object.entries(assetTypeCounts).sort((a, b) =>
+    a[0].localeCompare(b[0])
+  );
+  const activeScheduleRowsCount = entries.length;
+  const nowMs = Date.now();
+  const availableScheduleMs = entries.reduce((acc, e) => {
+    const start = new Date(e.starts_at).getTime();
+    const end = new Date(e.ends_at).getTime();
+    if (!Number.isFinite(start) || !Number.isFinite(end)) return acc;
+    const effectiveStart = Math.max(start, nowMs);
+    return acc + Math.max(0, end - effectiveStart);
+  }, 0);
+  const availableScheduleDaysHours = formatDurationDaysHours(availableScheduleMs);
+  const soonWindowEndMs = nowMs + LICENSE_EXPIRY_ALERT_DAYS * 24 * 60 * 60 * 1000;
+  const expiringSoonByType = assets.reduce((acc, a) => {
+    if (!a.valid_to) return acc;
+    const validToMs = new Date(a.valid_to).getTime();
+    if (!Number.isFinite(validToMs) || !(validToMs >= nowMs && validToMs <= soonWindowEndMs)) {
+      return acc;
+    }
+    const type = String(a.asset_type || "unknown").trim().toLowerCase();
+    acc[type] = (acc[type] ?? 0) + 1;
+    return acc;
+  }, {});
+  const expiredByType = assets.reduce((acc, a) => {
+    if (!a.valid_to) return acc;
+    const validToMs = new Date(a.valid_to).getTime();
+    if (!Number.isFinite(validToMs) || validToMs >= nowMs) return acc;
+    const type = String(a.asset_type || "unknown").trim().toLowerCase();
+    acc[type] = (acc[type] ?? 0) + 1;
+    return acc;
+  }, {});
+  const expiringSoonCount = Object.values(expiringSoonByType).reduce((sum, count) => sum + count, 0);
+  const expiredCount = Object.values(expiredByType).reduce((sum, count) => sum + count, 0);
+  const expiringSoonTypeText = Object.entries(expiringSoonByType)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([type, count]) => `${type}: ${count}`)
+    .join(" | ");
+  const expiredTypeText = Object.entries(expiredByType)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([type, count]) => `${type}: ${count}`)
+    .join(" | ");
 
   const loadChannel = useCallback(async (channelId) => {
     const [r, e, a] = await Promise.all([
@@ -200,14 +270,50 @@ export default function App() {
     selectChannel(e.target.value, { quiet: false });
   };
 
+  const handleOpenSchedule = async (channelId) => {
+    setActiveTab("schedule");
+    await selectChannel(channelId, { quiet: false });
+  };
+
+  const handleDashboardCardNavigate = (target) => {
+    if (target === "channels") {
+      setActiveTab("channels");
+      return;
+    }
+    if (target === "schedule") {
+      setActiveTab("schedule");
+    }
+  };
+
   const handleRegisterSubmit = async (ev) => {
     ev.preventDefault();
     setRegisterMessage({ text: "", type: "" });
+    const trimmedChannelServiceId = channelServiceId.trim();
+    const trimmedCountry = country.trim();
+    const trimmedMrssUrl = mrssUrl.trim();
+    if (
+      trimmedChannelServiceId &&
+      trimmedCountry &&
+      !trimmedChannelServiceId.toUpperCase().startsWith(trimmedCountry.toUpperCase())
+    ) {
+      setRegisterMessage({
+        text: "Channel Service ID must start with the country code.",
+        type: "error",
+      });
+      return;
+    }
+    if (!isValidHttpUrl(trimmedMrssUrl)) {
+      setRegisterMessage({
+        text: "MRSS URL must be a valid http/https URL.",
+        type: "error",
+      });
+      return;
+    }
     const payload = {
-      channel_service_id: channelServiceId.trim(),
-      mrss_url: mrssUrl.trim(),
-      xml_file_path: xmlFilePath.trim() || null,
-      fetch_interval_seconds: Number(fetchInterval),
+      channel_service_id: trimmedChannelServiceId,
+      channel_name: channelName.trim(),
+      country: trimmedCountry,
+      mrss_url: trimmedMrssUrl,
       enabled,
     };
     try {
@@ -222,9 +328,9 @@ export default function App() {
       }
       const data = await res.json();
       setChannelServiceId("");
+      setChannelName("");
+      setCountry("");
       setMrssUrl("");
-      setXmlFilePath("");
-      setFetchInterval(900);
       setEnabled(true);
       prevSelectedRef.current = data.channel_service_id;
       await loadData();
@@ -324,53 +430,68 @@ export default function App() {
   const registerForm = (
     <form className="form-grid" onSubmit={handleRegisterSubmit}>
       <div>
-        <label htmlFor="modal-channelServiceId">Channel Service ID</label>
+        <label htmlFor="modal-channelServiceId">
+          Channel Service ID <span className="required-mark">*</span>
+        </label>
         <input
           id="modal-channelServiceId"
           value={channelServiceId}
           onChange={(e) => setChannelServiceId(e.target.value)}
+          placeholder="e.g. US_channel_001"
           required
         />
       </div>
       <div>
-        <label htmlFor="modal-mrssUrl">MRSS URL</label>
+        <label htmlFor="modal-channelName">
+          Channel Name <span className="required-mark">*</span>
+        </label>
+        <input
+          id="modal-channelName"
+          value={channelName}
+          onChange={(e) => setChannelName(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="modal-country">
+          Country <span className="required-mark">*</span>
+        </label>
+        <input
+          id="modal-country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          placeholder="e.g. US"
+          maxLength={64}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="modal-mrssUrl">
+          MRSS URL <span className="required-mark">*</span>
+        </label>
         <input
           id="modal-mrssUrl"
           type="url"
           value={mrssUrl}
           onChange={(e) => setMrssUrl(e.target.value)}
+          placeholder="https://example.com/feed.xml"
+          pattern="https?://.+"
+          title="Enter a valid MRSS URL starting with http:// or https://"
           required
         />
       </div>
       <div>
-        <label htmlFor="modal-xmlFilePath">XML File Path (optional)</label>
-        <input
-          id="modal-xmlFilePath"
-          value={xmlFilePath}
-          onChange={(e) => setXmlFilePath(e.target.value)}
-          placeholder="/absolute/path/to/feed.xml"
-        />
-      </div>
-      <div>
-        <label htmlFor="modal-fetchInterval">Fetch Interval (seconds)</label>
-        <input
-          id="modal-fetchInterval"
-          type="number"
-          min={1}
-          value={fetchInterval}
-          onChange={(e) => setFetchInterval(Number(e.target.value))}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="modal-enabled">Enabled</label>
+        <label htmlFor="modal-enabled">
+          Auto MRSS Polling <span className="required-mark">*</span>
+        </label>
         <select
           id="modal-enabled"
           value={enabled ? "true" : "false"}
           onChange={(e) => setEnabled(e.target.value === "true")}
+          title="When enabled, AWS scheduled polling will fetch this channel's MRSS feed automatically."
         >
-          <option value="true">true</option>
-          <option value="false">false</option>
+          <option value="true">On</option>
+          <option value="false">Off</option>
         </select>
       </div>
       <div className="form-actions modal-actions">
@@ -488,22 +609,46 @@ export default function App() {
                 aria-label="Dashboard counts: feeds, channels, active and failed runs for selected channel"
               >
                 <div className="kpi-matrix-grid" role="presentation">
-                  <div className="kpi-cell" role="gridcell" title="MRSS feeds registered">
+                  <button
+                    type="button"
+                    className="kpi-cell kpi-cell-button"
+                    role="gridcell"
+                    title="MRSS feeds registered. Click to open Channels tab."
+                    onClick={() => handleDashboardCardNavigate("channels")}
+                  >
                     <span className="kpi-cell-value">{feeds.length}</span>
                     <span className="kpi-cell-axis">Feeds</span>
-                  </div>
-                  <div className="kpi-cell" role="gridcell" title="Channel mappings">
+                  </button>
+                  <button
+                    type="button"
+                    className="kpi-cell kpi-cell-button"
+                    role="gridcell"
+                    title="Channel mappings. Click to open Channels tab."
+                    onClick={() => handleDashboardCardNavigate("channels")}
+                  >
                     <span className="kpi-cell-value">{channels.length}</span>
                     <span className="kpi-cell-axis">Channels</span>
-                  </div>
-                  <div className="kpi-cell" role="gridcell" title="Active schedule runs (this channel)">
+                  </button>
+                  <button
+                    type="button"
+                    className="kpi-cell kpi-cell-button"
+                    role="gridcell"
+                    title="Active schedule runs for selected channel. Click to open Schedule tab."
+                    onClick={() => handleDashboardCardNavigate("schedule")}
+                  >
                     <span className="kpi-cell-value">{activeRunsCount}</span>
                     <span className="kpi-cell-axis">Active</span>
-                  </div>
-                  <div className="kpi-cell kpi-cell-fail" role="gridcell" title="Failed schedule runs (this channel)">
+                  </button>
+                  <button
+                    type="button"
+                    className="kpi-cell kpi-cell-button kpi-cell-fail"
+                    role="gridcell"
+                    title="Failed schedule runs for selected channel. Click to open Schedule tab."
+                    onClick={() => handleDashboardCardNavigate("schedule")}
+                  >
                     <span className="kpi-cell-value">{failedRunsCount}</span>
                     <span className="kpi-cell-axis">Failed</span>
-                  </div>
+                  </button>
                 </div>
               </div>
             </section>
@@ -527,9 +672,19 @@ export default function App() {
               <p className="tab-lede" style={{ margin: 0, flex: "1 1 240px" }}>
                 Click a row or change Channel in the header. Register adds a new mapping.
               </p>
-              <button type="button" onClick={() => setRegisterModalOpen(true)}>
-                Register channel
-              </button>
+              <div className="schedule-toolbar-actions">
+                <button
+                  type="button"
+                  className="btn-secondary"
+                  onClick={() => handleOpenSchedule(selectedChannelId)}
+                  disabled={noChannel || !selectedChannelId}
+                >
+                  Open Schedule
+                </button>
+                <button type="button" onClick={() => setRegisterModalOpen(true)}>
+                  Register channel
+                </button>
+              </div>
             </div>
 
             <section className="card">
@@ -539,37 +694,122 @@ export default function App() {
                   <thead>
                     <tr>
                       <th>Channel ID</th>
+                      <th>Channel Name</th>
+                      <th>Country</th>
                       <th>Feed ID</th>
                       <th>MRSS URL</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {channels.length === 0 ? (
                       <tr>
-                        <td colSpan={3} className="empty">
+                        <td colSpan={6} className="empty">
                           No channels yet. Register one to begin.
                         </td>
                       </tr>
                     ) : (
                       channels.map((c) => (
-                        <tr
-                          key={c.channel_service_id}
-                          className={`channel-row ${selectedChannelId === c.channel_service_id ? "selected" : ""}`}
-                          onClick={() => selectChannel(c.channel_service_id)}
-                          onKeyDown={(ev) => {
-                            if (ev.key === "Enter" || ev.key === " ") {
-                              ev.preventDefault();
-                              selectChannel(c.channel_service_id);
-                            }
-                          }}
-                          tabIndex={0}
-                          role="button"
-                          aria-label={`Select channel ${c.channel_service_id}`}
-                        >
-                          <td>{c.channel_service_id}</td>
-                          <td className="cell-mono">{c.mrss_feed_id}</td>
-                          <td className="cell-mono">{c.mrss_url}</td>
-                        </tr>
+                        <Fragment key={c.channel_service_id}>
+                          <tr
+                            className={`channel-row ${selectedChannelId === c.channel_service_id ? "selected" : ""}`}
+                            onClick={() => selectChannel(c.channel_service_id)}
+                            onKeyDown={(ev) => {
+                              if (ev.key === "Enter" || ev.key === " ") {
+                                ev.preventDefault();
+                                selectChannel(c.channel_service_id);
+                              }
+                            }}
+                            tabIndex={0}
+                            role="button"
+                            aria-label={`Select channel ${c.channel_service_id}`}
+                          >
+                            <td>{c.channel_service_id}</td>
+                            <td>{c.channel_name ?? "—"}</td>
+                            <td>{c.country ?? "—"}</td>
+                            <td className="cell-mono">{c.mrss_feed_id}</td>
+                            <td className="cell-mono">{c.mrss_url}</td>
+                            <td>
+                              <button
+                                type="button"
+                                className="btn-secondary table-action-btn"
+                                onClick={(ev) => {
+                                  ev.stopPropagation();
+                                  handleOpenSchedule(c.channel_service_id);
+                                }}
+                              >
+                                Schedule
+                              </button>
+                            </td>
+                          </tr>
+                          {selectedChannelId === c.channel_service_id && (
+                            <tr className="channel-expand-row">
+                              <td colSpan={6}>
+                                <div className="channel-stats-layout" role="group" aria-label="Selected channel stats">
+                                  <section className="channel-stats-group">
+                                    <h3 className="channel-stats-group-title">Overview</h3>
+                                    <div className="channel-stats-grid">
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Runs</span>
+                                        <strong className="channel-stat-value">{totalRunsCount}</strong>
+                                      </div>
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Active runs</span>
+                                        <strong className="channel-stat-value">{activeRunsCount}</strong>
+                                      </div>
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Failed runs</span>
+                                        <strong className="channel-stat-value">{failedRunsCount}</strong>
+                                      </div>
+                                    </div>
+                                  </section>
+
+                                  <section className="channel-stats-group">
+                                    <h3 className="channel-stats-group-title">Assets</h3>
+                                    <div className="channel-stats-grid">
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Assets</span>
+                                        <strong className="channel-stat-value">{totalAssetsCount}</strong>
+                                      </div>
+                                      {availableAssetTypeEntries.map(([type, count]) => (
+                                        <div className="channel-stat" key={type}>
+                                          <span className="channel-stat-label">{type} assets</span>
+                                          <strong className="channel-stat-value">{count}</strong>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </section>
+
+                                  <section className="channel-stats-group">
+                                    <h3 className="channel-stats-group-title">Schedule & Alerts</h3>
+                                    <div className="channel-stats-grid">
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Active schedule rows</span>
+                                        <strong className="channel-stat-value">{activeScheduleRowsCount}</strong>
+                                      </div>
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Available schedule</span>
+                                        <strong className="channel-stat-value">{availableScheduleDaysHours}</strong>
+                                      </div>
+                                      <div className="channel-stat channel-stat-alert">
+                                        <span className="channel-stat-label">License expiry (next 7d)</span>
+                                        <strong className="channel-stat-value">{expiringSoonCount}</strong>
+                                        <span className="channel-stat-subtext">
+                                          {expiringSoonTypeText || "No expiring assets"}
+                                        </span>
+                                      </div>
+                                      <div className="channel-stat channel-stat-danger">
+                                        <span className="channel-stat-label">Expired licenses</span>
+                                        <strong className="channel-stat-value">{expiredCount}</strong>
+                                        <span className="channel-stat-subtext">{expiredTypeText || "No expired assets"}</span>
+                                      </div>
+                                    </div>
+                                  </section>
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </Fragment>
                       ))
                     )}
                   </tbody>

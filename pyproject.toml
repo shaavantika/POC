@@ -12,6 +12,7 @@ dependencies = [
 
 [project.scripts]
 ingest-mrss = "src.ingestion.cli:main"
+poll-mrss-feeds = "src.ingestion.poll_feeds:main"
 generate-schedule = "src.scheduler.cli:main"
 scheduler-api = "src.api.main:run"
 

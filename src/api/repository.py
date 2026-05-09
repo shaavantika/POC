@@ -28,18 +28,22 @@ def upsert_feed(
 def upsert_channel_mapping(
     conn: Connection,
     channel_service_id: str,
+    channel_name: str,
+    country: str,
     mrss_feed_id: str,
 ) -> str:
     with conn.cursor() as cur:
         cur.execute(
             """
-            INSERT INTO channel_mrss_sources (channel_service_id, mrss_feed_id)
-            VALUES (%s, %s::uuid)
+            INSERT INTO channel_mrss_sources (channel_service_id, channel_name, country, mrss_feed_id)
+            VALUES (%s, %s, %s, %s::uuid)
             ON CONFLICT (channel_service_id) DO UPDATE SET
+                channel_name = EXCLUDED.channel_name,
+                country = EXCLUDED.country,
                 mrss_feed_id = EXCLUDED.mrss_feed_id
             RETURNING channel_service_id
             """,
-            (channel_service_id, mrss_feed_id),
+            (channel_service_id, channel_name, country, mrss_feed_id),
         )
         row = cur.fetchone()
     return row[0]
@@ -64,12 +68,40 @@ def list_feeds(conn: Connection) -> list[tuple]:
         return cur.fetchall()
 
 
+def list_due_mrss_feeds(conn: Connection, limit: int = 200) -> list[tuple[str, str]]:
+    """
+    Enabled feeds whose next poll time is in the past (per fetch_interval_seconds).
+
+    A row is due if last_fetch_at is null (never fetched) or
+    last_fetch_at + interval <= now().
+    """
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT id::text, url
+            FROM mrss_feeds
+            WHERE enabled = true
+              AND (
+                  last_fetch_at IS NULL
+                  OR last_fetch_at <= now() - (fetch_interval_seconds * interval '1 second')
+              )
+            ORDER BY last_fetch_at NULLS FIRST
+            LIMIT %s
+            """,
+            (limit,),
+        )
+        rows = cur.fetchall()
+    return [(str(r[0]), str(r[1])) for r in rows]
+
+
 def list_channels(conn: Connection) -> list[tuple]:
     with conn.cursor() as cur:
         cur.execute(
             """
             SELECT
                 c.channel_service_id,
+                c.channel_name,
+                c.country,
                 c.mrss_feed_id,
                 f.url
             FROM channel_mrss_sources c

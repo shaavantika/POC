@@ -1,0 +1,424 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/" version="2.0">
+<channel>
+<title>21JumpstreetTest</title>
+<description>21Jumpstreet Test</description>
+<language>en</language>
+<lastBuildDate>2026-04-16T11:49:02Z</lastBuildDate>
+<series lastUpdated="2026-04-15T22:13:13Z">
+<seriesId>SF_21JumpStreetOpt2miseTest_en</seriesId>
+<seriesTitle country="US" lang="en">21 Jump Street Opt2mise Test</seriesTitle>
+<seriesDescription country="US" lang="en">Undercover police unit specializes in youth crime.</seriesDescription>
+<seriesThumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69cdad8ac21cb265b5b973c5/69f8bf21-8be6-4262-a9b8-debdeb864a80/SF_21JumpStreetOpt2miseTest_en_16x9.jpg" width="1920" height="1080"/>
+<ReleaseDate>1987-05-10</ReleaseDate>
+<media:category scheme="urn:genre">Entertainment</media:category>
+</series>
+<season lastUpdated="2026-04-15T22:13:13Z">
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seriesId>SF_21JumpStreetOpt2miseTest_en</seriesId>
+<seasonNumber>1</seasonNumber>
+<seasonTitle country="US" lang="en">21 Jump Street Opt2mise Test: Season 1</seasonTitle>
+<seasonDescription country="US" lang="en">21 Jump Street Opt2mise Test: Season 1</seasonDescription>
+<seasonThumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69cdad8bc21cb265b5b973c6/9822870d-ce60-4b34-875b-3a37ab4fd967/SF_21JumpStreetOpt2miseTest_S01_en_16x9.jpg" width="1920" height="1080"/>
+<media:category scheme="urn:genre">Entertainment</media:category>
+</season>
+<item lastUpdated="2026-04-15T17:38:20Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E01_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>1</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Pilot (Part 1)</media:title>
+<media:description country="US" lang="en">Tommy Hanson, a top graduate of the police academy, faces reassignment due to his young appearance. To avoid a desk job, he goes undercover in high school with a special police unit investigating crime, navigating challenges posed by his baby face.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Michael Bendetti</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-04-12</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69cdad8bc21cb265b5b973c7/5f372303-5a7c-46b0-ac4a-facaea981f76/SF_21JumpStreetOpt2miseTest_S01_E01_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/29a93957-2c81-44bf-8c4c-beb64ea1d413/SF_21JumpStreetOpt2miseTest_S01_E01_en.vtt" lang="en"/>
+<adCuePoints>562.13,948.31,1724.16,2210.68,2768.13</adCuePoints>
+<adCuePointsInFrames>16847,28421,51673,66254,82961</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00;00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T17:42:46Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:09:22;05" markOutFrame="16847" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:09:22;06" markInFrame="16848" markOut="00:15:48;10" markOutFrame="28422" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:15:48;11" markInFrame="28423" markOut="00:28:44;07" markOutFrame="51675" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:28:44;08" markInFrame="51676" markOut="00:36:50;23" markOutFrame="66257" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:36:50;24" markInFrame="66258" markOut="00:46:08;09" markOutFrame="82965" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250111</tmsId>
+</item>
+<item lastUpdated="2026-04-15T17:18:26Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E02_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>2</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Pilot (Part 2)</media:title>
+<media:description country="US" lang="en">Tommy Hanson, a top graduate of the police academy, faces reassignment due to his young appearance. To avoid a desk job, he goes undercover in high school with a special police unit investigating crime, navigating challenges posed by his baby face.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Steven Williams</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-04-12</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ce9218c21cb265b5b97ac1/5068d6e8-026a-4bf2-be00-5bdf9a4ccc9f/SF_21JumpStreetOpt2miseTest_S01_E02_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/4ad9a401-2f77-4752-bf6f-0246d92072f6/SF_21JumpStreetOpt2miseTest_S01_E02_en.vtt" lang="en"/>
+<adCuePoints>645.28,1131.5,1633.73,2066.47,2694.99</adCuePoints>
+<adCuePointsInFrames>19339,33911,48963,61932,80769</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00;00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T17:23:07Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:10:45;07" markOutFrame="19339" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:10:45;08" markInFrame="19340" markOut="00:18:51;16" markOutFrame="33912" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:18:51;17" markInFrame="33913" markOut="00:27:13;25" markOutFrame="48965" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:27:13;26" markInFrame="48966" markOut="00:34:26;17" markOutFrame="61935" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:34:26;18" markInFrame="61936" markOut="00:44:55;03" markOutFrame="80773" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250112</tmsId>
+</item>
+<item lastUpdated="2026-04-15T17:43:07Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E03_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>3</episodeNumber>
+</episode>
+<media:title country="US" lang="en">America, What a Town</media:title>
+<media:description country="US" lang="en">Hanson and Penhall infiltrate a stolen car ring operating out of a high school auto shop.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Holly Robinson Peete</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-04-19</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ce9214c21cb265b5b97abe/47254823-4310-4934-8ffa-763b1be29812/SF_21JumpStreetOpt2miseTest_S01_E03_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/c3d95f53-edc1-4514-91cd-24f19b116468/SF_21JumpStreetOpt2miseTest_S01_E03_en.vtt" lang="en"/>
+<adCuePoints>197.66,1066.23,1634.83,2243.88,2695.43,2884.85</adCuePoints>
+<adCuePointsInFrames>5924,31955,48996,67249,80782,86459</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00;00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T17:47:21Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:03:17;20" markOutFrame="5924" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:03:17;21" markInFrame="5925" markOut="00:17:46;08" markOutFrame="31956" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:17:46;09" markInFrame="31957" markOut="00:27:14;28" markOutFrame="48998" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:27:14;29" markInFrame="48999" markOut="00:37:24;00" markOutFrame="67252" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:37:24;01" markInFrame="67253" markOut="00:44:55;16" markOutFrame="80786" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:44:55;17" markInFrame="80787" markOut="00:48:05;02" markOutFrame="86464" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250010</tmsId>
+</item>
+<item lastUpdated="2026-04-13T11:35:37Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E04_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>4</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Don't Pet the Teacher</media:title>
+<media:description country="US" lang="en">Placed undercover to investigate repeated burglaries and vandalism at South Central High, Officer Hanson falls for his English teacher, who's also the object of others' desires.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Steven Williams</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-04-26</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ce9342c21cb265b5b97aee/62be2d79-3ede-4120-afed-e2cbe75acfa8/SF_21JumpStreetOpt2miseTest_S01_E04_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/2f2606ee-198e-4093-8e8c-4f69352e2042/SF_21JumpStreetOpt2miseTest_S01_E04_en.vtt" lang="en"/>
+<adCuePoints>952.05,1682.15,2117.35,2303.84,2813.35</adCuePoints>
+<adCuePointsInFrames>28533,50414,63457,69046,84316</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-06T17:47:53Z">
+<segment order="1" markIn="00:00:00:00" markInFrame="0" markOut="00:15:51:03" markOutFrame="28533" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:15:51:04" markInFrame="28534" markOut="00:28:00:15" markOutFrame="50415" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:28:00:16" markInFrame="50416" markOut="00:35:15:09" markOutFrame="63459" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:35:15:10" markInFrame="63460" markOut="00:38:21:19" markOutFrame="69049" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:38:21:20" markInFrame="69050" markOut="00:46:50:20" markOutFrame="84320" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250006</tmsId>
+</item>
+<item lastUpdated="2026-04-13T11:35:28Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E05_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>5</episodeNumber>
+</episode>
+<media:title country="US" lang="en">My Future's So Bright, I Gotta Wear Shades</media:title>
+<media:description country="US" lang="en">A night on the town lands a young girl in the morgue forcing Officers Hanson and Penhall to go undercover at the exclusive West Chadway Prep School where big time drug dealing is an extra-curricular activity.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Michael DeLuise</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-05-03</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ce96c2c21cb265b5b97b48/e764047e-a61f-4c12-8ba2-a1f0fb19de50/SF_21JumpStreetOpt2miseTest_S01_E05_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/ce6e9ed8-4c1a-4077-ab98-62982ae018b8/SF_21JumpStreetOpt2miseTest_S01_E05_en.vtt" lang="en"/>
+<adCuePoints>588.69,978.61,1677.18,2178.35,2576.34,2764.9</adCuePoints>
+<adCuePointsInFrames>17643,29329,50265,65285,77213,82864</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-06T17:52:33Z">
+<segment order="1" markIn="00:00:00:00" markInFrame="0" markOut="00:09:48:03" markOutFrame="17643" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:09:48:04" markInFrame="17644" markOut="00:16:17:20" markOutFrame="29330" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:16:17:21" markInFrame="29331" markOut="00:27:55:17" markOutFrame="50267" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:27:55:18" markInFrame="50268" markOut="00:36:16:08" markOutFrame="65288" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:36:16:09" markInFrame="65289" markOut="00:42:53:27" markOutFrame="77217" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:42:53:28" markInFrame="77218" markOut="00:46:02:09" markOutFrame="82869" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250007</tmsId>
+</item>
+<item lastUpdated="2026-04-15T22:13:16Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E06_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>6</episodeNumber>
+</episode>
+<media:title country="US" lang="en">The Worst Night of Your Life</media:title>
+<media:description country="US" lang="en">When a pyromaniac is on the loose at an exclusive all-girl Catholic school, undercover cop Judy Hoffs blazes a trail leading to a prom-night inferno.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Dustin Nguyen</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-05-10</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ce96c0c21cb265b5b97b47/cf628988-8755-486a-b2ab-b6218d2bf2fd/SF_21JumpStreetOpt2miseTest_S01_E06_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/d0f902eb-8dd6-4fab-af76-83fb2ba1e76c/SF_21JumpStreetOpt2miseTest_S01_E06_en.vtt" lang="en"/>
+<adCuePoints>692.19,1202.77,1744.38,2537.37,2733.37</adCuePoints>
+<adCuePointsInFrames>20745,36047,52279,76045,81919</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T22:18:21Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:11:32;05" markOutFrame="20745" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:11:32;06" markInFrame="20746" markOut="00:20:02;24" markOutFrame="36048" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:20:02;25" markInFrame="36049" markOut="00:29:04;15" markOutFrame="52281" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:29:04;16" markInFrame="52282" markOut="00:42:17;14" markOutFrame="76048" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:42:17;15" markInFrame="76049" markOut="00:45:33;15" markOutFrame="81923" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250009</tmsId>
+</item>
+<item lastUpdated="2026-04-15T19:51:06Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E07_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>7</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Gotta Finish the Riff</media:title>
+<media:description country="US" lang="en">Following the funeral of Captain Jenko, his replacement Captain Adam Fuller leads the Jump Street squad undercover to attempt the rescue of a school held hostage by a teen gang.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Richard Grieco</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-05-17</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ceb65cc21cb265b5b97e05/cd6cc39c-2da2-4cb8-86ba-528540572337/SF_21JumpStreetOpt2miseTest_S01_E07_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/45281418-3df9-4264-b0ab-79289dd0b41c/SF_21JumpStreetOpt2miseTest_S01_E07_en.vtt" lang="en"/>
+<adCuePoints>273.24,952.29,1489.46,2270.04,2828.36</adCuePoints>
+<adCuePointsInFrames>8189,28540,44639,68033,84766</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T19:55:51Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:04:33;07" markOutFrame="8189" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:04:33;08" markInFrame="8190" markOut="00:15:52;09" markOutFrame="28541" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:15:52;10" markInFrame="28542" markOut="00:24:49;15" markOutFrame="44641" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:24:49;16" markInFrame="44642" markOut="00:37:50;04" markOutFrame="68036" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:37:50;05" markInFrame="68037" markOut="00:47:08;16" markOutFrame="84770" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250013</tmsId>
+</item>
+<item lastUpdated="2026-04-13T11:35:10Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E08_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>8</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Bad Influence</media:title>
+<media:description country="US" lang="en">A 16-year-old high school hooker Lauren Carson turns tricks in exchange for home security codes and leads Jump Street "john" loki on a trail of burglary, prostitution and drugs.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Steven Williams</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-05-24</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ceb665c21cb265b5b97e0a/17c9e6dc-a8d2-438b-bd32-575b502c3302/SF_21JumpStreetOpt2miseTest_S01_E08_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/e788778e-bb45-47a8-b340-36ffb69f3860/SF_21JumpStreetOpt2miseTest_S01_E08_en.vtt" lang="en"/>
+<adCuePoints>273.77,917.38,1599.87,2106.47,2573.44,2802.3</adCuePoints>
+<adCuePointsInFrames>8205,27494,47948,63131,77126,83985</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-06T19:07:53Z">
+<segment order="1" markIn="00:00:00:00" markInFrame="0" markOut="00:04:33:15" markOutFrame="8205" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:04:33:16" markInFrame="8206" markOut="00:15:16:15" markOutFrame="27495" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:15:16:16" markInFrame="27496" markOut="00:26:38:10" markOutFrame="47950" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:26:38:11" markInFrame="47951" markOut="00:35:04:14" markOutFrame="63134" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:35:04:15" markInFrame="63135" markOut="00:42:51:00" markOutFrame="77130" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:42:51:01" markInFrame="77131" markOut="00:46:39:20" markOutFrame="83990" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250011</tmsId>
+</item>
+<item lastUpdated="2026-04-15T22:03:41Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E09_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>9</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Blindsided</media:title>
+<media:description country="US" lang="en">A sexually abused coed tries to hire Jump Street's Officer Hanson to kill her policeman father.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Richard Grieco</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-05-31</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ceaab9c21cb265b5b97cd2/3387c922-367d-4dce-82aa-a4867d7cc349/SF_21JumpStreetOpt2miseTest_S01_E09_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/99e6aebc-e500-40ef-b080-5511f5df7c46/SF_21JumpStreetOpt2miseTest_S01_E09_en.vtt" lang="en"/>
+<adCuePoints>409.28,841.17,1502.94,2165.6,2620.79,2837.27</adCuePoints>
+<adCuePointsInFrames>12266,25210,45043,64903,78545,85033</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T22:07:55Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:06:49;08" markOutFrame="12266" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:06:49;09" markInFrame="12267" markOut="00:14:01;07" markOutFrame="25211" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:14:01;08" markInFrame="25212" markOut="00:25:03;01" markOutFrame="45045" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:25:03;02" markInFrame="45046" markOut="00:36:05;22" markOutFrame="64906" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:36:05;23" markInFrame="64907" markOut="00:43:40;27" markOutFrame="78549" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:43:40;28" markInFrame="78550" markOut="00:47:17;14" markOutFrame="85038" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250008</tmsId>
+</item>
+<item lastUpdated="2026-04-15T17:52:53Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E10_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>10</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Next Generation</media:title>
+<media:description country="US" lang="en">Jump Street's Tom Hanson is sent undercover to bait a student loan shark, but risks blowing his cover when his school quiz team qualifies for the televised citywide finals.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Richard Grieco</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-06-07</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ceb2dec21cb265b5b97dba/0bbeb0eb-f63c-42e1-8057-375f8905525a/SF_21JumpStreetOpt2miseTest_S01_E10_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/e29ad519-1793-49ec-88d6-df4496e26a54/SF_21JumpStreetOpt2miseTest_S01_E10_en.vtt" lang="en"/>
+<adCuePoints>443.98,1095.53,1685.29,2152.02,2623.96,2833.8</adCuePoints>
+<adCuePointsInFrames>13306,32833,50508,64496,78640,84929</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00;00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T17:56:55Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:07:24;00" markOutFrame="13306" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:07:24;01" markInFrame="13307" markOut="00:18:15;18" markOutFrame="32834" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:18:15;19" markInFrame="32835" markOut="00:28:05;12" markOutFrame="50510" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:28:05;13" markInFrame="50511" markOut="00:35:52;03" markOutFrame="64499" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:35:52;04" markInFrame="64500" markOut="00:43:44;02" markOutFrame="78644" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:43:44;03" markInFrame="78645" markOut="00:47:14;00" markOutFrame="84934" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250015</tmsId>
+</item>
+<item lastUpdated="2026-04-15T20:53:25Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E11_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>11</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Low and Away</media:title>
+<media:description country="US" lang="en">Penhall goes undercover as a high school baseball jock to protect the school's pitching ace, a mobster's son who's unknowingly the object of a vendetta.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Steven Williams</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-06-14</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69d4243e1e65f5a17a855e01/e295fb69-4d73-4286-8d97-d4184ab890b2/SF_21JumpStreetOpt2miseTest_S01_E11_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/b8c8aff1-d3b2-4c4d-9067-04df19e34e46/SF_21JumpStreetOpt2miseTest_S01_E11_en.vtt" lang="en"/>
+<adCuePoints>232.6,875.81,1682.78,2323.56,2841.21</adCuePoints>
+<adCuePointsInFrames>6971,26248,50433,69637,85151</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T20:57:46Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:03:52;17" markOutFrame="6971" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:03:52;18" markInFrame="6972" markOut="00:14:35;25" markOutFrame="26249" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:14:35;26" markInFrame="26250" markOut="00:28:02;27" markOutFrame="50435" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:28:02;28" markInFrame="50436" markOut="00:38:43;20" markOutFrame="69640" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:38:43;21" markInFrame="69641" markOut="00:47:21;11" markOutFrame="85155" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250114</tmsId>
+</item>
+<item lastUpdated="2026-04-15T21:23:19Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E12_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>12</episodeNumber>
+</episode>
+<media:title country="US" lang="en">16 Blown to 35</media:title>
+<media:description country="US" lang="en">Officers Penhall and Hoffs go under, then out of cover in a teenage modeling agency to arrest the leaders of a high school porno ring.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Michael Bendetti</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-06-21</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69ceb794c21cb265b5b97e2a/9e4b33ec-5202-42fe-bcb2-69da3d1690f5/SF_21JumpStreetOpt2miseTest_S01_E12_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/2cca193e-a568-4019-9b74-6580ee027fca/SF_21JumpStreetOpt2miseTest_S01_E12_en.vtt" lang="en"/>
+<adCuePoints>227.83,923.76,1470.47,1922.16,2627.66,2833.17</adCuePoints>
+<adCuePointsInFrames>6828,27685,44070,57607,78751,84910</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T21:27:51Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:03:47;24" markOutFrame="6828" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:03:47;25" markInFrame="6829" markOut="00:15:23;24" markOutFrame="27686" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:15:23;25" markInFrame="27687" markOut="00:24:30;16" markOutFrame="44072" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:24:30;17" markInFrame="44073" markOut="00:32:02;08" markOutFrame="57610" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:32:02;09" markInFrame="57611" markOut="00:43:47;23" markOutFrame="78755" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:43:47;24" markInFrame="78756" markOut="00:47:13;11" markOutFrame="84915" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250012</tmsId>
+</item>
+<item lastUpdated="2026-04-15T19:51:05Z">
+<episode>
+<assetId>SF_21JumpStreetOpt2miseTest_S01_E13_en</assetId>
+<seasonId>SF_21JumpStreetOpt2miseTest_S01_en</seasonId>
+<seasonNumber>1</seasonNumber>
+<episodeNumber>13</episodeNumber>
+</episode>
+<media:title country="US" lang="en">Mean Streets and Pastel Houses</media:title>
+<media:description country="US" lang="en">Undercover cop Tom Hanson goes "punk" to infiltrate suburban rival gangs in an attempt to halt their destruction and rescue one member caught between academics and anarchy.</media:description>
+<media:rating scheme="USA Parental Rating">TV-14</media:rating>
+<media:credit role="Actor">Sal Jenco</media:credit>
+<media:category scheme="urn:genre">Crime,Drama</media:category>
+<ReleaseDate>1987-06-28</ReleaseDate>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2026-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<media:thumbnail url="https://dyf674s95blcg.cloudfront.net/Image/69d426801e65f5a17a855e49/df466cc0-d91e-4d5b-9b6d-56fb8b82acf3/SF_21JumpStreetOpt2miseTest_S01_E13_en_16x9.jpg" width="1920" height="1080"/>
+<media:subTitle href="s3://prd-us-east-1-gti-mam-playout-vendor-amagi/samsung-mam/playout/605c6b87-c924-4722-86e8-c39502a24aa7/SF_21JumpStreetOpt2miseTest_S01_E13_en.vtt" lang="en"/>
+<adCuePoints>191.19,817.15,1396.13,2016.18,2368.17,2833.5</adCuePoints>
+<adCuePointsInFrames>5730,24490,41842,60425,70974,84920</adCuePointsInFrames>
+<timecodeFirstFrame frameRate="29.970">00:00:00:00</timecodeFirstFrame>
+<segmentation lastUpdated="2026-04-15T19:55:58Z">
+<segment order="1" markIn="00:00:00;00" markInFrame="0" markOut="00:03:11;06" markOutFrame="5730" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="2" markIn="00:03:11;07" markInFrame="5731" markOut="00:13:37;05" markOutFrame="24491" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="3" markIn="00:13:37;06" markInFrame="24492" markOut="00:23:16;06" markOutFrame="41844" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="4" markIn="00:23:16;07" markInFrame="41845" markOut="00:33:36;08" markOutFrame="60428" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="5" markIn="00:33:36;09" markInFrame="60429" markOut="00:39:28;10" markOutFrame="70978" insertAdBreak="true" adBreakDuration="0"/>
+<segment order="6" markIn="00:39:28;11" markInFrame="70979" markOut="00:47:13;21" markOutFrame="84925" insertAdBreak="true" adBreakDuration="0"/>
+</segmentation>
+<tmsId>EP000000250005</tmsId>
+</item>
+<item lastUpdated="2026-04-13T13:19:33Z">
+<slate>
+<assetId>ADS_ch2XjWpx</assetId>
+</slate>
+<media:title country="US" lang="en">BeRightBack_WithTimer_92HD</media:title>
+<supplier>samsung</supplier>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2027-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<duration>92200</duration>
+</item>
+<item lastUpdated="2026-04-13T13:13:37Z">
+<slate>
+<assetId>ADS_eoIDkmzh</assetId>
+</slate>
+<media:title country="US" lang="en">WelcomeHD90sec</media:title>
+<supplier>samsung</supplier>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2027-05-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<duration>90040</duration>
+</item>
+<item lastUpdated="2026-04-13T12:59:34Z">
+<slate>
+<assetId>ADS_Qmcwxuuz</assetId>
+</slate>
+<media:title country="US" lang="en">HD_Slate_WewillBeRightBack</media:title>
+<supplier>samsung</supplier>
+<dcterms:valid>start=2026-04-01T00:00:00+00:00;end=2027-06-01T00:00:00+00:00;scheme=W3C-DTF</dcterms:valid>
+<duration>90056</duration>
+</item>
+</channel>
+</rss>
