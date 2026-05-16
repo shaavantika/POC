@@ -15,6 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 
 from src.api.schemas import (
+    AssetTypeUpdateRequest,
     ChannelRegisterRequest,
     ChannelRegisterResponse,
     ChannelResponse,
@@ -23,20 +24,25 @@ from src.api.schemas import (
     FeedResponse,
     RunResponse,
     ScheduleEntryResponse,
+    ScheduleEntryPatchRequest,
     AssetResponse,
     GenerateScheduleRequest,
     GenerateScheduleResponse,
 )
 from src.api.service import (
+    delete_entry,
     get_active_schedule,
     get_channel_runs,
     get_channels,
     get_feeds,
     ingest_feed_xml,
+    insert_after_entry,
     get_channel_assets,
     get_run_schedule_json,
     get_active_schedule_json,
     register_channel,
+    set_asset_type,
+    update_entry,
 )
 from src.common.logging_config import get_logger, setup_logging
 from src.scheduler.service import generate_schedule
@@ -247,6 +253,71 @@ def download_run_schedule_route(channel_service_id: str, run_id: str) -> JSONRes
         "Content-Disposition": f'attachment; filename="{channel_service_id}_{run_id}_schedule.json"'
     }
     return JSONResponse(content=payload, headers=headers)
+
+
+@app.delete("/channels/{channel_service_id}/schedule/entries/{sequence_no}", status_code=204)
+def delete_entry_route(channel_service_id: str, sequence_no: int) -> None:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        delete_entry(db_url, channel_service_id, sequence_no)
+        logger.info("Entry deleted channel_service_id=%s sequence_no=%s", channel_service_id, sequence_no)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.patch("/channels/{channel_service_id}/assets/{asset_id}", status_code=204)
+def update_asset_type_route(
+    channel_service_id: str, asset_id: str, payload: AssetTypeUpdateRequest
+) -> None:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        set_asset_type(db_url, channel_service_id, asset_id, payload.asset_type)
+        logger.info(
+            "Asset type updated channel_service_id=%s asset_id=%s asset_type=%s",
+            channel_service_id, asset_id, payload.asset_type,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/channels/{channel_service_id}/schedule/entries/{sequence_no}/insert-after", status_code=204)
+def insert_after_route(
+    channel_service_id: str, sequence_no: int, payload: ScheduleEntryPatchRequest
+) -> None:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        insert_after_entry(db_url, channel_service_id, sequence_no, payload.asset_id)
+        logger.info(
+            "Entry inserted after channel_service_id=%s sequence_no=%s asset_id=%s",
+            channel_service_id, sequence_no, payload.asset_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.patch("/channels/{channel_service_id}/schedule/entries/{sequence_no}", status_code=204)
+def update_entry_route(
+    channel_service_id: str, sequence_no: int, payload: ScheduleEntryPatchRequest
+) -> None:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        update_entry(db_url, channel_service_id, sequence_no, payload.asset_id)
+        logger.info(
+            "Entry updated channel_service_id=%s sequence_no=%s asset_id=%s",
+            channel_service_id,
+            sequence_no,
+            payload.asset_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 def run() -> None:

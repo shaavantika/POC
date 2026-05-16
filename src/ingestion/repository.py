@@ -36,7 +36,6 @@ def upsert_assets(
             %(raw_payload)s, %(last_seen_at)s, true
         )
         ON CONFLICT (mrss_feed_id, asset_id) DO UPDATE SET
-            asset_type = EXCLUDED.asset_type,
             series_id = EXCLUDED.series_id,
             season_id = EXCLUDED.season_id,
             season_number = EXCLUDED.season_number,

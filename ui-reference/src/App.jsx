@@ -130,6 +130,16 @@ export default function App() {
   const [entries, setEntries] = useState([]);
   const [assets, setAssets] = useState([]);
 
+  const [editingEntry, setEditingEntry] = useState(null);
+  const [editAssetId, setEditAssetId] = useState("");
+  const [editBusy, setEditBusy] = useState(false);
+  const [editMessage, setEditMessage] = useState({ text: "", type: "" });
+
+  const [insertAfterEntry, setInsertAfterEntry] = useState(null);
+  const [insertAssetId, setInsertAssetId] = useState("");
+  const [insertBusy, setInsertBusy] = useState(false);
+  const [insertMessage, setInsertMessage] = useState({ text: "", type: "" });
+
   const [channelServiceId, setChannelServiceId] = useState("");
   const [channelName, setChannelName] = useState("");
   const [country, setCountry] = useState("");
@@ -199,8 +209,14 @@ export default function App() {
     return m;
   }, [assets]);
 
+  const visibleSlateSlots = (e) =>
+    normalizeSlateSlots(e.slate_plan).filter((slot) => {
+      const slotStart = new Date(e.starts_at).getTime() + slot.cue_point_ms;
+      return slotStart < new Date(e.ends_at).getTime();
+    });
+
   const playlistRowCount = useMemo(() => {
-    return entries.reduce((acc, e) => acc + 1 + normalizeSlateSlots(e.slate_plan).length, 0);
+    return entries.reduce((acc, e) => acc + 1 + visibleSlateSlots(e).length, 0);
   }, [entries]);
 
   const activeRunsCount = runs.filter((r) => r.is_active).length;
@@ -476,6 +492,110 @@ export default function App() {
     } catch (err) {
       console.error(err);
       setGenerateMessage({ text: `Download failed: ${err.message}`, type: "error" });
+    }
+  };
+
+  const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+  const isWithinEditWindow = (entry) => {
+    const start = new Date(entry.starts_at).getTime();
+    const now = Date.now();
+    return start > now && start <= now + TWO_HOURS_MS;
+  };
+
+  const handleDeleteEntry = async (entry) => {
+    if (!window.confirm(`Remove "${entry.title ?? entry.asset_id}" from the schedule?`)) return;
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/schedule/entries/${entry.sequence_no}`,
+        { method: "DELETE" }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || `Request failed: ${res.status}`);
+      }
+      setGenerateMessage({ text: `Entry #${entry.sequence_no} removed from schedule.`, type: "success" });
+      await loadChannel(selectedChannelId);
+    } catch (err) {
+      console.error(err);
+      setGenerateMessage({ text: `Delete failed: ${err.message}`, type: "error" });
+    }
+  };
+
+  const handleOpenEdit = (entry) => {
+    setEditingEntry(entry);
+    setEditAssetId(entry.asset_id);
+    setEditMessage({ text: "", type: "" });
+  };
+
+  const handleCloseEdit = () => {
+    setEditingEntry(null);
+    setEditAssetId("");
+    setEditMessage({ text: "", type: "" });
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editingEntry || !editAssetId) return;
+    setEditBusy(true);
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/schedule/entries/${editingEntry.sequence_no}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ asset_id: editAssetId }),
+        }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || `Request failed: ${res.status}`);
+      }
+      setGenerateMessage({ text: `Entry #${editingEntry.sequence_no} updated.`, type: "success" });
+      handleCloseEdit();
+      await loadChannel(selectedChannelId);
+    } catch (err) {
+      console.error(err);
+      setEditMessage({ text: `Update failed: ${err.message}`, type: "error" });
+    } finally {
+      setEditBusy(false);
+    }
+  };
+
+  const handleOpenInsert = (entry) => {
+    setInsertAfterEntry(entry);
+    setInsertAssetId(assets.length > 0 ? assets[0].asset_id : "");
+    setInsertMessage({ text: "", type: "" });
+  };
+
+  const handleCloseInsert = () => {
+    setInsertAfterEntry(null);
+    setInsertAssetId("");
+    setInsertMessage({ text: "", type: "" });
+  };
+
+  const handleSaveInsert = async () => {
+    if (!insertAfterEntry || !insertAssetId) return;
+    setInsertBusy(true);
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/schedule/entries/${insertAfterEntry.sequence_no}/insert-after`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ asset_id: insertAssetId }),
+        }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || `Request failed: ${res.status}`);
+      }
+      setGenerateMessage({ text: `Program inserted after entry #${insertAfterEntry.sequence_no}.`, type: "success" });
+      handleCloseInsert();
+      await loadChannel(selectedChannelId);
+    } catch (err) {
+      console.error(err);
+      setInsertMessage({ text: `Insert failed: ${err.message}`, type: "error" });
+    } finally {
+      setInsertBusy(false);
     }
   };
 
@@ -1003,7 +1123,7 @@ export default function App() {
                         </td>
                       </tr>
                     ) : (
-                      runs.map((r) => (
+                      runs.slice(0, 2).map((r) => (
                         <tr key={r.id}>
                           <td className="cell-mono">{r.id}</td>
                           <td>
@@ -1029,7 +1149,7 @@ export default function App() {
                 </span>
                 <span className="playlist-summary-meta">
                   {playlistRowCount} rows
-                  {entries.some((e) => normalizeSlateSlots(e.slate_plan).length > 0)
+                  {entries.some((e) => visibleSlateSlots(e).length > 0)
                     ? " (episodes + ad slates)"
                     : ""}
                 </span>
@@ -1045,6 +1165,7 @@ export default function App() {
                         <th>Asset</th>
                         <th>Type</th>
                         <th>Title</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1064,8 +1185,36 @@ export default function App() {
                               <td className="cell-mono">{e.asset_id}</td>
                               <td>{e.asset_type}</td>
                               <td>{e.title ?? "—"}</td>
+                              <td>
+                                {isWithinEditWindow(e) && (
+                                  <span style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                                    <button
+                                      type="button"
+                                      className="btn-secondary table-action-btn"
+                                      onClick={() => handleOpenEdit(e)}
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn-secondary table-action-btn"
+                                      onClick={() => handleOpenInsert(e)}
+                                    >
+                                      Add After
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn-secondary table-action-btn"
+                                      style={{ color: "var(--color-danger, #e05c5c)" }}
+                                      onClick={() => handleDeleteEntry(e)}
+                                    >
+                                      Remove
+                                    </button>
+                                  </span>
+                                )}
+                              </td>
                             </tr>
-                            {normalizeSlateSlots(e.slate_plan).map((slot, si) => {
+                            {visibleSlateSlots(e).map((slot, si) => {
                               const slotStart = offsetIso(e.starts_at, slot.cue_point_ms);
                               const slotEnd = offsetIso(
                                 e.starts_at,
@@ -1084,6 +1233,7 @@ export default function App() {
                                   <td className="cell-mono">{slot.slate_asset_id}</td>
                                   <td>slate</td>
                                   <td>{assetTitleById.get(slot.slate_asset_id) ?? "—"}</td>
+                                  <td />
                                 </tr>
                               );
                             })}
@@ -1100,7 +1250,7 @@ export default function App() {
 
         {activeTab === "assets" && (
           <div className="tab-panel" id="panel-assets" role="tabpanel" aria-labelledby="tab-assets">
-            <p className="tab-lede">Catalog for the channel selected in the header.</p>
+            <p className="tab-lede">Catalog for the channel selected in the header. Use the Type dropdown on slate rows to change the type.</p>
 
             <section className="card">
               <h2 className="card-title">Catalog</h2>
@@ -1129,7 +1279,41 @@ export default function App() {
                       assets.map((a) => (
                         <tr key={a.asset_id}>
                           <td className="cell-mono">{a.asset_id}</td>
-                          <td>{a.asset_type}</td>
+                          <td>
+                            {a.asset_type === "slate" || a.asset_type === "bumper" ? (
+                              <select
+                                value={a.asset_type}
+                                onChange={async (ev) => {
+                                  const newType = ev.target.value;
+                                  try {
+                                    const res = await fetch(
+                                      `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/assets/${encodeURIComponent(a.asset_id)}`,
+                                      {
+                                        method: "PATCH",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({ asset_type: newType }),
+                                      }
+                                    );
+                                    if (!res.ok) {
+                                      const body = await res.json().catch(() => ({}));
+                                      throw new Error(body.detail || `Request failed: ${res.status}`);
+                                    }
+                                    await loadChannel(selectedChannelId);
+                                  } catch (err) {
+                                    console.error(err);
+                                    setGenerateMessage({ text: `Type update failed: ${err.message}`, type: "error" });
+                                  }
+                                }}
+                                style={{ minWidth: "6rem" }}
+                                aria-label={`Type for ${a.asset_id}`}
+                              >
+                                <option value="slate">slate</option>
+                                <option value="bumper">bumper</option>
+                              </select>
+                            ) : (
+                              a.asset_type
+                            )}
+                          </td>
                           <td>{a.season_number ?? "—"}</td>
                           <td>{a.episode_number ?? "—"}</td>
                           <td>{a.duration_ms ?? "—"}</td>
@@ -1146,6 +1330,112 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {insertAfterEntry && (
+        <div className="modal-backdrop" role="presentation" onClick={handleCloseInsert}>
+          <div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="insert-entry-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <h3 id="insert-entry-modal-title">Add Program After #{insertAfterEntry.sequence_no}</h3>
+              <button type="button" className="btn-icon" onClick={handleCloseInsert} aria-label="Close">
+                ×
+              </button>
+            </div>
+            <p className="modal-lede">
+              New program will start at: {formatTimeTz(insertAfterEntry.ends_at)}
+            </p>
+            <div className="form-grid">
+              <div>
+                <label htmlFor="insert-asset-select">Select program</label>
+                <select
+                  id="insert-asset-select"
+                  value={insertAssetId}
+                  onChange={(e) => setInsertAssetId(e.target.value)}
+                >
+                  {assets.map((a) => (
+                    <option key={a.asset_id} value={a.asset_id}>
+                      [{a.asset_type}]{a.season_number != null ? ` S${a.season_number}` : ""}
+                      {a.episode_number != null ? `E${a.episode_number}` : ""}{" "}
+                      {a.title ?? a.asset_id}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-actions modal-actions">
+                <button type="button" className="btn-secondary" onClick={handleCloseInsert}>
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSaveInsert}
+                  disabled={insertBusy || !insertAssetId}
+                >
+                  {insertBusy ? "Adding…" : "Add program"}
+                </button>
+              </div>
+            </div>
+            <Message text={insertMessage.text} type={insertMessage.type} />
+          </div>
+        </div>
+      )}
+
+      {editingEntry && (
+        <div className="modal-backdrop" role="presentation" onClick={handleCloseEdit}>
+          <div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="edit-entry-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <h3 id="edit-entry-modal-title">Edit Entry #{editingEntry.sequence_no}</h3>
+              <button type="button" className="btn-icon" onClick={handleCloseEdit} aria-label="Close">
+                ×
+              </button>
+            </div>
+            <p className="modal-lede">
+              Slot: {formatTimeTz(editingEntry.starts_at)} → {formatTimeTz(editingEntry.ends_at)}
+            </p>
+            <div className="form-grid">
+              <div>
+                <label htmlFor="edit-asset-select">Replace with asset</label>
+                <select
+                  id="edit-asset-select"
+                  value={editAssetId}
+                  onChange={(e) => setEditAssetId(e.target.value)}
+                >
+                  {assets.map((a) => (
+                    <option key={a.asset_id} value={a.asset_id}>
+                      [{a.asset_type}]{a.season_number != null ? ` S${a.season_number}` : ""}
+                      {a.episode_number != null ? `E${a.episode_number}` : ""}{" "}
+                      {a.title ?? a.asset_id}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-actions modal-actions">
+                <button type="button" className="btn-secondary" onClick={handleCloseEdit}>
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSaveEdit}
+                  disabled={editBusy || !editAssetId || editAssetId === editingEntry.asset_id}
+                >
+                  {editBusy ? "Saving…" : "Save"}
+                </button>
+              </div>
+            </div>
+            <Message text={editMessage.text} type={editMessage.type} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

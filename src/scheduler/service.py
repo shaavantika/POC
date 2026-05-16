@@ -79,15 +79,48 @@ def _build_cue_points_by_asset(episodes) -> dict[str, list[int]]:
     return mapping
 
 
+def _extend_episode_durations(
+    episodes: list,
+    cue_points_by_asset: dict[str, list[int]],
+    bumper_duration: int,
+) -> list:
+    """Return episodes with duration_ms extended by bumper time around each ad break."""
+    if bumper_duration <= 0:
+        return episodes
+    from src.scheduler.models import ScheduleAsset
+    extended = []
+    for ep in episodes:
+        num_breaks = len(cue_points_by_asset.get(ep.asset_id, []))
+        extra = num_breaks * 2 * bumper_duration
+        if extra == 0:
+            extended.append(ep)
+        else:
+            extended.append(ScheduleAsset(
+                asset_id=ep.asset_id,
+                asset_type=ep.asset_type,
+                title=ep.title,
+                season_number=ep.season_number,
+                episode_number=ep.episode_number,
+                duration_ms=ep.duration_ms + extra,
+                valid_from=ep.valid_from,
+                valid_to=ep.valid_to,
+                segments=ep.segments,
+            ))
+    return extended
+
+
 def _build_slate_plan_by_asset(
     episodes,
     slates,
     cue_points_by_asset: dict[str, list[int]],
+    bumpers: list | None = None,
 ) -> dict[str, list[dict[str, int | str]]]:
     if not slates:
         return {asset.asset_id: [] for asset in episodes}
 
-    # Rotate through available slates while avoiding sequential repeats.
+    bumper = bumpers[0] if bumpers else None
+    bumper_duration = bumper.duration_ms if bumper else 0
+
     slate_ids = [s.asset_id for s in slates]
     slate_duration_by_id = {s.asset_id: max(s.duration_ms, 1) for s in slates}
     slate_idx = 0
@@ -104,20 +137,41 @@ def _build_slate_plan_by_asset(
     ):
         plan: list[dict[str, int | str]] = []
         cue_points = cue_points_by_asset.get(asset.asset_id, [])
+        accumulated_extra = 0  # ms added by bumpers from previous breaks in this episode
+
         for cue_point in cue_points:
+            schedule_cue = cue_point + accumulated_extra
+
+            if bumper:
+                plan.append({
+                    "cue_point_ms": schedule_cue,
+                    "slate_asset_id": bumper.asset_id,
+                    "slate_duration_ms": bumper_duration,
+                })
+                schedule_cue += bumper_duration
+
             chosen_id = slate_ids[slate_idx % len(slate_ids)]
             if len(slate_ids) > 1 and chosen_id == last_slate_id:
                 slate_idx += 1
                 chosen_id = slate_ids[slate_idx % len(slate_ids)]
             slate_idx += 1
             last_slate_id = chosen_id
-            plan.append(
-                {
-                    "cue_point_ms": cue_point,
-                    "slate_asset_id": chosen_id,
-                    "slate_duration_ms": slate_duration_by_id.get(chosen_id, 1),
-                }
-            )
+            slate_dur = slate_duration_by_id.get(chosen_id, 1)
+            plan.append({
+                "cue_point_ms": schedule_cue,
+                "slate_asset_id": chosen_id,
+                "slate_duration_ms": slate_dur,
+            })
+            schedule_cue += slate_dur
+
+            if bumper:
+                plan.append({
+                    "cue_point_ms": schedule_cue,
+                    "slate_asset_id": bumper.asset_id,
+                    "slate_duration_ms": bumper_duration,
+                })
+                accumulated_extra += 2 * bumper_duration
+
         mapping[asset.asset_id] = plan
 
     return mapping
@@ -156,10 +210,16 @@ def generate_schedule(
         )
 
         try:
-            episodes, slates = get_valid_assets(conn, feed_id, window_start)
+            episodes, slates, bumpers = get_valid_assets(conn, feed_id, window_start)
+            cue_points_by_asset = _build_cue_points_by_asset(episodes)
+
+            # Extend episode durations to account for bumpers around each ad break.
+            bumper_duration = bumpers[0].duration_ms if (bumpers and slates) else 0
+            extended_episodes = _extend_episode_durations(episodes, cue_points_by_asset, bumper_duration)
+
             strategy = get_strategy(schedule_type)
             entries = strategy.build_entries(
-                episode_assets=episodes,
+                episode_assets=extended_episodes,
                 fallback_slates=slates,
                 window_start=window_start,
                 window_end=window_end,
@@ -175,11 +235,11 @@ def generate_schedule(
             if not validation.ok:
                 raise ValueError(validation.message or "Schedule validation failed")
 
-            cue_points_by_asset = _build_cue_points_by_asset(episodes)
             slate_plan_by_asset = _build_slate_plan_by_asset(
                 episodes=episodes,
                 slates=slates,
                 cue_points_by_asset=cue_points_by_asset,
+                bumpers=bumpers,
             )
             persist_entries_and_activate(
                 conn=conn,

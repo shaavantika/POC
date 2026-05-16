@@ -90,6 +90,10 @@ class AssetResponse(BaseModel):
     last_seen_at: str
 
 
+class AssetTypeUpdateRequest(BaseModel):
+    asset_type: str = Field(min_length=1, max_length=64)
+
+
 class GenerateScheduleRequest(BaseModel):
     window_hours: int = Field(default=24, gt=0, le=168)
     trigger_type: str = Field(default="manual")
@@ -113,4 +117,8 @@ class FeedIngestResponse(BaseModel):
     source_url: str
     assets_upserted: int
     ingestion_error: str | None = None
+
+
+class ScheduleEntryPatchRequest(BaseModel):
+    asset_id: str = Field(min_length=1)
 

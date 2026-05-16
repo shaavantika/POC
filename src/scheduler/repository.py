@@ -55,6 +55,7 @@ def get_valid_assets(
 
     episodes: list[ScheduleAsset] = []
     slates: list[ScheduleAsset] = []
+    bumpers: list[ScheduleAsset] = []
     for row in rows:
         item = ScheduleAsset(
             asset_id=row[0],
@@ -79,7 +80,9 @@ def get_valid_assets(
             episodes.append(item)
         elif item.asset_type == "slate":
             slates.append(item)
-    return episodes, slates
+        elif item.asset_type == "bumper":
+            bumpers.append(item)
+    return episodes, slates, bumpers
 
 
 def create_run(

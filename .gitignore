@@ -4,6 +4,19 @@ logs/*.log.*
 
 # Virtual environment
 venv/
+.venv/
 
 # Environment variables
 .env
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Claude Code internals
+.claude/
+
+# Node
+node_modules/
+ui-reference/dist/

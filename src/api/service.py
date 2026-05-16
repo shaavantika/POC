@@ -1,17 +1,26 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime, timedelta, timezone
 
 from psycopg import connect
 
+_EDIT_WINDOW_HOURS = 2
+
 from src.api.repository import (
     active_schedule_entries_for_channel,
+    delete_active_schedule_entry,
+    get_asset_for_channel,
+    get_entry_starts_at,
+    insert_after_schedule_entry,
     list_channels,
     list_feeds,
     list_runs_for_channel,
     list_assets_for_channel,
     get_schedule_json_for_run,
     get_active_schedule_json_for_channel,
+    update_active_schedule_entry_asset,
+    update_asset_type,
     upsert_channel_mapping,
     upsert_feed,
 )
@@ -320,3 +329,68 @@ def ingest_feed_xml(
             ingestion_error=err,
         )
 
+
+def _assert_within_edit_window(starts_at: datetime, sequence_no: int) -> None:
+    now = datetime.now(timezone.utc)
+    if starts_at.tzinfo is None:
+        starts_at = starts_at.replace(tzinfo=timezone.utc)
+    if starts_at <= now:
+        raise ValueError(f"Entry #{sequence_no} has already started and cannot be edited")
+    if starts_at > now + timedelta(hours=_EDIT_WINDOW_HOURS):
+        raise ValueError(
+            f"Entry #{sequence_no} starts more than {_EDIT_WINDOW_HOURS} hours from now and cannot be edited"
+        )
+
+
+def delete_entry(db_url: str, channel_service_id: str, sequence_no: int) -> None:
+    with connect(db_url) as conn:
+        starts_at = get_entry_starts_at(conn, channel_service_id, sequence_no)
+        if starts_at is None:
+            raise ValueError(f"Entry #{sequence_no} not found in active schedule")
+        _assert_within_edit_window(starts_at, sequence_no)
+        if not delete_active_schedule_entry(conn, channel_service_id, sequence_no):
+            raise ValueError(f"Entry #{sequence_no} not found in active schedule")
+        conn.commit()
+
+
+def update_entry(db_url: str, channel_service_id: str, sequence_no: int, asset_id: str) -> None:
+    with connect(db_url) as conn:
+        starts_at = get_entry_starts_at(conn, channel_service_id, sequence_no)
+        if starts_at is None:
+            raise ValueError(f"Entry #{sequence_no} not found in active schedule")
+        _assert_within_edit_window(starts_at, sequence_no)
+        asset = get_asset_for_channel(conn, channel_service_id, asset_id)
+        if asset is None:
+            raise ValueError(f"Asset '{asset_id}' not found for channel '{channel_service_id}'")
+        a_id, a_type, a_title, a_duration, _season, _episode = asset
+        if not update_active_schedule_entry_asset(
+            conn, channel_service_id, sequence_no, a_id, a_type, a_title, a_duration or 1
+        ):
+            raise ValueError(f"Entry #{sequence_no} not found in active schedule")
+        conn.commit()
+
+
+def set_asset_type(db_url: str, channel_service_id: str, asset_id: str, asset_type: str) -> None:
+    with connect(db_url) as conn:
+        found = update_asset_type(conn, channel_service_id, asset_id, asset_type)
+        if not found:
+            raise ValueError(f"Asset '{asset_id}' not found for channel '{channel_service_id}'")
+        conn.commit()
+
+
+def insert_after_entry(db_url: str, channel_service_id: str, after_sequence_no: int, asset_id: str) -> None:
+    with connect(db_url) as conn:
+        starts_at = get_entry_starts_at(conn, channel_service_id, after_sequence_no)
+        if starts_at is None:
+            raise ValueError(f"Entry #{after_sequence_no} not found in active schedule")
+        _assert_within_edit_window(starts_at, after_sequence_no)
+        asset = get_asset_for_channel(conn, channel_service_id, asset_id)
+        if asset is None:
+            raise ValueError(f"Asset '{asset_id}' not found for channel '{channel_service_id}'")
+        a_id, a_type, a_title, a_duration, a_season, a_episode = asset
+        if not insert_after_schedule_entry(
+            conn, channel_service_id, after_sequence_no,
+            a_id, a_type, a_title, a_duration or 1, a_season, a_episode,
+        ):
+            raise ValueError(f"Entry #{after_sequence_no} not found in active schedule")
+        conn.commit()
