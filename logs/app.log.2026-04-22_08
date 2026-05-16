@@ -1,5 +1,0 @@
-2026-04-22 08:30:20,072 INFO [api.main] Fetched channels count=1
-2026-04-22 08:30:20,076 INFO [api.main] Fetched feeds count=1
-2026-04-22 08:30:20,114 INFO [api.main] Fetched channel runs channel_service_id=US4900002OH count=5
-2026-04-22 08:30:20,129 INFO [api.main] Fetched channel assets channel_service_id=US4900002OH count=16
-2026-04-22 08:30:20,137 INFO [api.main] Fetched active schedule channel_service_id=US4900002OH count=200

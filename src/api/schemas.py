@@ -59,6 +59,14 @@ class RunResponse(BaseModel):
     error_message: str | None
 
 
+class SlatePlanSlotResponse(BaseModel):
+    """Ad slate inserted at a cue point within an episode (from generated schedule_json)."""
+
+    cue_point_ms: int
+    slate_asset_id: str
+    slate_duration_ms: int
+
+
 class ScheduleEntryResponse(BaseModel):
     sequence_no: int
     starts_at: str
@@ -66,6 +74,8 @@ class ScheduleEntryResponse(BaseModel):
     asset_id: str
     asset_type: str
     title: str | None
+    cue_points_ms: list[int] = Field(default_factory=list)
+    slate_plan: list[SlatePlanSlotResponse] = Field(default_factory=list)
 
 
 class AssetResponse(BaseModel):

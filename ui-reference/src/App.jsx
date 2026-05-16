@@ -1,7 +1,7 @@
-import { Fragment, lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { API_BASE_URL } from "./config.js";
 
-const FeedStatusCharts = lazy(() => import("./FeedStatusCharts.jsx"));
+const ChannelsByCountryChart = lazy(() => import("./ChannelsByCountryChart.jsx"));
 
 async function getJson(path) {
   const res = await fetch(`${API_BASE_URL}${path}`);
@@ -63,6 +63,55 @@ function isValidHttpUrl(value) {
   } catch {
     return false;
   }
+}
+
+/** Short label for last HTTP response after an MRSS poll (feed row from /feeds). */
+function formatMrssPollHttpStatus(feed) {
+  if (!feed.last_fetch_at && feed.last_http_status == null) {
+    return "Not polled yet";
+  }
+  if (feed.last_http_status == null) {
+    return "—";
+  }
+  const n = Number(feed.last_http_status);
+  if (Number.isNaN(n)) {
+    return String(feed.last_http_status);
+  }
+  if (n >= 200 && n < 300) {
+    return `${n} OK`;
+  }
+  if (n >= 400) {
+    return `${n} error`;
+  }
+  return String(n);
+}
+
+/** ISO timestamp + offset ms (cue position within parent row). */
+function offsetIso(baseIso, offsetMs) {
+  const t = new Date(baseIso).getTime();
+  if (!Number.isFinite(t) || !Number.isFinite(offsetMs)) {
+    return baseIso;
+  }
+  return new Date(t + offsetMs).toISOString();
+}
+
+/** API may omit slate_plan or use alternate keys; normalize for rendering. */
+function normalizeSlateSlots(plan) {
+  if (!Array.isArray(plan)) {
+    return [];
+  }
+  return plan
+    .map((s) => ({
+      cue_point_ms: Number(s?.cue_point_ms ?? s?.cuePointMs),
+      slate_asset_id: String(s?.slate_asset_id ?? s?.slateAssetId ?? "").trim(),
+      slate_duration_ms: Math.max(
+        1,
+        Number.isFinite(Number(s?.slate_duration_ms ?? s?.slateDurationMs))
+          ? Number(s.slate_duration_ms ?? s.slateDurationMs)
+          : 1
+      ),
+    }))
+    .filter((s) => s.slate_asset_id && Number.isFinite(s.cue_point_ms));
 }
 
 function Message({ text, type }) {
@@ -141,6 +190,18 @@ export default function App() {
     (iso) => formatTime(iso, displayTimeZone),
     [displayTimeZone]
   );
+
+  const assetTitleById = useMemo(() => {
+    const m = new Map();
+    for (const a of assets) {
+      m.set(a.asset_id, a.title ?? null);
+    }
+    return m;
+  }, [assets]);
+
+  const playlistRowCount = useMemo(() => {
+    return entries.reduce((acc, e) => acc + 1 + normalizeSlateSlots(e.slate_plan).length, 0);
+  }, [entries]);
 
   const activeRunsCount = runs.filter((r) => r.is_active).length;
   const failedRunsCount = runs.filter((r) => String(r.status).toLowerCase() === "failed").length;
@@ -508,7 +569,7 @@ export default function App() {
       <header className="topbar">
         <div className="page-shell topbar-inner">
           <div className="topbar-title">
-            <h1>Channel Scheduler</h1>
+            <h1>Automatic O{"&"}O Channel Scheduler</h1>
             <p className="subtitle">Feeds, channels, schedule, and assets.</p>
           </div>
           <div className="topbar-meta">
@@ -595,73 +656,73 @@ export default function App() {
         </nav>
 
         {activeTab === "dashboard" && (
-          <div className="tab-panel" id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
-            <p className="tab-lede">
-              Scope uses the channel selected in the header. Feed charts are global. Hover chart areas for full URL and
-              details.
+          <div className="tab-panel tab-panel--dashboard" id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
+            <p className="tab-lede tab-lede--tight">
+              Scope uses the channel selected in the header. Last MRSS poll time and status for each channel are on the
+              Channels tab (expand a row).
             </p>
 
-            <section className="card">
-              <h2 className="card-title">Scope &amp; run matrix</h2>
-              <div
-                className="kpi-matrix"
-                role="grid"
-                aria-label="Dashboard counts: feeds, channels, active and failed runs for selected channel"
-              >
-                <div className="kpi-matrix-grid" role="presentation">
-                  <button
-                    type="button"
-                    className="kpi-cell kpi-cell-button"
-                    role="gridcell"
-                    title="MRSS feeds registered. Click to open Channels tab."
-                    onClick={() => handleDashboardCardNavigate("channels")}
+            <section className="card dashboard-overview-card">
+              <h2 className="card-title">Overview</h2>
+              <div className="dashboard-overview-split">
+                <div className="dashboard-overview-main">
+                  <h3 className="dashboard-overview-subtitle">Scope &amp; run matrix</h3>
+                  <div
+                    className="kpi-matrix"
+                    role="grid"
+                    aria-label="Dashboard counts: feeds, channels, active and failed runs for selected channel"
                   >
-                    <span className="kpi-cell-value">{feeds.length}</span>
-                    <span className="kpi-cell-axis">Feeds</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="kpi-cell kpi-cell-button"
-                    role="gridcell"
-                    title="Channel mappings. Click to open Channels tab."
-                    onClick={() => handleDashboardCardNavigate("channels")}
-                  >
-                    <span className="kpi-cell-value">{channels.length}</span>
-                    <span className="kpi-cell-axis">Channels</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="kpi-cell kpi-cell-button"
-                    role="gridcell"
-                    title="Active schedule runs for selected channel. Click to open Schedule tab."
-                    onClick={() => handleDashboardCardNavigate("schedule")}
-                  >
-                    <span className="kpi-cell-value">{activeRunsCount}</span>
-                    <span className="kpi-cell-axis">Active</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="kpi-cell kpi-cell-button kpi-cell-fail"
-                    role="gridcell"
-                    title="Failed schedule runs for selected channel. Click to open Schedule tab."
-                    onClick={() => handleDashboardCardNavigate("schedule")}
-                  >
-                    <span className="kpi-cell-value">{failedRunsCount}</span>
-                    <span className="kpi-cell-axis">Failed</span>
-                  </button>
+                    <div className="kpi-matrix-grid" role="presentation">
+                      <button
+                        type="button"
+                        className="kpi-cell kpi-cell-button"
+                        role="gridcell"
+                        title="MRSS feeds registered. Click to open Channels tab."
+                        onClick={() => handleDashboardCardNavigate("channels")}
+                      >
+                        <span className="kpi-cell-value">{feeds.length}</span>
+                        <span className="kpi-cell-axis">Feeds</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="kpi-cell kpi-cell-button"
+                        role="gridcell"
+                        title="Channel mappings. Click to open Channels tab."
+                        onClick={() => handleDashboardCardNavigate("channels")}
+                      >
+                        <span className="kpi-cell-value">{channels.length}</span>
+                        <span className="kpi-cell-axis">Channels</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="kpi-cell kpi-cell-button"
+                        role="gridcell"
+                        title="Active schedule runs for selected channel. Click to open Schedule tab."
+                        onClick={() => handleDashboardCardNavigate("schedule")}
+                      >
+                        <span className="kpi-cell-value">{activeRunsCount}</span>
+                        <span className="kpi-cell-axis">Active</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="kpi-cell kpi-cell-button kpi-cell-fail"
+                        role="gridcell"
+                        title="Failed schedule runs for selected channel. Click to open Schedule tab."
+                        onClick={() => handleDashboardCardNavigate("schedule")}
+                      >
+                        <span className="kpi-cell-value">{failedRunsCount}</span>
+                        <span className="kpi-cell-axis">Failed</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
+                <aside className="dashboard-country-aside" aria-label="Channels by country">
+                  <h3 className="dashboard-overview-subtitle">Channels by country</h3>
+                  <Suspense fallback={<p className="channel-info">Loading chart…</p>}>
+                    <ChannelsByCountryChart channels={channels} colorScheme={colorScheme} />
+                  </Suspense>
+                </aside>
               </div>
-            </section>
-
-            <section className="card">
-              <h2 className="card-title">Feed health</h2>
-              {feeds.length === 0 ? (
-                <p className="channel-info">No feeds.</p>
-              ) : (
-                <Suspense fallback={<p className="channel-info">Loading charts…</p>}>
-                  <FeedStatusCharts feeds={feeds} formatTimeTz={formatTimeTz} colorScheme={colorScheme} />
-                </Suspense>
-              )}
             </section>
           </div>
         )}
@@ -709,7 +770,9 @@ export default function App() {
                         </td>
                       </tr>
                     ) : (
-                      channels.map((c) => (
+                      channels.map((c) => {
+                        const feedForChannel = feeds.find((f) => f.id === c.mrss_feed_id);
+                        return (
                         <Fragment key={c.channel_service_id}>
                           <tr
                             className={`channel-row ${selectedChannelId === c.channel_service_id ? "selected" : ""}`}
@@ -749,6 +812,18 @@ export default function App() {
                                   <section className="channel-stats-group">
                                     <h3 className="channel-stats-group-title">Overview</h3>
                                     <div className="channel-stats-grid">
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Channel name</span>
+                                        <strong className="channel-stat-value">
+                                          {c.channel_name?.trim() || "—"}
+                                        </strong>
+                                      </div>
+                                      <div className="channel-stat">
+                                        <span className="channel-stat-label">Country</span>
+                                        <strong className="channel-stat-value">
+                                          {c.country?.trim() || "—"}
+                                        </strong>
+                                      </div>
                                       <div className="channel-stat">
                                         <span className="channel-stat-label">Runs</span>
                                         <strong className="channel-stat-value">{totalRunsCount}</strong>
@@ -806,11 +881,52 @@ export default function App() {
                                     </div>
                                   </section>
                                 </div>
+                                <div className="channel-feed-health">
+                                  <h3 className="channel-feed-health-title">MRSS polling</h3>
+                                  <p className="channel-feed-health-url cell-mono" title={c.mrss_url}>
+                                    {c.mrss_url}
+                                  </p>
+                                  {!feedForChannel ? (
+                                    <p className="channel-info">
+                                      No feed record matched this channel. Try Refresh.
+                                    </p>
+                                  ) : (
+                                    <div className="channel-feed-poll-stack">
+                                      <div className="channel-feed-poll-row">
+                                        <span className="channel-feed-poll-label">Last MRSS poll</span>
+                                        <span className="channel-feed-poll-value channel-feed-poll-value--time">
+                                          {feedForChannel.last_fetch_at
+                                            ? formatTimeTz(feedForChannel.last_fetch_at)
+                                            : "Never"}
+                                        </span>
+                                      </div>
+                                      <div
+                                        className={`channel-feed-poll-row channel-feed-poll-row--status${
+                                          feedForChannel.last_error
+                                            ? " channel-feed-poll-row--danger"
+                                            : feedForChannel.last_http_status != null &&
+                                                Number(feedForChannel.last_http_status) >= 400
+                                              ? " channel-feed-poll-row--danger"
+                                              : ""
+                                        }`}
+                                      >
+                                        <span className="channel-feed-poll-label">Status</span>
+                                        <span className="channel-feed-poll-value">
+                                          {formatMrssPollHttpStatus(feedForChannel)}
+                                        </span>
+                                        {feedForChannel.last_error ? (
+                                          <p className="channel-feed-poll-error">{feedForChannel.last_error}</p>
+                                        ) : null}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
                               </td>
                             </tr>
                           )}
                         </Fragment>
-                      ))
+                        );
+                      })
                     )}
                   </tbody>
                 </table>
@@ -905,13 +1021,18 @@ export default function App() {
               </div>
             </section>
 
-            <details className="playlist-details">
+            <details className="playlist-details" open>
               <summary className="playlist-summary">
                 <span className="playlist-summary-start">
                   <span className="playlist-chevron" aria-hidden />
                   <span className="playlist-summary-title">Active playlist</span>
                 </span>
-                <span className="playlist-summary-meta">{entries.length} rows</span>
+                <span className="playlist-summary-meta">
+                  {playlistRowCount} rows
+                  {entries.some((e) => normalizeSlateSlots(e.slate_plan).length > 0)
+                    ? " (episodes + ad slates)"
+                    : ""}
+                </span>
               </summary>
               <div className="playlist-details-body">
                 <div className="table-wrap">
@@ -935,14 +1056,38 @@ export default function App() {
                         </tr>
                       ) : (
                         entries.map((e) => (
-                          <tr key={`${e.sequence_no}-${e.starts_at}`}>
-                            <td>{e.sequence_no}</td>
-                            <td>{formatTimeTz(e.starts_at)}</td>
-                            <td>{formatTimeTz(e.ends_at)}</td>
-                            <td className="cell-mono">{e.asset_id}</td>
-                            <td>{e.asset_type}</td>
-                            <td>{e.title ?? "—"}</td>
-                          </tr>
+                          <Fragment key={`${e.sequence_no}-${e.starts_at}`}>
+                            <tr>
+                              <td>{e.sequence_no}</td>
+                              <td>{formatTimeTz(e.starts_at)}</td>
+                              <td>{formatTimeTz(e.ends_at)}</td>
+                              <td className="cell-mono">{e.asset_id}</td>
+                              <td>{e.asset_type}</td>
+                              <td>{e.title ?? "—"}</td>
+                            </tr>
+                            {normalizeSlateSlots(e.slate_plan).map((slot, si) => {
+                              const slotStart = offsetIso(e.starts_at, slot.cue_point_ms);
+                              const slotEnd = offsetIso(
+                                e.starts_at,
+                                slot.cue_point_ms + slot.slate_duration_ms
+                              );
+                              return (
+                                <tr
+                                  key={`${e.sequence_no}-slate-${si}-${slot.slate_asset_id}`}
+                                  className="playlist-slate-row"
+                                >
+                                  <td className="playlist-slate-seq">
+                                    <span className="playlist-slate-badge">Ad</span>
+                                  </td>
+                                  <td>{formatTimeTz(slotStart)}</td>
+                                  <td>{formatTimeTz(slotEnd)}</td>
+                                  <td className="cell-mono">{slot.slate_asset_id}</td>
+                                  <td>slate</td>
+                                  <td>{assetTitleById.get(slot.slate_asset_id) ?? "—"}</td>
+                                </tr>
+                              );
+                            })}
+                          </Fragment>
                         ))
                       )}
                     </tbody>

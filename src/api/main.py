@@ -43,7 +43,7 @@ from src.scheduler.service import generate_schedule
 
 setup_logging()
 logger = get_logger("api.main")
-app = FastAPI(title="Channel Scheduler API", version="0.1.0")
+app = FastAPI(title="Automatic O&O Channel Scheduler API", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

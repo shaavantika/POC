@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from psycopg import connect
 
 from src.api.repository import (
@@ -22,6 +24,7 @@ from src.api.schemas import (
     FeedResponse,
     RunResponse,
     ScheduleEntryResponse,
+    SlatePlanSlotResponse,
     AssetResponse,
 )
 from src.api.repository import mark_feed_fetch_failure, mark_feed_fetch_success
@@ -138,20 +141,112 @@ def get_channel_runs(db_url: str, channel_service_id: str) -> list[RunResponse]:
     ]
 
 
+def _cue_points_from_json(raw: object) -> list[int]:
+    if not isinstance(raw, list):
+        return []
+    out: list[int] = []
+    for x in raw:
+        try:
+            out.append(int(x))
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+def _slate_plan_from_json(raw: object) -> list[SlatePlanSlotResponse]:
+    if not isinstance(raw, list):
+        return []
+    out: list[SlatePlanSlotResponse] = []
+    for item in raw:
+        if not isinstance(item, dict):
+            continue
+        raw_cue = item.get("cue_point_ms")
+        raw_dur = item.get("slate_duration_ms", 0)
+        aid = item.get("slate_asset_id")
+        if aid is None or str(aid).strip() == "":
+            continue
+        try:
+            cue_point_ms = int(float(raw_cue))
+            slate_duration_ms = max(1, int(float(raw_dur)))
+        except (TypeError, ValueError):
+            continue
+        out.append(
+            SlatePlanSlotResponse(
+                cue_point_ms=cue_point_ms,
+                slate_asset_id=str(aid).strip(),
+                slate_duration_ms=slate_duration_ms,
+            )
+        )
+    return out
+
+
+def _normalize_schedule_payload(payload: object) -> dict | None:
+    """JSONB may decode as dict; some drivers return serialized JSON as str."""
+    if payload is None:
+        return None
+    if isinstance(payload, str):
+        try:
+            payload = json.loads(payload)
+        except json.JSONDecodeError:
+            return None
+    return payload if isinstance(payload, dict) else None
+
+
 def get_active_schedule(db_url: str, channel_service_id: str) -> list[ScheduleEntryResponse]:
+    """
+    Playlist rows from DB plus cue/slate metadata merged from the active run's schedule_json.
+    Ad slates at cue points are not separate DB rows; they only appear in JSON until merged here.
+    """
     with connect(db_url) as conn:
         rows = active_schedule_entries_for_channel(conn, channel_service_id)
-    return [
-        ScheduleEntryResponse(
-            sequence_no=row[0],
-            starts_at=row[1].isoformat(),
-            ends_at=row[2].isoformat(),
-            asset_id=row[3],
-            asset_type=row[4],
-            title=row[5],
+        payload = _normalize_schedule_payload(
+            get_active_schedule_json_for_channel(conn, channel_service_id)
         )
-        for row in rows
-    ]
+
+    json_by_seq: dict[int, dict] = {}
+    json_by_asset_id: dict[str, dict] = {}
+    raw_entries = payload.get("entries") if payload else None
+    if isinstance(raw_entries, list):
+        for je in raw_entries:
+            if not isinstance(je, dict):
+                continue
+            seq = je.get("sequence_no")
+            if not isinstance(seq, bool) and seq is not None:
+                try:
+                    json_by_seq[int(seq)] = je
+                except (TypeError, ValueError):
+                    pass
+            aid = je.get("asset_id")
+            if isinstance(aid, str) and aid.strip():
+                json_by_asset_id[aid.strip()] = je
+
+    result: list[ScheduleEntryResponse] = []
+    for row in rows:
+        seq = row[0]
+        asset_id = row[3]
+        seq_key: int | None
+        try:
+            seq_key = int(seq) if seq is not None else None
+        except (TypeError, ValueError):
+            seq_key = None
+        je = json_by_seq.get(seq_key) if seq_key is not None else None
+        if je is None and isinstance(asset_id, str) and asset_id.strip():
+            je = json_by_asset_id.get(asset_id.strip())
+        cue_points_ms = _cue_points_from_json(je.get("cue_points_ms")) if je else []
+        slate_plan = _slate_plan_from_json(je.get("slate_plan")) if je else []
+        result.append(
+            ScheduleEntryResponse(
+                sequence_no=row[0],
+                starts_at=row[1].isoformat(),
+                ends_at=row[2].isoformat(),
+                asset_id=row[3],
+                asset_type=row[4],
+                title=row[5],
+                cue_points_ms=cue_points_ms,
+                slate_plan=slate_plan,
+            )
+        )
+    return result
 
 
 def get_channel_assets(db_url: str, channel_service_id: str) -> list[AssetResponse]:
