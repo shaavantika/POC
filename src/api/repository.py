@@ -61,6 +61,8 @@ def _patch_schedule_json_edit(
     title: str | None,
     new_duration_ms: int,
     duration_diff_ms: int,
+    cue_points_ms: list[int] | None = None,
+    ad_breaks: list[dict] | None = None,
 ) -> None:
     with conn.cursor() as cur:
         cur.execute("SELECT schedule_json FROM channel_schedule_runs WHERE id = %s", (run_id,))
@@ -84,9 +86,10 @@ def _patch_schedule_json_edit(
             e["title"] = title
             e["duration_ms"] = new_duration_ms
             e["ends_at"] = _shift_iso(e.get("starts_at"), new_duration_ms)
-            e["cue_points_ms"] = []
-            e["cue_points_ms_csv"] = ""
-            e["slate_plan"] = []
+            e["cue_points_ms"] = cue_points_ms if cue_points_ms is not None else []
+            e["ad_breaks"] = ad_breaks if ad_breaks is not None else []
+            e.pop("slate_plan", None)
+            e.pop("cue_points_ms_csv", None)
         elif isinstance(seq, int) and seq > sequence_no and duration_diff_ms != 0:
             e["starts_at"] = _shift_iso(e.get("starts_at"), duration_diff_ms)
             e["ends_at"] = _shift_iso(e.get("ends_at"), duration_diff_ms)
@@ -345,7 +348,7 @@ def list_runs_for_channel(conn: Connection, channel_service_id: str, limit: int 
         return cur.fetchall()
 
 
-def active_schedule_entries_for_channel(conn: Connection, channel_service_id: str, limit: int = 200) -> list[tuple]:
+def active_schedule_entries_for_channel(conn: Connection, channel_service_id: str, limit: int = 5000) -> list[tuple]:
     with conn.cursor() as cur:
         cur.execute(
             """
@@ -355,7 +358,9 @@ def active_schedule_entries_for_channel(conn: Connection, channel_service_id: st
                 e.ends_at,
                 e.asset_id,
                 e.asset_type,
-                e.title
+                e.title,
+                e.season_number,
+                e.episode_number
             FROM channel_schedule_entries e
             JOIN channel_schedule_runs r ON r.id = e.run_id
             WHERE r.channel_service_id = %s
@@ -566,6 +571,8 @@ def update_active_schedule_entry_asset(
     asset_type: str,
     title: str | None,
     duration_ms: int,
+    cue_points_ms: list[int] | None = None,
+    ad_breaks: list[dict] | None = None,
 ) -> bool:
     with conn.cursor() as cur:
         cur.execute(
@@ -607,7 +614,8 @@ def update_active_schedule_entry_asset(
                 (duration_diff, duration_diff, run_id, sequence_no),
             )
     _patch_schedule_json_edit(
-        conn, run_id, sequence_no, asset_id, asset_type, title, duration_ms, duration_diff
+        conn, run_id, sequence_no, asset_id, asset_type, title, duration_ms, duration_diff,
+        cue_points_ms=cue_points_ms, ad_breaks=ad_breaks,
     )
     return True
 

@@ -189,6 +189,41 @@ def _slate_plan_from_json(raw: object) -> list[SlatePlanSlotResponse]:
     return out
 
 
+def _slate_plan_from_ad_breaks(ad_breaks: object) -> list[SlatePlanSlotResponse]:
+    """Flatten the new ad_breaks structure into the legacy slate_plan format for EPG display."""
+    if not isinstance(ad_breaks, list):
+        return []
+    out: list[SlatePlanSlotResponse] = []
+    for brk in ad_breaks:
+        if not isinstance(brk, dict):
+            continue
+        for key in ("bumper_in", "bumper_out"):
+            entry = brk.get(key)
+            if isinstance(entry, dict) and entry.get("asset_id") and entry.get("schedule_offset_ms") is not None:
+                try:
+                    out.append(SlatePlanSlotResponse(
+                        cue_point_ms=int(entry["schedule_offset_ms"]),
+                        slate_asset_id=str(entry["asset_id"]).strip(),
+                        slate_duration_ms=max(1, int(entry.get("duration_ms", 1))),
+                    ))
+                except (TypeError, ValueError):
+                    pass
+        for slate in brk.get("slates", []):
+            if not isinstance(slate, dict) or not slate.get("asset_id"):
+                continue
+            if slate.get("schedule_offset_ms") is None:
+                continue
+            try:
+                out.append(SlatePlanSlotResponse(
+                    cue_point_ms=int(slate["schedule_offset_ms"]),
+                    slate_asset_id=str(slate["asset_id"]).strip(),
+                    slate_duration_ms=max(1, int(slate.get("duration_ms", 1))),
+                ))
+            except (TypeError, ValueError):
+                pass
+    return out
+
+
 def _normalize_schedule_payload(payload: object) -> dict | None:
     """JSONB may decode as dict; some drivers return serialized JSON as str."""
     if payload is None:
@@ -242,7 +277,10 @@ def get_active_schedule(db_url: str, channel_service_id: str) -> list[ScheduleEn
         if je is None and isinstance(asset_id, str) and asset_id.strip():
             je = json_by_asset_id.get(asset_id.strip())
         cue_points_ms = _cue_points_from_json(je.get("cue_points_ms")) if je else []
-        slate_plan = _slate_plan_from_json(je.get("slate_plan")) if je else []
+        if je and je.get("ad_breaks") is not None:
+            slate_plan = _slate_plan_from_ad_breaks(je["ad_breaks"])
+        else:
+            slate_plan = _slate_plan_from_json(je.get("slate_plan")) if je else []
         result.append(
             ScheduleEntryResponse(
                 sequence_no=row[0],
@@ -251,6 +289,8 @@ def get_active_schedule(db_url: str, channel_service_id: str) -> list[ScheduleEn
                 asset_id=row[3],
                 asset_type=row[4],
                 title=row[5],
+                season_number=row[6],
+                episode_number=row[7],
                 cue_points_ms=cue_points_ms,
                 slate_plan=slate_plan,
             )
@@ -336,9 +376,9 @@ def _assert_within_edit_window(starts_at: datetime, sequence_no: int) -> None:
         starts_at = starts_at.replace(tzinfo=timezone.utc)
     if starts_at <= now:
         raise ValueError(f"Entry #{sequence_no} has already started and cannot be edited")
-    if starts_at > now + timedelta(hours=_EDIT_WINDOW_HOURS):
+    if starts_at <= now + timedelta(hours=_EDIT_WINDOW_HOURS):
         raise ValueError(
-            f"Entry #{sequence_no} starts more than {_EDIT_WINDOW_HOURS} hours from now and cannot be edited"
+            f"Entry #{sequence_no} starts within {_EDIT_WINDOW_HOURS} hours and cannot be edited"
         )
 
 
@@ -354,6 +394,8 @@ def delete_entry(db_url: str, channel_service_id: str, sequence_no: int) -> None
 
 
 def update_entry(db_url: str, channel_service_id: str, sequence_no: int, asset_id: str) -> None:
+    from src.scheduler.repository import get_feed_id_for_channel, get_valid_assets
+    from src.scheduler.service import _build_cue_points_by_asset, _build_ad_breaks_by_asset
     with connect(db_url) as conn:
         starts_at = get_entry_starts_at(conn, channel_service_id, sequence_no)
         if starts_at is None:
@@ -363,8 +405,28 @@ def update_entry(db_url: str, channel_service_id: str, sequence_no: int, asset_i
         if asset is None:
             raise ValueError(f"Asset '{asset_id}' not found for channel '{channel_service_id}'")
         a_id, a_type, a_title, a_duration, _season, _episode = asset
+
+        cue_points_ms: list[int] = []
+        ad_breaks: list[dict] = []
+        effective_duration = a_duration or 1
+
+        feed_id = get_feed_id_for_channel(conn, channel_service_id)
+        if feed_id:
+            episodes, slates, bumpers = get_valid_assets(conn, feed_id, starts_at)
+            cue_by_asset = _build_cue_points_by_asset(episodes)
+            cue_points_ms = cue_by_asset.get(a_id, [])
+            bumper_duration = bumpers[0].duration_ms if (bumpers and slates) else 0
+            ad_breaks = _build_ad_breaks_by_asset(
+                episodes=episodes,
+                slates=slates,
+                cue_points_by_asset=cue_by_asset,
+                bumpers=bumpers,
+            ).get(a_id, [])
+            effective_duration = effective_duration + len(cue_points_ms) * 2 * bumper_duration
+
         if not update_active_schedule_entry_asset(
-            conn, channel_service_id, sequence_no, a_id, a_type, a_title, a_duration or 1
+            conn, channel_service_id, sequence_no, a_id, a_type, a_title, effective_duration,
+            cue_points_ms=cue_points_ms, ad_breaks=ad_breaks,
         ):
             raise ValueError(f"Entry #{sequence_no} not found in active schedule")
         conn.commit()

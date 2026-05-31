@@ -221,6 +221,7 @@ def generate_schedule_route(
             channel_service_id=result.channel_service_id,
             run_id=result.run_id,
             entry_count=result.entry_count,
+            extended=result.extended,
         )
     except Exception as exc:
         logger.exception("Generate schedule failed channel_service_id=%s error=%s", channel_service_id, exc)

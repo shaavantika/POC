@@ -120,6 +120,31 @@ function Message({ text, type }) {
   return <p className={cls}>{text}</p>;
 }
 
+// EPG grid constants
+const EPG_PX_PER_MIN = 2;
+const EPG_COL_WIDTH = 280;
+const EPG_TIME_W = 64;
+const EPG_DAYS_VISIBLE = 4;
+const EPG_TOTAL_HEIGHT = 24 * 60 * EPG_PX_PER_MIN;
+const EPG_TIME_LABELS = Array.from({ length: 48 }, (_, i) => ({
+  label: `${String(Math.floor(i / 2)).padStart(2, "0")}:${i % 2 === 0 ? "00" : "30"}`,
+  top: i * 30 * EPG_PX_PER_MIN,
+}));
+
+function epgDayKey(isoString) {
+  const d = new Date(isoString);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function epgBlockTop(startsAt) {
+  const dt = new Date(startsAt);
+  const dayStart = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+  return Math.max(0, ((dt - dayStart) / 60000) * EPG_PX_PER_MIN);
+}
+function epgBlockHeight(startsAt, endsAt) {
+  const durationMs = new Date(endsAt) - new Date(startsAt);
+  return Math.max((durationMs / 60000) * EPG_PX_PER_MIN, 26);
+}
+
 export default function App() {
   const [feeds, setFeeds] = useState([]);
   const [channels, setChannels] = useState([]);
@@ -139,6 +164,9 @@ export default function App() {
   const [insertAssetId, setInsertAssetId] = useState("");
   const [insertBusy, setInsertBusy] = useState(false);
   const [insertMessage, setInsertMessage] = useState({ text: "", type: "" });
+
+  const [epgDayOffset, setEpgDayOffset] = useState(0);
+  const [expandedSeq, setExpandedSeq] = useState(null);
 
   const [channelServiceId, setChannelServiceId] = useState("");
   const [channelName, setChannelName] = useState("");
@@ -201,6 +229,20 @@ export default function App() {
     [displayTimeZone]
   );
 
+  const formatTimeOnly = useCallback(
+    (iso) => {
+      if (!iso) return "–";
+      try {
+        const opts = { timeStyle: "short" };
+        if (displayTimeZone && displayTimeZone !== "local") opts.timeZone = displayTimeZone;
+        return new Date(iso).toLocaleTimeString(undefined, opts);
+      } catch {
+        return iso;
+      }
+    },
+    [displayTimeZone]
+  );
+
   const assetTitleById = useMemo(() => {
     const m = new Map();
     for (const a of assets) {
@@ -208,6 +250,30 @@ export default function App() {
     }
     return m;
   }, [assets]);
+
+  const assetTypeById = useMemo(() => {
+    const m = new Map();
+    for (const a of assets) {
+      m.set(a.asset_id, a.asset_type ?? null);
+    }
+    return m;
+  }, [assets]);
+
+  const epgUniqueDays = useMemo(
+    () => [...new Set(entries.filter((e) => e.asset_type === "episode").map((e) => epgDayKey(e.starts_at)))].sort(),
+    [entries]
+  );
+  const epgEntriesByDay = useMemo(() => {
+    const m = {};
+    for (const e of entries) {
+      if (e.asset_type !== "episode") continue;
+      const k = epgDayKey(e.starts_at);
+      if (!m[k]) m[k] = [];
+      m[k].push(e);
+    }
+    return m;
+  }, [entries]);
+  const epgVisibleDays = epgUniqueDays.slice(epgDayOffset, epgDayOffset + EPG_DAYS_VISIBLE);
 
   const visibleSlateSlots = (e) =>
     normalizeSlateSlots(e.slate_plan).filter((slot) => {
@@ -311,6 +377,15 @@ export default function App() {
       setGenerateMessage({ text: `Initial load failed: ${err.message}`, type: "error" });
     });
   }, [loadData]);
+
+  useEffect(() => {
+    setExpandedSeq(null);
+    if (!entries.length) { setEpgDayOffset(0); return; }
+    const todayKey = epgDayKey(new Date().toISOString());
+    const days = [...new Set(entries.map((e) => epgDayKey(e.starts_at)))].sort();
+    const idx = days.findIndex((d) => d >= todayKey);
+    setEpgDayOffset(idx === -1 ? Math.max(0, days.length - EPG_DAYS_VISIBLE) : Math.max(0, idx));
+  }, [entries]);
 
   const selectChannel = useCallback(
     async (id, opts = {}) => {
@@ -442,7 +517,7 @@ export default function App() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            window_hours: 24,
+            window_hours: 168,
             trigger_type: "manual",
             schedule_type: "binge",
           }),
@@ -453,8 +528,9 @@ export default function App() {
         throw new Error(body.detail || `Request failed: ${res.status}`);
       }
       const data = await res.json();
+      const action = data.extended ? "Extended" : "Generated";
       setGenerateMessage({
-        text: `Generated run ${data.run_id} with ${data.entry_count} entries.`,
+        text: `${action} — run ${data.run_id}, ${data.entry_count} total entries.`,
         type: "success",
       });
       await loadChannel(selectedChannelId);
@@ -499,7 +575,7 @@ export default function App() {
   const isWithinEditWindow = (entry) => {
     const start = new Date(entry.starts_at).getTime();
     const now = Date.now();
-    return start > now && start <= now + TWO_HOURS_MS;
+    return start > now + TWO_HOURS_MS;
   };
 
   const handleDeleteEntry = async (entry) => {
@@ -1082,11 +1158,7 @@ export default function App() {
         )}
 
         {activeTab === "schedule" && (
-          <div className="tab-panel stack-gap-sm" id="panel-schedule" role="tabpanel" aria-labelledby="tab-schedule">
-            <p className="tab-lede">
-              Uses the channel selected in the header. Generate or download schedule; review runs and the active playlist.
-            </p>
-
+          <div className="tab-panel" id="panel-schedule" role="tabpanel" aria-labelledby="tab-schedule">
             <div className="schedule-toolbar">
               <div className="schedule-toolbar-row schedule-toolbar-row--actions">
                 <div className="schedule-toolbar-actions">
@@ -1101,156 +1173,206 @@ export default function App() {
               <Message text={generateMessage.text} type={generateMessage.type} />
             </div>
 
-            <section className="card">
-              <h2 className="card-title">Run history</h2>
-              <div className="table-wrap">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>Run ID</th>
-                      <th>Status</th>
-                      <th>Active</th>
-                      <th>Entries</th>
-                      <th>Created</th>
-                      <th>Error</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {runs.length === 0 ? (
-                      <tr>
-                        <td colSpan={6} className="empty">
-                          {noChannel ? "No runs yet." : "No runs for this channel."}
-                        </td>
-                      </tr>
-                    ) : (
-                      runs.slice(0, 2).map((r) => (
-                        <tr key={r.id}>
-                          <td className="cell-mono">{r.id}</td>
-                          <td>
-                            <span className={`status ${String(r.status).toLowerCase()}`}>{r.status}</span>
-                          </td>
-                          <td>{String(!!r.is_active)}</td>
-                          <td>{r.generated_entry_count ?? 0}</td>
-                          <td>{formatTimeTz(r.created_at)}</td>
-                          <td>{r.error_message ?? "—"}</td>
-                        </tr>
-                      ))
+            {entries.length === 0 ? (
+              <section className="card" style={{ padding: "2.5rem", textAlign: "center" }}>
+                <p style={{ color: "var(--muted)", marginBottom: "1rem" }}>
+                  No active schedule. Hit Generate to create one.
+                </p>
+                <button type="button" onClick={handleGenerate} disabled={noChannel || generateBusy}>
+                  Generate schedule
+                </button>
+              </section>
+            ) : (
+              <section className="card" style={{ padding: 0, overflow: "hidden" }}>
+                {/* Navigation bar */}
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.6rem 1rem", borderBottom: "1px solid var(--border)" }}>
+                  <button type="button" className="btn-secondary" disabled={epgDayOffset === 0} onClick={() => setEpgDayOffset((o) => Math.max(0, o - 1))} aria-label="Previous days">◀</button>
+                  <button type="button" className="btn-secondary" onClick={() => {
+                    const todayKey = epgDayKey(new Date().toISOString());
+                    const idx = epgUniqueDays.findIndex((d) => d >= todayKey);
+                    setEpgDayOffset(idx === -1 ? Math.max(0, epgUniqueDays.length - EPG_DAYS_VISIBLE) : Math.max(0, idx));
+                  }}>Today</button>
+                  <button type="button" className="btn-secondary" disabled={epgDayOffset + EPG_DAYS_VISIBLE >= epgUniqueDays.length} onClick={() => setEpgDayOffset((o) => Math.min(Math.max(0, epgUniqueDays.length - EPG_DAYS_VISIBLE), o + 1))} aria-label="Next days">▶</button>
+                  <span style={{ marginLeft: "0.5rem", fontSize: "0.85rem", color: "var(--muted)" }}>
+                    {epgVisibleDays.length > 0 && (
+                      <>
+                        {new Date(epgVisibleDays[0] + "T00:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}
+                        {epgVisibleDays.length > 1 && ` – ${new Date(epgVisibleDays[epgVisibleDays.length - 1] + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}`}
+                      </>
                     )}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+                  </span>
+                </div>
 
-            <details className="playlist-details" open>
-              <summary className="playlist-summary">
-                <span className="playlist-summary-start">
-                  <span className="playlist-chevron" aria-hidden />
-                  <span className="playlist-summary-title">Active playlist</span>
-                </span>
-                <span className="playlist-summary-meta">
-                  {playlistRowCount} rows
-                  {entries.some((e) => visibleSlateSlots(e).length > 0)
-                    ? " (episodes + ad slates)"
-                    : ""}
-                </span>
-              </summary>
-              <div className="playlist-details-body">
-                <div className="table-wrap">
-                  <table className="data-table">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th>Asset</th>
-                        <th>Type</th>
-                        <th>Title</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {entries.length === 0 ? (
-                        <tr>
-                          <td colSpan={6} className="empty">
-                            No active schedule rows.
-                          </td>
-                        </tr>
-                      ) : (
-                        entries.map((e) => (
-                          <Fragment key={`${e.sequence_no}-${e.starts_at}`}>
-                            <tr>
-                              <td>{e.sequence_no}</td>
-                              <td>{formatTimeTz(e.starts_at)}</td>
-                              <td>{formatTimeTz(e.ends_at)}</td>
-                              <td className="cell-mono">{e.asset_id}</td>
-                              <td>{e.asset_type}</td>
-                              <td>{e.title ?? "—"}</td>
-                              <td>
-                                {isWithinEditWindow(e) && (
-                                  <span style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
-                                    <button
-                                      type="button"
-                                      className="btn-secondary table-action-btn"
-                                      onClick={() => handleOpenEdit(e)}
-                                    >
-                                      Edit
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="btn-secondary table-action-btn"
-                                      onClick={() => handleOpenInsert(e)}
-                                    >
-                                      Add After
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="btn-secondary table-action-btn"
-                                      style={{ color: "var(--color-danger, #e05c5c)" }}
-                                      onClick={() => handleDeleteEntry(e)}
-                                    >
-                                      Remove
-                                    </button>
-                                  </span>
-                                )}
-                              </td>
-                            </tr>
-                            {visibleSlateSlots(e).map((slot, si) => {
-                              const slotStart = offsetIso(e.starts_at, slot.cue_point_ms);
-                              const slotEnd = offsetIso(
-                                e.starts_at,
-                                slot.cue_point_ms + slot.slate_duration_ms
-                              );
+                {/* EPG scroll area */}
+                <div style={{ overflow: "auto", maxHeight: "640px" }}>
+                  <div style={{ minWidth: EPG_TIME_W + epgVisibleDays.length * EPG_COL_WIDTH }}>
+
+                    {/* Sticky date header row */}
+                    <div style={{ display: "flex", position: "sticky", top: 0, zIndex: 4, background: "var(--bg-elevated)" }}>
+                      <div style={{ width: EPG_TIME_W, minWidth: EPG_TIME_W, flexShrink: 0, position: "sticky", left: 0, zIndex: 5, background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }} />
+                      {epgVisibleDays.map((dayKey) => {
+                        const isToday = dayKey === epgDayKey(new Date().toISOString());
+                        return (
+                          <div key={dayKey} style={{ width: EPG_COL_WIDTH, minWidth: EPG_COL_WIDTH, flexShrink: 0, padding: "0.5rem 0.75rem", borderBottom: "1px solid var(--border)", borderLeft: "1px solid var(--border)", fontWeight: isToday ? 700 : 500, fontSize: "0.85rem", color: isToday ? "var(--accent)" : undefined, display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            {new Date(dayKey + "T00:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}
+                            {isToday && <span style={{ fontSize: "0.65rem", background: "var(--accent)", color: "#fff", padding: "1px 6px", borderRadius: 8 }}>Today</span>}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Body */}
+                    <div style={{ display: "flex" }}>
+                      {/* Sticky time gutter */}
+                      <div style={{ width: EPG_TIME_W, minWidth: EPG_TIME_W, flexShrink: 0, height: EPG_TOTAL_HEIGHT, position: "sticky", left: 0, zIndex: 3, background: "var(--bg-elevated)" }}>
+                        {EPG_TIME_LABELS.map(({ label, top }) => (
+                          <Fragment key={label}>
+                            <div style={{ position: "absolute", top: top - 8, right: 8, fontSize: "0.66rem", color: "var(--muted)", lineHeight: 1, whiteSpace: "nowrap", userSelect: "none" }}>
+                              {label}
+                            </div>
+                            <div style={{ position: "absolute", top, left: 0, right: 0, height: 1, background: "var(--border)", opacity: label.endsWith(":00") ? 0.5 : 0.18 }} />
+                          </Fragment>
+                        ))}
+                      </div>
+
+                      {/* Day columns */}
+                      {epgVisibleDays.map((dayKey) => {
+                        const dayEntries = epgEntriesByDay[dayKey] ?? [];
+                        return (
+                          <div key={dayKey} style={{ width: EPG_COL_WIDTH, minWidth: EPG_COL_WIDTH, flexShrink: 0, height: EPG_TOTAL_HEIGHT, position: "relative", borderLeft: "1px solid var(--border)" }}>
+                            {/* Grid lines */}
+                            {EPG_TIME_LABELS.map(({ label, top }) => (
+                              <div key={label} style={{ position: "absolute", top, left: 0, right: 0, height: 1, background: "var(--border)", opacity: label.endsWith(":00") ? 0.3 : 0.1, pointerEvents: "none" }} />
+                            ))}
+
+                            {/* Program blocks */}
+                            {dayEntries.map((entry) => {
+                              const bTop = epgBlockTop(entry.starts_at);
+                              const bHeight = epgBlockHeight(entry.starts_at, entry.ends_at);
+                              const isExpanded = expandedSeq === entry.sequence_no;
+                              const editable = isWithinEditWindow(entry);
+                              const slots = visibleSlateSlots(entry);
+
                               return (
-                                <tr
-                                  key={`${e.sequence_no}-slate-${si}-${slot.slate_asset_id}`}
-                                  className="playlist-slate-row"
+                                <div
+                                  key={entry.sequence_no}
+                                  role="button"
+                                  tabIndex={0}
+                                  aria-expanded={isExpanded}
+                                  onClick={() => setExpandedSeq(isExpanded ? null : entry.sequence_no)}
+                                  onKeyDown={(ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); setExpandedSeq(isExpanded ? null : entry.sequence_no); } }}
+                                  style={{
+                                    position: "absolute",
+                                    top: bTop + 1,
+                                    left: 3,
+                                    right: 3,
+                                    height: isExpanded ? undefined : Math.max(bHeight - 2, 26),
+                                    minHeight: 26,
+                                    background: "var(--card)",
+                                    border: `1px solid ${editable ? "var(--accent)" : "var(--border)"}`,
+                                    borderLeft: `3px solid ${editable ? "var(--accent)" : "var(--border)"}`,
+                                    borderRadius: 4,
+                                    overflow: isExpanded ? "visible" : "hidden",
+                                    cursor: "pointer",
+                                    zIndex: isExpanded ? 20 : 1,
+                                    boxSizing: "border-box",
+                                    userSelect: "none",
+                                  }}
                                 >
-                                  <td className="playlist-slate-seq">
-                                    <span className="playlist-slate-badge">Ad</span>
-                                  </td>
-                                  <td>{formatTimeTz(slotStart)}</td>
-                                  <td>{formatTimeTz(slotEnd)}</td>
-                                  <td className="cell-mono">{slot.slate_asset_id}</td>
-                                  <td>slate</td>
-                                  <td>{assetTitleById.get(slot.slate_asset_id) ?? "—"}</td>
-                                  <td />
-                                </tr>
+                                  {isExpanded ? (
+                                    <div
+                                      onClick={(ev) => ev.stopPropagation()}
+                                      style={{ background: "var(--bg-elevated)", border: "1px solid var(--accent)", borderRadius: 4, padding: "10px 12px", minWidth: EPG_COL_WIDTH - 14, boxShadow: "0 6px 24px rgba(0,0,0,0.18)", cursor: "default", fontSize: "0.78rem", lineHeight: 1.4 }}
+                                    >
+                                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4 }}>
+                                        <strong style={{ fontSize: "0.82rem", flex: 1, marginRight: 8 }}>{entry.title ?? entry.asset_id}</strong>
+                                        <button type="button" style={{ background: "none", border: "none", cursor: "pointer", color: "var(--muted)", fontSize: "0.9rem", padding: 0, lineHeight: 1 }} onClick={(ev) => { ev.stopPropagation(); setExpandedSeq(null); }} aria-label="Close">✕</button>
+                                      </div>
+                                      <div style={{ fontSize: "0.72rem", color: "var(--muted)", marginBottom: 8 }}>
+                                        {formatTimeOnly(entry.starts_at)} → {formatTimeOnly(entry.ends_at)} &nbsp;·&nbsp; #{entry.sequence_no} &nbsp;·&nbsp; {entry.asset_type}
+                                      </div>
+                                      {slots.length > 0 && (
+                                        <div style={{ marginBottom: 8, borderTop: "1px solid var(--border)", paddingTop: 6 }}>
+                                          <div style={{ fontSize: "0.66rem", color: "var(--muted)", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                                            Ad breaks &middot; {slots.length} asset{slots.length !== 1 ? "s" : ""}
+                                          </div>
+                                          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                                            {slots.map((slot, si) => {
+                                              const slotStart = offsetIso(entry.starts_at, slot.cue_point_ms);
+                                              const slotEnd = offsetIso(entry.starts_at, slot.cue_point_ms + slot.slate_duration_ms);
+                                              const aType = assetTypeById.get(slot.slate_asset_id) ?? "unknown";
+                                              const isBumper = aType === "bumper";
+                                              const badgeColor = isBumper ? "var(--accent)" : aType === "slate" ? "var(--warn)" : "var(--muted)";
+                                              return (
+                                                <div key={si} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "4px 6px", background: "var(--bg)", borderRadius: 4 }}>
+                                                  <span style={{ flexShrink: 0, fontSize: "0.58rem", fontWeight: 700, padding: "2px 5px", borderRadius: 3, background: badgeColor, color: "#fff", textTransform: "uppercase", letterSpacing: "0.05em", marginTop: 1 }}>
+                                                    {aType}
+                                                  </span>
+                                                  <div style={{ flex: 1, minWidth: 0 }}>
+                                                    <div style={{ fontSize: "0.72rem", fontWeight: 500, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                                      {assetTitleById.get(slot.slate_asset_id) ?? slot.slate_asset_id}
+                                                    </div>
+                                                    <div style={{ fontSize: "0.64rem", color: "var(--muted)", marginTop: 1 }}>
+                                                      {formatTimeOnly(slotStart)} – {formatTimeOnly(slotEnd)}
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              );
+                                            })}
+                                          </div>
+                                        </div>
+                                      )}
+                                      {editable && (
+                                        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", borderTop: "1px solid var(--border)", paddingTop: 8 }}>
+                                          <button type="button" className="btn-secondary table-action-btn" onClick={() => { handleOpenEdit(entry); setExpandedSeq(null); }}>Edit</button>
+                                          <button type="button" className="btn-secondary table-action-btn" onClick={() => { handleOpenInsert(entry); setExpandedSeq(null); }}>Add After</button>
+                                          <button type="button" className="btn-secondary table-action-btn" style={{ color: "var(--bad)" }} onClick={() => { handleDeleteEntry(entry); setExpandedSeq(null); }}>Remove</button>
+                                        </div>
+                                      )}
+                                    </div>
+                                  ) : (
+                                    <div style={{ padding: "3px 6px", height: "100%", overflow: "hidden", fontSize: "0.74rem", lineHeight: 1.3 }}>
+                                      <div style={{ fontSize: "0.66rem", color: "var(--accent)", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginBottom: 1 }}>
+                                        {formatTimeOnly(entry.starts_at)}
+                                        {entry.season_number != null && (
+                                          <span style={{ marginLeft: 6, color: "var(--muted)", fontWeight: 400 }}>
+                                            S{String(entry.season_number).padStart(2, "0")}
+                                            {entry.episode_number != null && `E${String(entry.episode_number).padStart(2, "0")}`}
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div style={{ fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                        {entry.title ?? entry.asset_id}
+                                      </div>
+                                      {bHeight > 52 && (
+                                        <div style={{ color: "var(--muted)", fontSize: "0.68rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                          {formatTimeOnly(entry.starts_at)} – {formatTimeOnly(entry.ends_at)}
+                                        </div>
+                                      )}
+                                      {bHeight > 68 && slots.length > 0 && (
+                                        <div style={{ marginTop: 2, fontSize: "0.66rem", color: "var(--warn)" }}>
+                                          ▪ {slots.length} ad{slots.length !== 1 ? "s" : ""}
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
                               );
                             })}
-                          </Fragment>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </details>
+              </section>
+            )}
           </div>
         )}
 
         {activeTab === "assets" && (
           <div className="tab-panel" id="panel-assets" role="tabpanel" aria-labelledby="tab-assets">
-            <p className="tab-lede">Catalog for the channel selected in the header. Use the Type dropdown on slate rows to change the type.</p>
+            <p className="tab-lede">Catalog for the channel selected in the header.</p>
 
             <section className="card">
               <h2 className="card-title">Catalog</h2>
@@ -1280,39 +1402,7 @@ export default function App() {
                         <tr key={a.asset_id}>
                           <td className="cell-mono">{a.asset_id}</td>
                           <td>
-                            {a.asset_type === "slate" || a.asset_type === "bumper" ? (
-                              <select
-                                value={a.asset_type}
-                                onChange={async (ev) => {
-                                  const newType = ev.target.value;
-                                  try {
-                                    const res = await fetch(
-                                      `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/assets/${encodeURIComponent(a.asset_id)}`,
-                                      {
-                                        method: "PATCH",
-                                        headers: { "Content-Type": "application/json" },
-                                        body: JSON.stringify({ asset_type: newType }),
-                                      }
-                                    );
-                                    if (!res.ok) {
-                                      const body = await res.json().catch(() => ({}));
-                                      throw new Error(body.detail || `Request failed: ${res.status}`);
-                                    }
-                                    await loadChannel(selectedChannelId);
-                                  } catch (err) {
-                                    console.error(err);
-                                    setGenerateMessage({ text: `Type update failed: ${err.message}`, type: "error" });
-                                  }
-                                }}
-                                style={{ minWidth: "6rem" }}
-                                aria-label={`Type for ${a.asset_id}`}
-                              >
-                                <option value="slate">slate</option>
-                                <option value="bumper">bumper</option>
-                              </select>
-                            ) : (
-                              a.asset_type
-                            )}
+                            {a.asset_type}
                           </td>
                           <td>{a.season_number ?? "—"}</td>
                           <td>{a.episode_number ?? "—"}</td>

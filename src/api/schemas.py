@@ -74,6 +74,8 @@ class ScheduleEntryResponse(BaseModel):
     asset_id: str
     asset_type: str
     title: str | None
+    season_number: int | None = None
+    episode_number: int | None = None
     cue_points_ms: list[int] = Field(default_factory=list)
     slate_plan: list[SlatePlanSlotResponse] = Field(default_factory=list)
 
@@ -95,7 +97,7 @@ class AssetTypeUpdateRequest(BaseModel):
 
 
 class GenerateScheduleRequest(BaseModel):
-    window_hours: int = Field(default=24, gt=0, le=168)
+    window_hours: int = Field(default=168, gt=0, le=168)
     trigger_type: str = Field(default="manual")
     schedule_type: str = Field(default="binge")
 
@@ -104,6 +106,7 @@ class GenerateScheduleResponse(BaseModel):
     channel_service_id: str
     run_id: str
     entry_count: int
+    extended: bool = False
 
 
 class FeedIngestRequest(BaseModel):

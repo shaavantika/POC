@@ -133,6 +133,109 @@ def mark_run_failed(conn: Connection, run_id: UUID, error_message: str) -> None:
         )
 
 
+def get_active_run_info(
+    conn: Connection,
+    channel_service_id: str,
+) -> tuple[UUID, datetime, int] | None:
+    """Return (run_id, actual_last_ends_at, entry_count) for the active run, or None.
+
+    Uses MAX(ends_at) from entries rather than window_end so that a run whose
+    engine truncated early is correctly detected as needing extension.
+    """
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT r.id, MAX(e.ends_at), COUNT(e.sequence_no)
+            FROM channel_schedule_runs r
+            LEFT JOIN channel_schedule_entries e ON e.run_id = r.id
+            WHERE r.channel_service_id = %s
+              AND r.is_active = true
+            GROUP BY r.id
+            LIMIT 1
+            """,
+            (channel_service_id,),
+        )
+        row = cur.fetchone()
+    if not row:
+        return None
+    run_id, last_ends_at, entry_count = row
+    if last_ends_at is None:
+        return None
+    if last_ends_at.tzinfo is None:
+        last_ends_at = last_ends_at.replace(tzinfo=timezone.utc)
+    return run_id, last_ends_at, entry_count or 0
+
+
+def get_max_sequence_no(conn: Connection, run_id: UUID) -> int:
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT COALESCE(MAX(sequence_no), 0) FROM channel_schedule_entries WHERE run_id = %s",
+            (run_id,),
+        )
+        row = cur.fetchone()
+    return row[0] if row else 0
+
+
+def append_entries_to_run(
+    conn: Connection,
+    run_id: UUID,
+    channel_service_id: str,
+    entries: list,
+    new_window_end: datetime,
+    new_entries_json: list[dict],
+) -> None:
+    with conn.cursor() as cur:
+        for entry in entries:
+            cur.execute(
+                """
+                INSERT INTO channel_schedule_entries (
+                    run_id, channel_service_id,
+                    sequence_no, starts_at, ends_at,
+                    asset_id, asset_type, title,
+                    season_number, episode_number, duration_ms
+                ) VALUES (
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                )
+                """,
+                (
+                    run_id,
+                    channel_service_id,
+                    entry.sequence_no,
+                    entry.starts_at,
+                    entry.ends_at,
+                    entry.asset_id,
+                    entry.asset_type,
+                    entry.title,
+                    entry.season_number,
+                    entry.episode_number,
+                    entry.duration_ms,
+                ),
+            )
+
+        cur.execute(
+            """
+            UPDATE channel_schedule_runs
+            SET window_end = %s,
+                generated_entry_count = (
+                    SELECT COUNT(*) FROM channel_schedule_entries WHERE run_id = %s
+                ),
+                schedule_json = jsonb_set(
+                    schedule_json,
+                    '{entries}',
+                    (schedule_json->'entries') || %s::jsonb
+                ),
+                completed_at = now()
+            WHERE id = %s
+            """,
+            (
+                new_window_end,
+                run_id,
+                Jsonb(new_entries_json),
+                run_id,
+            ),
+        )
+
+
 def persist_entries_and_activate(
     conn: Connection,
     run_id: UUID,

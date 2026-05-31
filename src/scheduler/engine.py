@@ -40,12 +40,11 @@ def build_binge_timeline(
     def choose_asset(at_time: datetime) -> ScheduleAsset | None:
         nonlocal idx
         if sorted_episodes:
-            # Preserve binge sequence while skipping invalid-at-slot assets.
-            for _ in range(len(sorted_episodes)):
-                asset = sorted_episodes[idx % len(sorted_episodes)]
-                idx += 1
-                if is_valid_at(asset, at_time):
-                    return asset
+            # Cycle through episodes indefinitely — active episodes from the DB
+            # are always eligible regardless of valid_to for binge scheduling.
+            asset = sorted_episodes[idx % len(sorted_episodes)]
+            idx += 1
+            return asset
         if slate_pool:
             for offset in range(len(slate_pool)):
                 slate = slate_pool[(sequence - 1 + offset) % len(slate_pool)]
