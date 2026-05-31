@@ -620,6 +620,121 @@ def update_active_schedule_entry_asset(
     return True
 
 
+def delete_entries_after(
+    conn: Connection,
+    channel_service_id: str,
+    sequence_no: int,
+) -> int:
+    """Delete all active schedule entries with sequence_no > sequence_no and trim schedule_json."""
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT r.id
+            FROM channel_schedule_runs r
+            WHERE r.channel_service_id = %s AND r.is_active = true
+            LIMIT 1
+            """,
+            (channel_service_id,),
+        )
+        row = cur.fetchone()
+    if not row:
+        return 0
+    run_id = row[0]
+
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            DELETE FROM channel_schedule_entries
+            WHERE run_id = %s AND sequence_no > %s
+            """,
+            (run_id, sequence_no),
+        )
+        deleted = cur.rowcount
+
+    if deleted > 0:
+        # Trim schedule_json entries and update window_end to the new last entry's ends_at.
+        with conn.cursor() as cur:
+            cur.execute("SELECT schedule_json FROM channel_schedule_runs WHERE id = %s", (run_id,))
+            jr = cur.fetchone()
+        if jr and jr[0]:
+            payload = dict(jr[0])
+            raw = payload.get("entries")
+            if isinstance(raw, list):
+                kept = [e for e in raw if isinstance(e, dict) and e.get("sequence_no", 0) <= sequence_no]
+                payload["entries"] = kept
+                payload["entry_count"] = len(kept)
+                new_window_end = kept[-1]["ends_at"] if kept else payload.get("window_start")
+                payload["window_end"] = new_window_end
+                with conn.cursor() as cur:
+                    cur.execute(
+                        "UPDATE channel_schedule_runs SET schedule_json = %s, window_end = %s WHERE id = %s",
+                        (Jsonb(payload), new_window_end, run_id),
+                    )
+
+    return deleted
+
+
+def update_ad_break_slot_asset(
+    conn: Connection,
+    channel_service_id: str,
+    sequence_no: int,
+    schedule_offset_ms: int,
+    new_asset_id: str,
+) -> bool:
+    """Replace the asset_id of whichever ad-break sub-entry (bumper_in/slate/bumper_out)
+    has schedule_offset_ms matching the given value. Only modifies schedule_json; DB entry
+    rows are unchanged (duration stays the same). Returns True if the slot was found."""
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT r.id, r.schedule_json
+            FROM channel_schedule_runs r
+            WHERE r.channel_service_id = %s AND r.is_active = true
+            LIMIT 1
+            """,
+            (channel_service_id,),
+        )
+        row = cur.fetchone()
+    if not row or not row[1]:
+        return False
+    run_id, payload = row[0], dict(row[1])
+
+    entries = payload.get("entries")
+    if not isinstance(entries, list):
+        return False
+
+    found = False
+    for entry in entries:
+        if not isinstance(entry, dict) or entry.get("sequence_no") != sequence_no:
+            continue
+        ad_breaks = entry.get("ad_breaks")
+        if not isinstance(ad_breaks, list):
+            break
+        for brk in ad_breaks:
+            if not isinstance(brk, dict):
+                continue
+            for key in ("bumper_in", "bumper_out"):
+                sub = brk.get(key)
+                if isinstance(sub, dict) and sub.get("schedule_offset_ms") == schedule_offset_ms:
+                    sub["asset_id"] = new_asset_id
+                    found = True
+            for slate in brk.get("slates", []):
+                if isinstance(slate, dict) and slate.get("schedule_offset_ms") == schedule_offset_ms:
+                    slate["asset_id"] = new_asset_id
+                    found = True
+        break
+
+    if not found:
+        return False
+
+    with conn.cursor() as cur:
+        cur.execute(
+            "UPDATE channel_schedule_runs SET schedule_json = %s WHERE id = %s",
+            (Jsonb(payload), run_id),
+        )
+    return True
+
+
 def get_active_schedule_json_for_channel(conn: Connection, channel_service_id: str) -> dict | None:
     with conn.cursor() as cur:
         cur.execute(

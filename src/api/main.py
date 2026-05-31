@@ -15,6 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 
 from src.api.schemas import (
+    AdBreakSlotPatchRequest,
     AssetTypeUpdateRequest,
     ChannelRegisterRequest,
     ChannelRegisterResponse,
@@ -30,6 +31,7 @@ from src.api.schemas import (
     GenerateScheduleResponse,
 )
 from src.api.service import (
+    clear_after_entry,
     delete_entry,
     get_active_schedule,
     get_channel_runs,
@@ -42,6 +44,7 @@ from src.api.service import (
     get_active_schedule_json,
     register_channel,
     set_asset_type,
+    update_ad_break_slot,
     update_entry,
 )
 from src.common.logging_config import get_logger, setup_logging
@@ -268,6 +271,22 @@ def delete_entry_route(channel_service_id: str, sequence_no: int) -> None:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
+@app.delete("/channels/{channel_service_id}/schedule/entries/{sequence_no}/clear-after", status_code=200)
+def clear_after_route(channel_service_id: str, sequence_no: int) -> dict:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        deleted = clear_after_entry(db_url, channel_service_id, sequence_no)
+        logger.info(
+            "Clear-after channel_service_id=%s sequence_no=%s deleted=%s",
+            channel_service_id, sequence_no, deleted,
+        )
+        return {"deleted": deleted}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
 @app.patch("/channels/{channel_service_id}/assets/{asset_id}", status_code=204)
 def update_asset_type_route(
     channel_service_id: str, asset_id: str, payload: AssetTypeUpdateRequest
@@ -316,6 +335,26 @@ def update_entry_route(
             channel_service_id,
             sequence_no,
             payload.asset_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.patch("/channels/{channel_service_id}/schedule/entries/{sequence_no}/ad-break", status_code=204)
+def update_ad_break_slot_route(
+    channel_service_id: str, sequence_no: int, payload: AdBreakSlotPatchRequest
+) -> None:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        update_ad_break_slot(
+            db_url, channel_service_id, sequence_no,
+            payload.schedule_offset_ms, payload.asset_id,
+        )
+        logger.info(
+            "Ad-break slot updated channel_service_id=%s sequence_no=%s offset_ms=%s asset_id=%s",
+            channel_service_id, sequence_no, payload.schedule_offset_ms, payload.asset_id,
         )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

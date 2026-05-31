@@ -125,3 +125,8 @@ class FeedIngestResponse(BaseModel):
 class ScheduleEntryPatchRequest(BaseModel):
     asset_id: str = Field(min_length=1)
 
+
+class AdBreakSlotPatchRequest(BaseModel):
+    schedule_offset_ms: int = Field(ge=0)
+    asset_id: str = Field(min_length=1)
+

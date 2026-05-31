@@ -10,6 +10,7 @@ _EDIT_WINDOW_HOURS = 2
 from src.api.repository import (
     active_schedule_entries_for_channel,
     delete_active_schedule_entry,
+    delete_entries_after,
     get_asset_for_channel,
     get_entry_starts_at,
     insert_after_schedule_entry,
@@ -20,6 +21,7 @@ from src.api.repository import (
     get_schedule_json_for_run,
     get_active_schedule_json_for_channel,
     update_active_schedule_entry_asset,
+    update_ad_break_slot_asset,
     update_asset_type,
     upsert_channel_mapping,
     upsert_feed,
@@ -438,6 +440,36 @@ def set_asset_type(db_url: str, channel_service_id: str, asset_id: str, asset_ty
         if not found:
             raise ValueError(f"Asset '{asset_id}' not found for channel '{channel_service_id}'")
         conn.commit()
+
+
+def update_ad_break_slot(
+    db_url: str,
+    channel_service_id: str,
+    sequence_no: int,
+    schedule_offset_ms: int,
+    asset_id: str,
+) -> None:
+    with connect(db_url) as conn:
+        starts_at = get_entry_starts_at(conn, channel_service_id, sequence_no)
+        if starts_at is None:
+            raise ValueError(f"Entry #{sequence_no} not found in active schedule")
+        _assert_within_edit_window(starts_at, sequence_no)
+        found = update_ad_break_slot_asset(conn, channel_service_id, sequence_no, schedule_offset_ms, asset_id)
+        if not found:
+            raise ValueError(
+                f"Ad-break slot at {schedule_offset_ms}ms not found in entry #{sequence_no}"
+            )
+        conn.commit()
+
+
+def clear_after_entry(db_url: str, channel_service_id: str, sequence_no: int) -> int:
+    with connect(db_url) as conn:
+        starts_at = get_entry_starts_at(conn, channel_service_id, sequence_no)
+        if starts_at is None:
+            raise ValueError(f"Entry #{sequence_no} not found in active schedule")
+        deleted = delete_entries_after(conn, channel_service_id, sequence_no)
+        conn.commit()
+    return deleted
 
 
 def insert_after_entry(db_url: str, channel_service_id: str, after_sequence_no: int, asset_id: str) -> None:

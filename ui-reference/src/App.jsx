@@ -167,6 +167,12 @@ export default function App() {
 
   const [epgDayOffset, setEpgDayOffset] = useState(0);
   const [expandedSeq, setExpandedSeq] = useState(null);
+  const [editModeEnabled, setEditModeEnabled] = useState(false);
+
+  const [editingSlot, setEditingSlot] = useState(null); // { entry, slot }
+  const [editSlotAssetId, setEditSlotAssetId] = useState("");
+  const [editSlotBusy, setEditSlotBusy] = useState(false);
+  const [editSlotMessage, setEditSlotMessage] = useState({ text: "", type: "" });
 
   const [channelServiceId, setChannelServiceId] = useState("");
   const [channelName, setChannelName] = useState("");
@@ -245,17 +251,13 @@ export default function App() {
 
   const assetTitleById = useMemo(() => {
     const m = new Map();
-    for (const a of assets) {
-      m.set(a.asset_id, a.title ?? null);
-    }
+    for (const a of assets) m.set(a.asset_id, a.title ?? null);
     return m;
   }, [assets]);
 
   const assetTypeById = useMemo(() => {
     const m = new Map();
-    for (const a of assets) {
-      m.set(a.asset_id, a.asset_type ?? null);
-    }
+    for (const a of assets) m.set(a.asset_id, a.asset_type ?? null);
     return m;
   }, [assets]);
 
@@ -594,6 +596,68 @@ export default function App() {
     } catch (err) {
       console.error(err);
       setGenerateMessage({ text: `Delete failed: ${err.message}`, type: "error" });
+    }
+  };
+
+  const handleClearAfter = async (entry) => {
+    if (!window.confirm(`Delete all schedule entries after "${entry.title ?? entry.asset_id}" (#${entry.sequence_no})?`)) return;
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/schedule/entries/${entry.sequence_no}/clear-after`,
+        { method: "DELETE" }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || `Request failed: ${res.status}`);
+      }
+      const data = await res.json();
+      setGenerateMessage({ text: `Cleared ${data.deleted} entries after #${entry.sequence_no}.`, type: "success" });
+      await loadChannel(selectedChannelId);
+    } catch (err) {
+      console.error(err);
+      setGenerateMessage({ text: `Clear after failed: ${err.message}`, type: "error" });
+    }
+  };
+
+  const handleOpenSlotEdit = (entry, slot) => {
+    setEditingSlot({ entry, slot });
+    setEditSlotAssetId(slot.slate_asset_id);
+    setEditSlotMessage({ text: "", type: "" });
+  };
+
+  const handleCloseSlotEdit = () => {
+    setEditingSlot(null);
+    setEditSlotAssetId("");
+    setEditSlotMessage({ text: "", type: "" });
+  };
+
+  const handleSaveSlotEdit = async () => {
+    if (!editingSlot || !editSlotAssetId) return;
+    setEditSlotBusy(true);
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/channels/${encodeURIComponent(selectedChannelId)}/schedule/entries/${editingSlot.entry.sequence_no}/ad-break`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            schedule_offset_ms: editingSlot.slot.cue_point_ms,
+            asset_id: editSlotAssetId,
+          }),
+        }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || `Request failed: ${res.status}`);
+      }
+      setGenerateMessage({ text: "Ad-break slot updated.", type: "success" });
+      handleCloseSlotEdit();
+      await loadChannel(selectedChannelId);
+    } catch (err) {
+      console.error(err);
+      setEditSlotMessage({ text: `Update failed: ${err.message}`, type: "error" });
+    } finally {
+      setEditSlotBusy(false);
     }
   };
 
@@ -953,7 +1017,6 @@ export default function App() {
                       <th>Channel ID</th>
                       <th>Channel Name</th>
                       <th>Country</th>
-                      <th>Feed ID</th>
                       <th>MRSS URL</th>
                       <th>Action</th>
                     </tr>
@@ -961,7 +1024,7 @@ export default function App() {
                   <tbody>
                     {channels.length === 0 ? (
                       <tr>
-                        <td colSpan={6} className="empty">
+                        <td colSpan={5} className="empty">
                           No channels yet. Register one to begin.
                         </td>
                       </tr>
@@ -986,7 +1049,6 @@ export default function App() {
                             <td>{c.channel_service_id}</td>
                             <td>{c.channel_name ?? "—"}</td>
                             <td>{c.country ?? "—"}</td>
-                            <td className="cell-mono">{c.mrss_feed_id}</td>
                             <td className="cell-mono">{c.mrss_url}</td>
                             <td>
                               <button
@@ -1003,23 +1065,11 @@ export default function App() {
                           </tr>
                           {selectedChannelId === c.channel_service_id && (
                             <tr className="channel-expand-row">
-                              <td colSpan={6}>
+                              <td colSpan={5}>
                                 <div className="channel-stats-layout" role="group" aria-label="Selected channel stats">
                                   <section className="channel-stats-group">
                                     <h3 className="channel-stats-group-title">Overview</h3>
                                     <div className="channel-stats-grid">
-                                      <div className="channel-stat">
-                                        <span className="channel-stat-label">Channel name</span>
-                                        <strong className="channel-stat-value">
-                                          {c.channel_name?.trim() || "—"}
-                                        </strong>
-                                      </div>
-                                      <div className="channel-stat">
-                                        <span className="channel-stat-label">Country</span>
-                                        <strong className="channel-stat-value">
-                                          {c.country?.trim() || "—"}
-                                        </strong>
-                                      </div>
                                       <div className="channel-stat">
                                         <span className="channel-stat-label">Runs</span>
                                         <strong className="channel-stat-value">{totalRunsCount}</strong>
@@ -1039,12 +1089,12 @@ export default function App() {
                                     <h3 className="channel-stats-group-title">Assets</h3>
                                     <div className="channel-stats-grid">
                                       <div className="channel-stat">
-                                        <span className="channel-stat-label">Assets</span>
+                                        <span className="channel-stat-label">Total assets</span>
                                         <strong className="channel-stat-value">{totalAssetsCount}</strong>
                                       </div>
                                       {availableAssetTypeEntries.map(([type, count]) => (
                                         <div className="channel-stat" key={type}>
-                                          <span className="channel-stat-label">{type} assets</span>
+                                          <span className="channel-stat-label">{type}</span>
                                           <strong className="channel-stat-value">{count}</strong>
                                         </div>
                                       ))}
@@ -1055,24 +1105,22 @@ export default function App() {
                                     <h3 className="channel-stats-group-title">Schedule & Alerts</h3>
                                     <div className="channel-stats-grid">
                                       <div className="channel-stat">
-                                        <span className="channel-stat-label">Active schedule rows</span>
+                                        <span className="channel-stat-label">Schedule rows</span>
                                         <strong className="channel-stat-value">{activeScheduleRowsCount}</strong>
                                       </div>
                                       <div className="channel-stat">
-                                        <span className="channel-stat-label">Available schedule</span>
+                                        <span className="channel-stat-label">Available</span>
                                         <strong className="channel-stat-value">{availableScheduleDaysHours}</strong>
                                       </div>
                                       <div className="channel-stat channel-stat-alert">
-                                        <span className="channel-stat-label">License expiry (next 7d)</span>
+                                        <span className="channel-stat-label">Expiring (7d)</span>
                                         <strong className="channel-stat-value">{expiringSoonCount}</strong>
-                                        <span className="channel-stat-subtext">
-                                          {expiringSoonTypeText || "No expiring assets"}
-                                        </span>
+                                        <span className="channel-stat-subtext">{expiringSoonTypeText || "None"}</span>
                                       </div>
                                       <div className="channel-stat channel-stat-danger">
-                                        <span className="channel-stat-label">Expired licenses</span>
+                                        <span className="channel-stat-label">Expired</span>
                                         <strong className="channel-stat-value">{expiredCount}</strong>
-                                        <span className="channel-stat-subtext">{expiredTypeText || "No expired assets"}</span>
+                                        <span className="channel-stat-subtext">{expiredTypeText || "None"}</span>
                                       </div>
                                     </div>
                                   </section>
@@ -1168,6 +1216,15 @@ export default function App() {
                   <button type="button" onClick={handleDownload} disabled={noChannel}>
                     Download JSON
                   </button>
+                  <button
+                    type="button"
+                    className={editModeEnabled ? "" : "btn-secondary"}
+                    onClick={() => setEditModeEnabled((v) => !v)}
+                    disabled={noChannel}
+                    title="Enable to edit programs and ad breaks. Only entries starting >2h from now are editable."
+                  >
+                    {editModeEnabled ? "Editing On" : "Edit Schedule"}
+                  </button>
                 </div>
               </div>
               <Message text={generateMessage.text} type={generateMessage.type} />
@@ -1250,7 +1307,7 @@ export default function App() {
                               const bTop = epgBlockTop(entry.starts_at);
                               const bHeight = epgBlockHeight(entry.starts_at, entry.ends_at);
                               const isExpanded = expandedSeq === entry.sequence_no;
-                              const editable = isWithinEditWindow(entry);
+                              const editable = editModeEnabled && isWithinEditWindow(entry);
                               const slots = visibleSlateSlots(entry);
 
                               return (
@@ -1304,8 +1361,8 @@ export default function App() {
                                               const isBumper = aType === "bumper";
                                               const badgeColor = isBumper ? "var(--accent)" : aType === "slate" ? "var(--warn)" : "var(--muted)";
                                               return (
-                                                <div key={si} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "4px 6px", background: "var(--bg)", borderRadius: 4 }}>
-                                                  <span style={{ flexShrink: 0, fontSize: "0.58rem", fontWeight: 700, padding: "2px 5px", borderRadius: 3, background: badgeColor, color: "#fff", textTransform: "uppercase", letterSpacing: "0.05em", marginTop: 1 }}>
+                                                <div key={si} style={{ display: "flex", gap: 8, alignItems: "center", padding: "4px 6px", background: "var(--bg)", borderRadius: 4 }}>
+                                                  <span style={{ flexShrink: 0, fontSize: "0.58rem", fontWeight: 700, padding: "2px 5px", borderRadius: 3, background: badgeColor, color: "#fff", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                                                     {aType}
                                                   </span>
                                                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -1316,6 +1373,16 @@ export default function App() {
                                                       {formatTimeOnly(slotStart)} – {formatTimeOnly(slotEnd)}
                                                     </div>
                                                   </div>
+                                                  {editable && (
+                                                    <button
+                                                      type="button"
+                                                      className="btn-secondary table-action-btn"
+                                                      style={{ fontSize: "0.65rem", padding: "2px 7px", flexShrink: 0 }}
+                                                      onClick={(ev) => { ev.stopPropagation(); handleOpenSlotEdit(entry, slot); }}
+                                                    >
+                                                      Edit
+                                                    </button>
+                                                  )}
                                                 </div>
                                               );
                                             })}
@@ -1326,6 +1393,7 @@ export default function App() {
                                         <div style={{ display: "flex", gap: 4, flexWrap: "wrap", borderTop: "1px solid var(--border)", paddingTop: 8 }}>
                                           <button type="button" className="btn-secondary table-action-btn" onClick={() => { handleOpenEdit(entry); setExpandedSeq(null); }}>Edit</button>
                                           <button type="button" className="btn-secondary table-action-btn" onClick={() => { handleOpenInsert(entry); setExpandedSeq(null); }}>Add After</button>
+                                          <button type="button" className="btn-secondary table-action-btn" style={{ color: "var(--warn)" }} onClick={() => { handleClearAfter(entry); setExpandedSeq(null); }}>Clear After</button>
                                           <button type="button" className="btn-secondary table-action-btn" style={{ color: "var(--bad)" }} onClick={() => { handleDeleteEntry(entry); setExpandedSeq(null); }}>Remove</button>
                                         </div>
                                       )}
@@ -1470,6 +1538,57 @@ export default function App() {
               </div>
             </div>
             <Message text={insertMessage.text} type={insertMessage.type} />
+          </div>
+        </div>
+      )}
+
+      {editingSlot && (
+        <div className="modal-backdrop" role="presentation" onClick={handleCloseSlotEdit}>
+          <div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="edit-slot-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <h3 id="edit-slot-modal-title">
+                Edit {assetTypeById.get(editingSlot.slot.slate_asset_id) ?? "Ad-break"} Slot
+              </h3>
+              <button type="button" className="btn-icon" onClick={handleCloseSlotEdit} aria-label="Close">×</button>
+            </div>
+            <p className="modal-lede">
+              Entry #{editingSlot.entry.sequence_no} · {formatTimeOnly(offsetIso(editingSlot.entry.starts_at, editingSlot.slot.cue_point_ms))} – {formatTimeOnly(offsetIso(editingSlot.entry.starts_at, editingSlot.slot.cue_point_ms + editingSlot.slot.slate_duration_ms))}
+            </p>
+            <div className="form-grid">
+              <div>
+                <label htmlFor="edit-slot-asset-select">Replace with</label>
+                <select
+                  id="edit-slot-asset-select"
+                  value={editSlotAssetId}
+                  onChange={(e) => setEditSlotAssetId(e.target.value)}
+                >
+                  {assets
+                    .filter((a) => a.asset_type === (assetTypeById.get(editingSlot.slot.slate_asset_id) ?? a.asset_type))
+                    .map((a) => (
+                      <option key={a.asset_id} value={a.asset_id}>
+                        [{a.asset_type}] {a.title ?? a.asset_id}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="form-actions modal-actions">
+                <button type="button" className="btn-secondary" onClick={handleCloseSlotEdit}>Cancel</button>
+                <button
+                  type="button"
+                  onClick={handleSaveSlotEdit}
+                  disabled={editSlotBusy || !editSlotAssetId || editSlotAssetId === editingSlot.slot.slate_asset_id}
+                >
+                  {editSlotBusy ? "Saving…" : "Save"}
+                </button>
+              </div>
+            </div>
+            <Message text={editSlotMessage.text} type={editSlotMessage.type} />
           </div>
         </div>
       )}

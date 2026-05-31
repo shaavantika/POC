@@ -938,6 +938,12 @@ button:disabled {
   gap: 8px;
 }
 
+@media (max-width: 1200px) {
+  .channel-stats-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .channel-stat {
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
@@ -971,11 +977,6 @@ button:disabled {
   line-height: 1.35;
 }
 
-@media (max-width: 1200px) {
-  .channel-stats-layout {
-    grid-template-columns: 1fr;
-  }
-}
 
 .channel-stat-alert {
   border-color: color-mix(in srgb, var(--warn) 45%, var(--border-subtle));
