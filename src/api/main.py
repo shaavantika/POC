@@ -70,6 +70,7 @@ app.add_middleware(
 @app.get("/health")
 def health() -> dict[str, str]:
     logger.debug("Health check requested")
+    logger.debug("This is testing")
     return {"status": "ok"}
 
 
