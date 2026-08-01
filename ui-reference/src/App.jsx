@@ -166,6 +166,7 @@ export default function App() {
   const [insertMessage, setInsertMessage] = useState({ text: "", type: "" });
 
   const [epgDayOffset, setEpgDayOffset] = useState(0);
+  const epgScrollRef = useRef(null);
   const [expandedSeq, setExpandedSeq] = useState(null);
   const [editModeEnabled, setEditModeEnabled] = useState(false);
 
@@ -179,6 +180,14 @@ export default function App() {
   const [country, setCountry] = useState("");
   const [mrssUrl, setMrssUrl] = useState("");
   const [enabled, setEnabled] = useState(true);
+  const [sourceType, setSourceType] = useState("mrss"); // "mrss" | "csv"
+  const [catalogFile, setCatalogFile] = useState(null);
+  const [registerBusy, setRegisterBusy] = useState(false);
+
+  const [uploadTarget, setUploadTarget] = useState(null); // { feedId, channelServiceId } for re-upload modal
+  const [uploadFile, setUploadFile] = useState(null);
+  const [uploadBusy, setUploadBusy] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState({ text: "", type: "" });
 
   const [registerMessage, setRegisterMessage] = useState({ text: "", type: "" });
   const [generateMessage, setGenerateMessage] = useState({ text: "", type: "" });
@@ -275,7 +284,7 @@ export default function App() {
     }
     return m;
   }, [entries]);
-  const epgVisibleDays = epgUniqueDays.slice(epgDayOffset, epgDayOffset + EPG_DAYS_VISIBLE);
+  const epgVisibleDays = epgUniqueDays;
 
   const visibleSlateSlots = (e) =>
     normalizeSlateSlots(e.slate_plan).filter((slot) => {
@@ -389,6 +398,11 @@ export default function App() {
     setEpgDayOffset(idx === -1 ? Math.max(0, days.length - EPG_DAYS_VISIBLE) : Math.max(0, idx));
   }, [entries]);
 
+  useEffect(() => {
+    if (!epgScrollRef.current) return;
+    epgScrollRef.current.scrollTo({ left: epgDayOffset * EPG_COL_WIDTH, behavior: "smooth" });
+  }, [epgDayOffset, epgUniqueDays]);
+
   const selectChannel = useCallback(
     async (id, opts = {}) => {
       const quiet = opts.quiet ?? true;
@@ -439,6 +453,20 @@ export default function App() {
     }
   };
 
+  const uploadCatalogFile = async (feedId, file) => {
+    const form = new FormData();
+    form.append("file", file);
+    const res = await fetch(`${API_BASE_URL}/feeds/${encodeURIComponent(feedId)}/ingest-file`, {
+      method: "POST",
+      body: form,
+    });
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(body.detail || `Upload failed: ${res.status}`);
+    }
+    return res.json();
+  };
+
   const handleRegisterSubmit = async (ev) => {
     ev.preventDefault();
     setRegisterMessage({ text: "", type: "" });
@@ -456,53 +484,128 @@ export default function App() {
       });
       return;
     }
-    if (!isValidHttpUrl(trimmedMrssUrl)) {
+    if (sourceType === "mrss" && !isValidHttpUrl(trimmedMrssUrl)) {
       setRegisterMessage({
         text: "MRSS URL must be a valid http/https URL.",
         type: "error",
       });
       return;
     }
-    const payload = {
-      channel_service_id: trimmedChannelServiceId,
-      channel_name: channelName.trim(),
-      country: trimmedCountry,
-      mrss_url: trimmedMrssUrl,
-      enabled,
-    };
+    setRegisterBusy(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/channels/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.detail || `Request failed: ${res.status}`);
+      let data;
+      if (sourceType === "mrss") {
+        const payload = {
+          channel_service_id: trimmedChannelServiceId,
+          channel_name: channelName.trim(),
+          country: trimmedCountry,
+          mrss_url: trimmedMrssUrl,
+          enabled,
+        };
+        const res = await fetch(`${API_BASE_URL}/channels/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.detail || `Request failed: ${res.status}`);
+        }
+        data = await res.json();
+      } else {
+        const payload = {
+          channel_service_id: trimmedChannelServiceId,
+          channel_name: channelName.trim(),
+          country: trimmedCountry,
+          enabled,
+        };
+        const res = await fetch(`${API_BASE_URL}/channels/register-csv`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.detail || `Request failed: ${res.status}`);
+        }
+        data = await res.json();
+        data.assets_upserted = 0;
+        data.row_errors = [];
+        if (catalogFile) {
+          const uploadResult = await uploadCatalogFile(data.mrss_feed_id, catalogFile);
+          data.assets_upserted = uploadResult.assets_upserted;
+          data.row_errors = uploadResult.row_errors ?? [];
+        }
       }
-      const data = await res.json();
       setChannelServiceId("");
       setChannelName("");
       setCountry("");
       setMrssUrl("");
       setEnabled(true);
+      setSourceType("mrss");
+      setCatalogFile(null);
       prevSelectedRef.current = data.channel_service_id;
       await loadData();
       setRegisterModalOpen(false);
       setRegisterMessage({ text: "", type: "" });
+      const rowErrors = data.row_errors ?? [];
+      const errNote = rowErrors.length > 0
+        ? ` (${rowErrors.length} row${rowErrors.length !== 1 ? "s" : ""} skipped: ${rowErrors[0]}${rowErrors.length > 1 ? "; …" : ""})`
+        : "";
       setGenerateMessage({
-        text: `Registered ${data.channel_service_id} and ingested ${data.assets_upserted} assets.`,
-        type: "success",
+        text: `Registered ${data.channel_service_id} and ingested ${data.assets_upserted} assets.${errNote}`,
+        type: rowErrors.length > 0 ? "error" : "success",
       });
     } catch (err) {
       console.error(err);
       setRegisterMessage({ text: `Registration failed: ${err.message}`, type: "error" });
+    } finally {
+      setRegisterBusy(false);
     }
   };
 
   const closeRegisterModal = () => {
     setRegisterModalOpen(false);
     setRegisterMessage({ text: "", type: "" });
+    setSourceType("mrss");
+    setCatalogFile(null);
+  };
+
+  const openUploadModal = (feedId, channelSvcId) => {
+    setUploadTarget({ feedId, channelServiceId: channelSvcId });
+    setUploadFile(null);
+    setUploadMessage({ text: "", type: "" });
+  };
+
+  const closeUploadModal = () => {
+    setUploadTarget(null);
+    setUploadFile(null);
+    setUploadMessage({ text: "", type: "" });
+  };
+
+  const handleUploadSubmit = async (ev) => {
+    ev.preventDefault();
+    if (!uploadTarget || !uploadFile) return;
+    setUploadBusy(true);
+    setUploadMessage({ text: "Uploading...", type: "" });
+    try {
+      const result = await uploadCatalogFile(uploadTarget.feedId, uploadFile);
+      await loadData();
+      const rowErrors = result.row_errors ?? [];
+      const errNote = rowErrors.length > 0
+        ? ` (${rowErrors.length} row${rowErrors.length !== 1 ? "s" : ""} skipped: ${rowErrors[0]}${rowErrors.length > 1 ? "; …" : ""})`
+        : "";
+      setGenerateMessage({
+        text: `Ingested ${result.assets_upserted} assets from ${result.filename}.${errNote}`,
+        type: rowErrors.length > 0 ? "error" : "success",
+      });
+      closeUploadModal();
+    } catch (err) {
+      console.error(err);
+      setUploadMessage({ text: `Upload failed: ${err.message}`, type: "error" });
+    } finally {
+      setUploadBusy(false);
+    }
   };
 
   const handleGenerate = async () => {
@@ -787,39 +890,86 @@ export default function App() {
         />
       </div>
       <div>
-        <label htmlFor="modal-mrssUrl">
-          MRSS URL <span className="required-mark">*</span>
-        </label>
-        <input
-          id="modal-mrssUrl"
-          type="url"
-          value={mrssUrl}
-          onChange={(e) => setMrssUrl(e.target.value)}
-          placeholder="https://example.com/feed.xml"
-          pattern="https?://.+"
-          title="Enter a valid MRSS URL starting with http:// or https://"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="modal-enabled">
-          Auto MRSS Polling <span className="required-mark">*</span>
+        <label htmlFor="modal-sourceType">
+          Catalog Source <span className="required-mark">*</span>
         </label>
         <select
-          id="modal-enabled"
-          value={enabled ? "true" : "false"}
-          onChange={(e) => setEnabled(e.target.value === "true")}
-          title="When enabled, AWS scheduled polling will fetch this channel's MRSS feed automatically."
+          id="modal-sourceType"
+          value={sourceType}
+          onChange={(e) => setSourceType(e.target.value)}
         >
-          <option value="true">On</option>
-          <option value="false">Off</option>
+          <option value="mrss">MRSS URL</option>
+          <option value="csv">CSV / XLSX upload</option>
         </select>
       </div>
+      {sourceType === "mrss" ? (
+        <>
+          <div>
+            <label htmlFor="modal-mrssUrl">
+              MRSS URL <span className="required-mark">*</span>
+            </label>
+            <input
+              id="modal-mrssUrl"
+              type="url"
+              value={mrssUrl}
+              onChange={(e) => setMrssUrl(e.target.value)}
+              placeholder="https://example.com/feed.xml"
+              pattern="https?://.+"
+              title="Enter a valid MRSS URL starting with http:// or https://"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="modal-enabled">
+              Auto MRSS Polling <span className="required-mark">*</span>
+            </label>
+            <select
+              id="modal-enabled"
+              value={enabled ? "true" : "false"}
+              onChange={(e) => setEnabled(e.target.value === "true")}
+              title="When enabled, AWS scheduled polling will fetch this channel's MRSS feed automatically."
+            >
+              <option value="true">On</option>
+              <option value="false">Off</option>
+            </select>
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <label htmlFor="modal-catalogFile">Catalog file (.csv or .xlsx)</label>
+            <input
+              id="modal-catalogFile"
+              type="file"
+              accept=".csv,.xlsx,.xlsm"
+              onChange={(e) => setCatalogFile(e.target.files?.[0] ?? null)}
+            />
+            <p className="modal-lede" style={{ marginTop: 4 }}>
+              Optional here — you can also register the channel now and upload a catalog file later from the Channels table.
+            </p>
+          </div>
+          <div>
+            <label htmlFor="modal-enabled-csv">
+              Enabled <span className="required-mark">*</span>
+            </label>
+            <select
+              id="modal-enabled-csv"
+              value={enabled ? "true" : "false"}
+              onChange={(e) => setEnabled(e.target.value === "true")}
+            >
+              <option value="true">On</option>
+              <option value="false">Off</option>
+            </select>
+          </div>
+        </>
+      )}
       <div className="form-actions modal-actions">
         <button type="button" className="btn-secondary" onClick={closeRegisterModal}>
           Cancel
         </button>
-        <button type="submit">Save channel</button>
+        <button type="submit" disabled={registerBusy}>
+          {registerBusy ? "Saving…" : "Save channel"}
+        </button>
       </div>
     </form>
   );
@@ -1017,7 +1167,7 @@ export default function App() {
                       <th>Channel ID</th>
                       <th>Channel Name</th>
                       <th>Country</th>
-                      <th>MRSS URL</th>
+                      <th>Source</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -1049,7 +1199,9 @@ export default function App() {
                             <td>{c.channel_service_id}</td>
                             <td>{c.channel_name ?? "—"}</td>
                             <td>{c.country ?? "—"}</td>
-                            <td className="cell-mono">{c.mrss_url}</td>
+                            <td className="cell-mono">
+                              {c.source_type === "csv" ? "CSV / XLSX catalog" : c.mrss_url}
+                            </td>
                             <td>
                               <button
                                 type="button"
@@ -1061,6 +1213,19 @@ export default function App() {
                               >
                                 Schedule
                               </button>
+                              {c.source_type === "csv" && (
+                                <button
+                                  type="button"
+                                  className="btn-secondary table-action-btn"
+                                  style={{ marginLeft: 6 }}
+                                  onClick={(ev) => {
+                                    ev.stopPropagation();
+                                    openUploadModal(c.mrss_feed_id, c.channel_service_id);
+                                  }}
+                                >
+                                  Upload catalog
+                                </button>
+                              )}
                             </td>
                           </tr>
                           {selectedChannelId === c.channel_service_id && (
@@ -1126,10 +1291,14 @@ export default function App() {
                                   </section>
                                 </div>
                                 <div className="channel-feed-health">
-                                  <h3 className="channel-feed-health-title">MRSS polling</h3>
-                                  <p className="channel-feed-health-url cell-mono" title={c.mrss_url}>
-                                    {c.mrss_url}
-                                  </p>
+                                  <h3 className="channel-feed-health-title">
+                                    {c.source_type === "csv" ? "CSV / XLSX catalog" : "MRSS polling"}
+                                  </h3>
+                                  {c.source_type !== "csv" && (
+                                    <p className="channel-feed-health-url cell-mono" title={c.mrss_url}>
+                                      {c.mrss_url}
+                                    </p>
+                                  )}
                                   {!feedForChannel ? (
                                     <p className="channel-info">
                                       No feed record matched this channel. Try Refresh.
@@ -1137,7 +1306,9 @@ export default function App() {
                                   ) : (
                                     <div className="channel-feed-poll-stack">
                                       <div className="channel-feed-poll-row">
-                                        <span className="channel-feed-poll-label">Last MRSS poll</span>
+                                        <span className="channel-feed-poll-label">
+                                          {c.source_type === "csv" ? "Last upload" : "Last MRSS poll"}
+                                        </span>
                                         <span className="channel-feed-poll-value channel-feed-poll-value--time">
                                           {feedForChannel.last_fetch_at
                                             ? formatTimeTz(feedForChannel.last_fetch_at)
@@ -1156,12 +1327,23 @@ export default function App() {
                                       >
                                         <span className="channel-feed-poll-label">Status</span>
                                         <span className="channel-feed-poll-value">
-                                          {formatMrssPollHttpStatus(feedForChannel)}
+                                          {c.source_type === "csv"
+                                            ? (feedForChannel.last_error ? "Failed" : feedForChannel.last_fetch_at ? "OK" : "—")
+                                            : formatMrssPollHttpStatus(feedForChannel)}
                                         </span>
                                         {feedForChannel.last_error ? (
                                           <p className="channel-feed-poll-error">{feedForChannel.last_error}</p>
                                         ) : null}
                                       </div>
+                                      {c.source_type === "csv" && (
+                                        <button
+                                          type="button"
+                                          className="btn-secondary table-action-btn"
+                                          onClick={() => openUploadModal(c.mrss_feed_id, c.channel_service_id)}
+                                        >
+                                          Upload new catalog file
+                                        </button>
+                                      )}
                                     </div>
                                   )}
                                 </div>
@@ -1196,9 +1378,52 @@ export default function App() {
                       ×
                     </button>
                   </div>
-                  <p className="modal-lede">Maps a channel to an MRSS URL and ingests.</p>
+                  <p className="modal-lede">Maps a channel to an MRSS URL or a CSV/XLSX catalog and ingests.</p>
                   {registerForm}
                   <Message text={registerMessage.text} type={registerMessage.type} />
+                </div>
+              </div>
+            )}
+
+            {uploadTarget && (
+              <div className="modal-backdrop" role="presentation" onClick={closeUploadModal}>
+                <div
+                  className="modal"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="upload-modal-title"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="modal-header">
+                    <h3 id="upload-modal-title">Upload catalog — {uploadTarget.channelServiceId}</h3>
+                    <button type="button" className="btn-icon" onClick={closeUploadModal} aria-label="Close">
+                      ×
+                    </button>
+                  </div>
+                  <p className="modal-lede">
+                    Upload a .csv or .xlsx file matching the asset catalog format. Matching asset_ids are updated in place.
+                  </p>
+                  <form className="form-grid" onSubmit={handleUploadSubmit}>
+                    <div>
+                      <label htmlFor="upload-catalogFile">Catalog file</label>
+                      <input
+                        id="upload-catalogFile"
+                        type="file"
+                        accept=".csv,.xlsx,.xlsm"
+                        onChange={(e) => setUploadFile(e.target.files?.[0] ?? null)}
+                        required
+                      />
+                    </div>
+                    <div className="form-actions modal-actions">
+                      <button type="button" className="btn-secondary" onClick={closeUploadModal}>
+                        Cancel
+                      </button>
+                      <button type="submit" disabled={uploadBusy || !uploadFile}>
+                        {uploadBusy ? "Uploading…" : "Upload"}
+                      </button>
+                    </div>
+                  </form>
+                  <Message text={uploadMessage.text} type={uploadMessage.type} />
                 </div>
               </div>
             )}
@@ -1249,7 +1474,7 @@ export default function App() {
                     const idx = epgUniqueDays.findIndex((d) => d >= todayKey);
                     setEpgDayOffset(idx === -1 ? Math.max(0, epgUniqueDays.length - EPG_DAYS_VISIBLE) : Math.max(0, idx));
                   }}>Today</button>
-                  <button type="button" className="btn-secondary" disabled={epgDayOffset + EPG_DAYS_VISIBLE >= epgUniqueDays.length} onClick={() => setEpgDayOffset((o) => Math.min(Math.max(0, epgUniqueDays.length - EPG_DAYS_VISIBLE), o + 1))} aria-label="Next days">▶</button>
+                  <button type="button" className="btn-secondary" disabled={epgDayOffset >= epgUniqueDays.length - 1} onClick={() => setEpgDayOffset((o) => Math.min(Math.max(0, epgUniqueDays.length - 1), o + 1))} aria-label="Next days">▶</button>
                   <span style={{ marginLeft: "0.5rem", fontSize: "0.85rem", color: "var(--muted)" }}>
                     {epgVisibleDays.length > 0 && (
                       <>
@@ -1261,7 +1486,7 @@ export default function App() {
                 </div>
 
                 {/* EPG scroll area */}
-                <div style={{ overflow: "auto", maxHeight: "640px" }}>
+                <div ref={epgScrollRef} style={{ overflow: "auto", maxHeight: "640px" }}>
                   <div style={{ minWidth: EPG_TIME_W + epgVisibleDays.length * EPG_COL_WIDTH }}>
 
                     {/* Sticky date header row */}
@@ -1309,6 +1534,7 @@ export default function App() {
                               const isExpanded = expandedSeq === entry.sequence_no;
                               const editable = editModeEnabled && isWithinEditWindow(entry);
                               const slots = visibleSlateSlots(entry);
+                              const hasPoster = Boolean(entry.thumbnail_url) && bHeight > 30;
 
                               return (
                                 <div
@@ -1339,8 +1565,17 @@ export default function App() {
                                   {isExpanded ? (
                                     <div
                                       onClick={(ev) => ev.stopPropagation()}
-                                      style={{ background: "var(--bg-elevated)", border: "1px solid var(--accent)", borderRadius: 4, padding: "10px 12px", minWidth: EPG_COL_WIDTH - 14, boxShadow: "0 6px 24px rgba(0,0,0,0.18)", cursor: "default", fontSize: "0.78rem", lineHeight: 1.4 }}
+                                      style={{ background: "var(--bg-elevated)", border: "1px solid var(--accent)", borderRadius: 4, minWidth: EPG_COL_WIDTH - 14, boxShadow: "0 6px 24px rgba(0,0,0,0.18)", cursor: "default", fontSize: "0.78rem", lineHeight: 1.4, overflow: "hidden" }}
                                     >
+                                      {entry.thumbnail_url && (
+                                        <img
+                                          src={entry.thumbnail_url}
+                                          alt=""
+                                          style={{ display: "block", width: "100%", height: 140, objectFit: "cover" }}
+                                          onError={(ev) => { ev.target.style.display = "none"; }}
+                                        />
+                                      )}
+                                      <div style={{ padding: "10px 12px" }}>
                                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4 }}>
                                         <strong style={{ fontSize: "0.82rem", flex: 1, marginRight: 8 }}>{entry.title ?? entry.asset_id}</strong>
                                         <button type="button" style={{ background: "none", border: "none", cursor: "pointer", color: "var(--muted)", fontSize: "0.9rem", padding: 0, lineHeight: 1 }} onClick={(ev) => { ev.stopPropagation(); setExpandedSeq(null); }} aria-label="Close">✕</button>
@@ -1397,31 +1632,45 @@ export default function App() {
                                           <button type="button" className="btn-secondary table-action-btn" style={{ color: "var(--bad)" }} onClick={() => { handleDeleteEntry(entry); setExpandedSeq(null); }}>Remove</button>
                                         </div>
                                       )}
+                                      </div>
                                     </div>
                                   ) : (
-                                    <div style={{ padding: "3px 6px", height: "100%", overflow: "hidden", fontSize: "0.74rem", lineHeight: 1.3 }}>
-                                      <div style={{ fontSize: "0.66rem", color: "var(--accent)", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginBottom: 1 }}>
-                                        {formatTimeOnly(entry.starts_at)}
-                                        {entry.season_number != null && (
-                                          <span style={{ marginLeft: 6, color: "var(--muted)", fontWeight: 400 }}>
-                                            S{String(entry.season_number).padStart(2, "0")}
-                                            {entry.episode_number != null && `E${String(entry.episode_number).padStart(2, "0")}`}
-                                          </span>
+                                    <div style={{ position: "relative", height: "100%", overflow: "hidden" }}>
+                                      {hasPoster && (
+                                        <>
+                                          <img
+                                            src={entry.thumbnail_url}
+                                            alt=""
+                                            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                                            onError={(ev) => { ev.target.style.display = "none"; ev.target.nextSibling && (ev.target.nextSibling.style.display = "none"); }}
+                                          />
+                                          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.32) 40%, rgba(0,0,0,0.86) 100%)" }} />
+                                        </>
+                                      )}
+                                      <div style={{ position: "relative", padding: "3px 6px", height: "100%", boxSizing: "border-box", fontSize: "0.74rem", lineHeight: 1.3 }}>
+                                        <div style={{ fontSize: "0.66rem", color: hasPoster ? "#fff" : "var(--accent)", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginBottom: 1, textShadow: hasPoster ? "0 1px 2px rgba(0,0,0,0.6)" : "none" }}>
+                                          {formatTimeOnly(entry.starts_at)}
+                                          {entry.season_number != null && (
+                                            <span style={{ marginLeft: 6, color: hasPoster ? "rgba(255,255,255,0.85)" : "var(--muted)", fontWeight: 400 }}>
+                                              S{String(entry.season_number).padStart(2, "0")}
+                                              {entry.episode_number != null && `E${String(entry.episode_number).padStart(2, "0")}`}
+                                            </span>
+                                          )}
+                                        </div>
+                                        <div style={{ fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: hasPoster ? "#fff" : "var(--text)", textShadow: hasPoster ? "0 1px 2px rgba(0,0,0,0.6)" : "none" }}>
+                                          {entry.title ?? entry.asset_id}
+                                        </div>
+                                        {bHeight > 52 && (
+                                          <div style={{ color: hasPoster ? "rgba(255,255,255,0.85)" : "var(--muted)", fontSize: "0.68rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", textShadow: hasPoster ? "0 1px 2px rgba(0,0,0,0.6)" : "none" }}>
+                                            {formatTimeOnly(entry.starts_at)} – {formatTimeOnly(entry.ends_at)}
+                                          </div>
+                                        )}
+                                        {bHeight > 68 && slots.length > 0 && (
+                                          <div style={{ marginTop: 2, fontSize: "0.66rem", color: "var(--warn)", textShadow: hasPoster ? "0 1px 2px rgba(0,0,0,0.6)" : "none" }}>
+                                            ▪ {slots.length} ad{slots.length !== 1 ? "s" : ""}
+                                          </div>
                                         )}
                                       </div>
-                                      <div style={{ fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                        {entry.title ?? entry.asset_id}
-                                      </div>
-                                      {bHeight > 52 && (
-                                        <div style={{ color: "var(--muted)", fontSize: "0.68rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                          {formatTimeOnly(entry.starts_at)} – {formatTimeOnly(entry.ends_at)}
-                                        </div>
-                                      )}
-                                      {bHeight > 68 && slots.length > 0 && (
-                                        <div style={{ marginTop: 2, fontSize: "0.66rem", color: "var(--warn)" }}>
-                                          ▪ {slots.length} ad{slots.length !== 1 ? "s" : ""}
-                                        </div>
-                                      )}
                                     </div>
                                   )}
                                 </div>
@@ -1448,6 +1697,7 @@ export default function App() {
                 <table className="data-table">
                   <thead>
                     <tr>
+                      <th>Thumbnail</th>
                       <th>Asset ID</th>
                       <th>Type</th>
                       <th>S</th>
@@ -1461,13 +1711,25 @@ export default function App() {
                   <tbody>
                     {assets.length === 0 ? (
                       <tr>
-                        <td colSpan={8} className="empty">
+                        <td colSpan={9} className="empty">
                           {noChannel ? "No channel configured." : "No assets for this channel."}
                         </td>
                       </tr>
                     ) : (
                       assets.map((a) => (
                         <tr key={a.asset_id}>
+                          <td>
+                            {a.thumbnail_url ? (
+                              <img
+                                src={a.thumbnail_url}
+                                alt=""
+                                style={{ width: 96, height: 54, objectFit: "cover", borderRadius: 4, display: "block", boxShadow: "0 1px 3px rgba(0,0,0,0.25)" }}
+                                onError={(ev) => { ev.target.style.display = "none"; }}
+                              />
+                            ) : (
+                              "—"
+                            )}
+                          </td>
                           <td className="cell-mono">{a.asset_id}</td>
                           <td>
                             {a.asset_type}

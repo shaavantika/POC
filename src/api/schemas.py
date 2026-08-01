@@ -34,7 +34,8 @@ class ChannelRegisterResponse(BaseModel):
 
 class FeedResponse(BaseModel):
     id: str
-    url: str
+    url: str | None
+    source_type: str = "mrss"
     fetch_interval_seconds: int
     enabled: bool
     last_fetch_at: str | None
@@ -47,7 +48,40 @@ class ChannelResponse(BaseModel):
     channel_name: str | None
     country: str | None
     mrss_feed_id: str
-    mrss_url: str
+    mrss_url: str | None
+    source_type: str = "mrss"
+
+
+class ChannelRegisterCsvRequest(BaseModel):
+    channel_service_id: str = Field(min_length=1, max_length=255)
+    channel_name: str = Field(min_length=1, max_length=255)
+    country: str = Field(min_length=1, max_length=64)
+    enabled: bool = True
+
+    @model_validator(mode="after")
+    def validate_service_id_country_prefix(self) -> "ChannelRegisterCsvRequest":
+        service_id = self.channel_service_id.strip()
+        country = self.country.strip()
+        if not service_id.upper().startswith(country.upper()):
+            raise ValueError("channel_service_id must start with country code")
+        return self
+
+
+class ChannelRegisterCsvResponse(BaseModel):
+    channel_service_id: str
+    channel_name: str
+    country: str
+    mrss_feed_id: str
+    source_type: str = "csv"
+    enabled: bool
+
+
+class FeedIngestFileResponse(BaseModel):
+    mrss_feed_id: str
+    filename: str
+    assets_upserted: int
+    row_errors: list[str] = Field(default_factory=list)
+    ingestion_error: str | None = None
 
 
 class RunResponse(BaseModel):
@@ -76,6 +110,7 @@ class ScheduleEntryResponse(BaseModel):
     title: str | None
     season_number: int | None = None
     episode_number: int | None = None
+    thumbnail_url: str | None = None
     cue_points_ms: list[int] = Field(default_factory=list)
     slate_plan: list[SlatePlanSlotResponse] = Field(default_factory=list)
 
@@ -90,6 +125,7 @@ class AssetResponse(BaseModel):
     valid_from: str | None
     valid_to: str | None
     last_seen_at: str
+    thumbnail_url: str | None = None
 
 
 class AssetTypeUpdateRequest(BaseModel):

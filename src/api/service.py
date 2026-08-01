@@ -9,6 +9,7 @@ _EDIT_WINDOW_HOURS = 2
 
 from src.api.repository import (
     active_schedule_entries_for_channel,
+    create_source_feed,
     delete_active_schedule_entry,
     delete_entries_after,
     get_asset_for_channel,
@@ -27,9 +28,12 @@ from src.api.repository import (
     upsert_feed,
 )
 from src.api.schemas import (
+    ChannelRegisterCsvRequest,
+    ChannelRegisterCsvResponse,
     ChannelRegisterRequest,
     ChannelRegisterResponse,
     ChannelResponse,
+    FeedIngestFileResponse,
     FeedIngestRequest,
     FeedIngestResponse,
     FeedResponse,
@@ -42,6 +46,7 @@ from src.api.repository import mark_feed_fetch_failure, mark_feed_fetch_success
 from src.ingestion.ingest_runner import try_ingest_feed_from_http
 from src.ingestion.ingest_runner import normalize_mrss_xml_text
 from src.ingestion.parser import parse_mrss
+from src.ingestion.spreadsheet_parser import parse_spreadsheet
 from src.ingestion.repository import upsert_assets
 from src.common.logging_config import get_logger
 
@@ -104,6 +109,62 @@ def register_channel(db_url: str, payload: ChannelRegisterRequest) -> ChannelReg
     )
 
 
+def register_csv_channel(db_url: str, payload: ChannelRegisterCsvRequest) -> ChannelRegisterCsvResponse:
+    with connect(db_url) as conn:
+        feed_id = create_source_feed(conn, source_type="csv", url=None, enabled=payload.enabled)
+        channel_id = upsert_channel_mapping(
+            conn=conn,
+            channel_service_id=payload.channel_service_id.strip(),
+            channel_name=payload.channel_name.strip(),
+            country=payload.country.strip(),
+            mrss_feed_id=feed_id,
+        )
+        conn.commit()
+    logger.info(
+        "CSV channel mapping upserted channel_service_id=%s feed_id=%s",
+        channel_id,
+        feed_id,
+    )
+    return ChannelRegisterCsvResponse(
+        channel_service_id=channel_id,
+        channel_name=payload.channel_name.strip(),
+        country=payload.country.strip(),
+        mrss_feed_id=feed_id,
+        enabled=payload.enabled,
+    )
+
+
+def ingest_feed_file(db_url: str, mrss_feed_id: str, filename: str, data: bytes) -> FeedIngestFileResponse:
+    try:
+        assets, row_errors = parse_spreadsheet(data, filename)
+        with connect(db_url) as conn:
+            assets_upserted = upsert_assets(conn, mrss_feed_id, assets) if assets else 0
+            mark_feed_fetch_success(conn, mrss_feed_id=mrss_feed_id, http_status=200)
+            conn.commit()
+        return FeedIngestFileResponse(
+            mrss_feed_id=mrss_feed_id,
+            filename=filename,
+            assets_upserted=assets_upserted,
+            row_errors=row_errors,
+            ingestion_error=None,
+        )
+    except Exception as exc:
+        err = str(exc)
+        try:
+            with connect(db_url) as conn:
+                mark_feed_fetch_failure(conn, mrss_feed_id=mrss_feed_id, error_message=err, http_status=None)
+                conn.commit()
+        except Exception:
+            logger.exception("Could not persist feed failure for mrss_feed_id=%s", mrss_feed_id)
+        return FeedIngestFileResponse(
+            mrss_feed_id=mrss_feed_id,
+            filename=filename,
+            assets_upserted=0,
+            row_errors=[],
+            ingestion_error=err,
+        )
+
+
 def get_feeds(db_url: str) -> list[FeedResponse]:
     with connect(db_url) as conn:
         rows = list_feeds(conn)
@@ -111,11 +172,12 @@ def get_feeds(db_url: str) -> list[FeedResponse]:
         FeedResponse(
             id=str(row[0]),
             url=row[1],
-            fetch_interval_seconds=row[2],
-            enabled=row[3],
-            last_fetch_at=row[4].isoformat() if row[4] else None,
-            last_http_status=row[5],
-            last_error=row[6],
+            source_type=row[2],
+            fetch_interval_seconds=row[3],
+            enabled=row[4],
+            last_fetch_at=row[5].isoformat() if row[5] else None,
+            last_http_status=row[6],
+            last_error=row[7],
         )
         for row in rows
     ]
@@ -131,6 +193,7 @@ def get_channels(db_url: str) -> list[ChannelResponse]:
             country=row[2],
             mrss_feed_id=str(row[3]),
             mrss_url=row[4],
+            source_type=row[5],
         )
         for row in rows
     ]
@@ -293,6 +356,7 @@ def get_active_schedule(db_url: str, channel_service_id: str) -> list[ScheduleEn
                 title=row[5],
                 season_number=row[6],
                 episode_number=row[7],
+                thumbnail_url=row[8],
                 cue_points_ms=cue_points_ms,
                 slate_plan=slate_plan,
             )
@@ -314,6 +378,7 @@ def get_channel_assets(db_url: str, channel_service_id: str) -> list[AssetRespon
             valid_from=row[6].isoformat() if row[6] else None,
             valid_to=row[7].isoformat() if row[7] else None,
             last_seen_at=row[8].isoformat(),
+            thumbnail_url=row[9],
         )
         for row in rows
     ]

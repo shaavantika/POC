@@ -246,6 +246,25 @@ def upsert_feed(
     return str(row[0]), row[1], row[2], row[3]
 
 
+def create_source_feed(
+    conn: Connection,
+    source_type: str,
+    url: str | None,
+    enabled: bool,
+) -> str:
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            INSERT INTO mrss_feeds (url, source_type, enabled)
+            VALUES (%s, %s, %s)
+            RETURNING id
+            """,
+            (url, source_type, enabled),
+        )
+        row = cur.fetchone()
+    return str(row[0])
+
+
 def upsert_channel_mapping(
     conn: Connection,
     channel_service_id: str,
@@ -277,6 +296,7 @@ def list_feeds(conn: Connection) -> list[tuple]:
             SELECT
                 id,
                 url,
+                source_type,
                 fetch_interval_seconds,
                 enabled,
                 last_fetch_at,
@@ -324,7 +344,8 @@ def list_channels(conn: Connection) -> list[tuple]:
                 c.channel_name,
                 c.country,
                 c.mrss_feed_id,
-                f.url
+                f.url,
+                f.source_type
             FROM channel_mrss_sources c
             JOIN mrss_feeds f ON f.id = c.mrss_feed_id
             ORDER BY c.channel_service_id
@@ -360,9 +381,12 @@ def active_schedule_entries_for_channel(conn: Connection, channel_service_id: st
                 e.asset_type,
                 e.title,
                 e.season_number,
-                e.episode_number
+                e.episode_number,
+                ma.thumbnail_url
             FROM channel_schedule_entries e
             JOIN channel_schedule_runs r ON r.id = e.run_id
+            LEFT JOIN channel_mrss_sources c ON c.channel_service_id = e.channel_service_id
+            LEFT JOIN mrss_assets ma ON ma.mrss_feed_id = c.mrss_feed_id AND ma.asset_id = e.asset_id
             WHERE r.channel_service_id = %s
               AND r.is_active = true
             ORDER BY e.sequence_no
@@ -386,7 +410,8 @@ def list_assets_for_channel(conn: Connection, channel_service_id: str, limit: in
                 a.duration_ms,
                 a.valid_from,
                 a.valid_to,
-                a.last_seen_at
+                a.last_seen_at,
+                a.thumbnail_url
             FROM mrss_assets a
             JOIN channel_mrss_sources c ON c.mrss_feed_id = a.mrss_feed_id
             WHERE c.channel_service_id = %s

@@ -10,16 +10,19 @@ if str(_root) not in sys.path:
     sys.path.insert(0, str(_root))
 
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 
 from src.api.schemas import (
     AdBreakSlotPatchRequest,
     AssetTypeUpdateRequest,
+    ChannelRegisterCsvRequest,
+    ChannelRegisterCsvResponse,
     ChannelRegisterRequest,
     ChannelRegisterResponse,
     ChannelResponse,
+    FeedIngestFileResponse,
     FeedIngestRequest,
     FeedIngestResponse,
     FeedResponse,
@@ -37,12 +40,14 @@ from src.api.service import (
     get_channel_runs,
     get_channels,
     get_feeds,
+    ingest_feed_file,
     ingest_feed_xml,
     insert_after_entry,
     get_channel_assets,
     get_run_schedule_json,
     get_active_schedule_json,
     register_channel,
+    register_csv_channel,
     set_asset_type,
     update_ad_break_slot,
     update_entry,
@@ -104,6 +109,28 @@ def register_channel_route(payload: ChannelRegisterRequest) -> ChannelRegisterRe
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
+@app.post("/channels/register-csv", response_model=ChannelRegisterCsvResponse)
+def register_channel_csv_route(payload: ChannelRegisterCsvRequest) -> ChannelRegisterCsvResponse:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    try:
+        logger.info(
+            "Register CSV channel request channel_service_id=%s",
+            payload.channel_service_id,
+        )
+        response = register_csv_channel(db_url=db_url, payload=payload)
+        logger.info(
+            "Register CSV channel completed channel_service_id=%s feed_id=%s",
+            response.channel_service_id,
+            response.mrss_feed_id,
+        )
+        return response
+    except Exception as exc:
+        logger.exception("Register CSV channel failed: %s", exc)
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
 @app.get("/feeds", response_model=list[FeedResponse])
 def feeds_route() -> list[FeedResponse]:
     db_url = os.getenv("DATABASE_URL")
@@ -131,6 +158,33 @@ def ingest_feed_route(mrss_feed_id: str, payload: FeedIngestRequest) -> FeedInge
         return response
     except Exception as exc:
         logger.exception("Ingest feed failed feed_id=%s error=%s", mrss_feed_id, exc)
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/feeds/{mrss_feed_id}/ingest-file", response_model=FeedIngestFileResponse)
+async def ingest_feed_file_route(mrss_feed_id: str, file: UploadFile = File(...)) -> FeedIngestFileResponse:
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not set")
+    data = await file.read()
+    if not data:
+        raise HTTPException(status_code=400, detail="Uploaded file is empty")
+    try:
+        logger.info("Ingest feed file received feed_id=%s filename=%s", mrss_feed_id, file.filename)
+        response = ingest_feed_file(
+            db_url=db_url, mrss_feed_id=mrss_feed_id, filename=file.filename or "", data=data
+        )
+        logger.info(
+            "Ingest feed file completed feed_id=%s filename=%s assets_upserted=%s row_errors=%s ingestion_error=%s",
+            mrss_feed_id,
+            response.filename,
+            response.assets_upserted,
+            len(response.row_errors),
+            response.ingestion_error,
+        )
+        return response
+    except Exception as exc:
+        logger.exception("Ingest feed file failed feed_id=%s error=%s", mrss_feed_id, exc)
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
